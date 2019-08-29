@@ -1,10 +1,11 @@
 package com.ems.entity;
 
 public class SysRole {
+    //角色id
     private Integer rId;
-
+    //角色名
     private String rName;
-
+    //角色描述
     private String rDesc;
 
     public SysRole(Integer rId, String rName, String rDesc) {

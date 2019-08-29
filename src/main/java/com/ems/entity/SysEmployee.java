@@ -1,14 +1,15 @@
 package com.ems.entity;
 
 public class SysEmployee {
+    //员工id
     private Integer eId;
-
+    //员工姓名
     private String eName;
-
+    //员工密码
     private String ePassword;
-
+    //员工性别
     private String eSex;
-
+    //学生评教平均得分
     private Integer eAvgScore;
 
     public SysEmployee(Integer eId, String eName, String ePassword, String eSex, Integer eAvgScore) {

@@ -3,16 +3,17 @@ package com.ems.entity;
 import java.util.Date;
 
 public class Course {
+    //课程号
     private Integer cId;
-
+    //课程名称
     private String cName;
-
+    //学分
     private Integer cCredit;
-
+    //是否为选修
     private Byte elective;
-
+    //创建时间
     private Date createDate;
-
+    //员工号
     private Integer eId;
 
     public Course(Integer cId, String cName, Integer cCredit, Byte elective, Date createDate, Integer eId) {

@@ -1,14 +1,15 @@
 package com.ems.entity;
 
 public class SysPermission {
+    //权限id
     private Integer pId;
-
+    //父id
     private Integer parentId;
-
+    //类型（是权限或者是权限菜单）
     private String type;
-
+    //权限名
     private String pName;
-
+    //权限描述
     private String pDesc;
 
     public SysPermission(Integer pId, Integer parentId, String type, String pName, String pDesc) {

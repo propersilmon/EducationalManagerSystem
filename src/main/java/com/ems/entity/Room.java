@@ -1,10 +1,11 @@
 package com.ems.entity;
 
 public class Room {
+    //教室号
     private Integer rId;
-
+    //教室位置
     private String position;
-
+    //教室座位最大容量
     private Integer maxCount;
 
     public Room(Integer rId, String position, Integer maxCount) {
