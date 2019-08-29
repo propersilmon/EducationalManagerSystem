@@ -1,10 +1,11 @@
 package com.ems.entity;
 
 public class SysRolePermission {
+    //权限id
     private Integer rPId;
-
+    //角色id
     private Integer rId;
-
+    //权限id
     private Integer pId;
 
     public SysRolePermission(Integer rPId, Integer rId, Integer pId) {

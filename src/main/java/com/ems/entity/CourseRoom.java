@@ -1,20 +1,21 @@
 package com.ems.entity;
 
 public class CourseRoom {
+    //课程占用教室
     private Integer cRId;
-
+    //上课时间区间
     private String interval;
-
+    //课程号
     private Integer cId;
-
+    //教室号
     private Integer rId;
-
+    //于周几学习该课程
     private String week;
-
+    //占用教室描述
     private String desc;
-
+    //开始周数
     private String startWeek;
-
+    //结束周数
     private String endWeek;
 
     public CourseRoom(Integer cRId, String interval, Integer cId, Integer rId, String week, String desc, String startWeek, String endWeek) {

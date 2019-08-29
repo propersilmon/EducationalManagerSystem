@@ -5,6 +5,7 @@ public class ClassCourse {
     private Integer cCId;
     //班级代号
     private String sClass;
+    //课程代号
     private Integer cId;
 
     public ClassCourse(Integer cCId, String sClass, Integer cId) {

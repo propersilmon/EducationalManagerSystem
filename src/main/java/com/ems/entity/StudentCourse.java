@@ -1,14 +1,15 @@
 package com.ems.entity;
 
 public class StudentCourse {
+    //选课表id
     private Integer sCId;
-
+    //学生学号
     private String sId;
-
+    //课程表id
     private Integer cId;
-
+    //课程成绩
     private Integer sScore;
-
+    //评教成绩
     private Integer tScore;
 
     public StudentCourse(Integer sCId, String sId, Integer cId, Integer sScore, Integer tScore) {

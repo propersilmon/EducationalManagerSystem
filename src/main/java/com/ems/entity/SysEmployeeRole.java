@@ -1,10 +1,11 @@
 package com.ems.entity;
 
 public class SysEmployeeRole {
+    //员工角色id
     private Integer eRId;
-
+    //员工id
     private Integer eId;
-
+    //角色id
     private Integer rId;
 
     public SysEmployeeRole(Integer eRId, Integer eId, Integer rId) {
