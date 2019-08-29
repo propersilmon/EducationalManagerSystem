@@ -3,9 +3,8 @@ package com.ems.entity;
 public class ClassCourse {
     //班级必修课程id
     private Integer cCId;
-
+    //班级代号
     private String sClass;
-
     private Integer cId;
 
     public ClassCourse(Integer cCId, String sClass, Integer cId) {
