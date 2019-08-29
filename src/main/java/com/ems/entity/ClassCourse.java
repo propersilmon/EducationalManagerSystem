@@ -1,6 +1,7 @@
 package com.ems.entity;
 
 public class ClassCourse {
+    //班级必修课程id
     private Integer cCId;
 
     private String sClass;
