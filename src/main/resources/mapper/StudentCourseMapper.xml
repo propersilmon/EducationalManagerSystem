@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.StudentCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.entity.StudentCourse" >
+    <constructor >
+      <idArg column="s_c_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="s_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="c_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="s_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="t_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_c_id, s_id, c_id, s_score, t_score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_student_course
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_student_course
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ems.entity.StudentCourse" >
+    insert into t_student_course (s_c_id, s_id, c_id, 
+      s_score, t_score)
+    values (#{sCId,jdbcType=INTEGER}, #{sId,jdbcType=VARCHAR}, #{cId,jdbcType=INTEGER}, 
+      #{sScore,jdbcType=INTEGER}, #{tScore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.entity.StudentCourse" >
+    insert into t_student_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sCId != null" >
+        s_c_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="sScore != null" >
+        s_score,
+      </if>
+      <if test="tScore != null" >
+        t_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sCId != null" >
+        #{sCId,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="sScore != null" >
+        #{sScore,jdbcType=INTEGER},
+      </if>
+      <if test="tScore != null" >
+        #{tScore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.StudentCourse" >
+    update t_student_course
+    <set >
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="sScore != null" >
+        s_score = #{sScore,jdbcType=INTEGER},
+      </if>
+      <if test="tScore != null" >
+        t_score = #{tScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.StudentCourse" >
+    update t_student_course
+    set s_id = #{sId,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=INTEGER},
+      s_score = #{sScore,jdbcType=INTEGER},
+      t_score = #{tScore,jdbcType=INTEGER}
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </update>
+</mapper>

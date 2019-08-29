@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.ClassCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.entity.ClassCourse" >
+    <constructor >
+      <idArg column="c_c_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="s_class" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="c_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    c_c_id, s_class, c_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_class_course
+    where c_c_id = #{cCId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_class_course
+    where c_c_id = #{cCId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ems.entity.ClassCourse" >
+    insert into t_class_course (c_c_id, s_class, c_id
+      )
+    values (#{cCId,jdbcType=INTEGER}, #{sClass,jdbcType=VARCHAR}, #{cId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.entity.ClassCourse" >
+    insert into t_class_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cCId != null" >
+        c_c_id,
+      </if>
+      <if test="sClass != null" >
+        s_class,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cCId != null" >
+        #{cCId,jdbcType=INTEGER},
+      </if>
+      <if test="sClass != null" >
+        #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.ClassCourse" >
+    update t_class_course
+    <set >
+      <if test="sClass != null" >
+        s_class = #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where c_c_id = #{cCId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.ClassCourse" >
+    update t_class_course
+    set s_class = #{sClass,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=INTEGER}
+    where c_c_id = #{cCId,jdbcType=INTEGER}
+  </update>
+</mapper>

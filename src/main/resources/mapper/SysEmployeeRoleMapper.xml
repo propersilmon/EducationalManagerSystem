@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.SysEmployeeRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.entity.SysEmployeeRole" >
+    <constructor >
+      <idArg column="e_r_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="e_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="r_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    e_r_id, e_id, r_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee_role
+    where e_r_id = #{eRId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_employee_role
+    where e_r_id = #{eRId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ems.entity.SysEmployeeRole" >
+    insert into sys_employee_role (e_r_id, e_id, r_id
+      )
+    values (#{eRId,jdbcType=INTEGER}, #{eId,jdbcType=INTEGER}, #{rId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.entity.SysEmployeeRole" >
+    insert into sys_employee_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eRId != null" >
+        e_r_id,
+      </if>
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="rId != null" >
+        r_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eRId != null" >
+        #{eRId,jdbcType=INTEGER},
+      </if>
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysEmployeeRole" >
+    update sys_employee_role
+    <set >
+      <if test="eId != null" >
+        e_id = #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="rId != null" >
+        r_id = #{rId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where e_r_id = #{eRId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.SysEmployeeRole" >
+    update sys_employee_role
+    set e_id = #{eId,jdbcType=INTEGER},
+      r_id = #{rId,jdbcType=INTEGER}
+    where e_r_id = #{eRId,jdbcType=INTEGER}
+  </update>
+</mapper>

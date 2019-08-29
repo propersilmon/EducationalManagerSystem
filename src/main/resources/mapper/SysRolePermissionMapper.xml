@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.SysRolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.entity.SysRolePermission" >
+    <constructor >
+      <idArg column="r_p_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="r_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="p_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    r_p_id, r_id, p_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where r_p_id = #{rPId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_role_permission
+    where r_p_id = #{rPId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ems.entity.SysRolePermission" >
+    insert into sys_role_permission (r_p_id, r_id, p_id
+      )
+    values (#{rPId,jdbcType=INTEGER}, #{rId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.entity.SysRolePermission" >
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rPId != null" >
+        r_p_id,
+      </if>
+      <if test="rId != null" >
+        r_id,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rPId != null" >
+        #{rPId,jdbcType=INTEGER},
+      </if>
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysRolePermission" >
+    update sys_role_permission
+    <set >
+      <if test="rId != null" >
+        r_id = #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where r_p_id = #{rPId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.SysRolePermission" >
+    update sys_role_permission
+    set r_id = #{rId,jdbcType=INTEGER},
+      p_id = #{pId,jdbcType=INTEGER}
+    where r_p_id = #{rPId,jdbcType=INTEGER}
+  </update>
+</mapper>

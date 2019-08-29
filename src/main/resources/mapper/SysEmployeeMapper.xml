@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ems.mapper.SysEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.ems.entity.SysEmployee" >
+    <constructor >
+      <idArg column="e_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="e_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="e_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="e_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="e_avg_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    e_id, e_name, e_password, e_sex, e_avg_score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_employee
+    where e_id = #{eId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ems.entity.SysEmployee" >
+    insert into sys_employee (e_id, e_name, e_password, 
+      e_sex, e_avg_score)
+    values (#{eId,jdbcType=INTEGER}, #{eName,jdbcType=VARCHAR}, #{ePassword,jdbcType=VARCHAR}, 
+      #{eSex,jdbcType=VARCHAR}, #{eAvgScore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ems.entity.SysEmployee" >
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="eName != null" >
+        e_name,
+      </if>
+      <if test="ePassword != null" >
+        e_password,
+      </if>
+      <if test="eSex != null" >
+        e_sex,
+      </if>
+      <if test="eAvgScore != null" >
+        e_avg_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="eName != null" >
+        #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="ePassword != null" >
+        #{ePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="eSex != null" >
+        #{eSex,jdbcType=VARCHAR},
+      </if>
+      <if test="eAvgScore != null" >
+        #{eAvgScore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysEmployee" >
+    update sys_employee
+    <set >
+      <if test="eName != null" >
+        e_name = #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="ePassword != null" >
+        e_password = #{ePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="eSex != null" >
+        e_sex = #{eSex,jdbcType=VARCHAR},
+      </if>
+      <if test="eAvgScore != null" >
+        e_avg_score = #{eAvgScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.SysEmployee" >
+    update sys_employee
+    set e_name = #{eName,jdbcType=VARCHAR},
+      e_password = #{ePassword,jdbcType=VARCHAR},
+      e_sex = #{eSex,jdbcType=VARCHAR},
+      e_avg_score = #{eAvgScore,jdbcType=INTEGER}
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>
