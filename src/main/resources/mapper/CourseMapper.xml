@@ -20,7 +20,7 @@
     from t_course
     where c_id = #{cId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="com.ems.entity.Course" >
     delete from t_course
     where c_id = #{cId,jdbcType=INTEGER}
   </delete>
@@ -105,4 +105,12 @@
       e_id = #{eId,jdbcType=INTEGER}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
+  <select id="queryAllCourse" resultType="com.ems.entity.Course">
+    select * from t_course
+  </select>
+  
+  <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
+    select * from t_course where
+     c_name like #{cName}
+  </select>
 </mapper>
