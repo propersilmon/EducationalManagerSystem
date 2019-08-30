@@ -79,11 +79,26 @@
     </bean>
 
     <!-- 自定义Realm -->
-    <bean id="myRealm" class="com.ems.realm.MyRealm"/>
+    <bean id="studentRealm" class="com.ems.shiro.realm.StudentRealm"/>
+    <bean id="sysEmployeeRealm" class="com.ems.shiro.realm.SysEmployeeRealm"/>
+
+    <!-- 配置自定义认证器 -->
+    <bean id="authenticator" class="com.ems.shiro.Authenticator.CustomizedModularRealmAuthenticator">
+        <!-- 配置认证策略 -->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"/>
+        </property>
+    </bean>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="myRealm"/>
+        <property name="authenticator" ref="authenticator"/>
+        <property name="realms">
+            <list>
+                <ref bean="studentRealm"/>
+                <ref bean="sysEmployeeRealm"/>
+            </list>
+        </property>
     </bean>
 
     <!-- Shiro过滤器 -->
