@@ -24,7 +24,7 @@ public class LoginController {
             CustomizedToken customizedToken = new CustomizedToken(username, password, STUDENT_LOGIN_TYOPE);
             try {
                 currentStudent.login(customizedToken);
-                return "/index";
+                return "view/student/index";
             }catch(AuthenticationException e){
                 model.addAttribute("message", "用户名或密码错误");
             }
@@ -39,11 +39,11 @@ public class LoginController {
             CustomizedToken customizedToken = new CustomizedToken(username, password, SYSEMPLOYEE_LOGIN_TYOPE);
             try {
                 currentSysEmployee.login(customizedToken);
-                return "sysEmployee/index";
+                return "view/sysEmployee/index";
             }catch(AuthenticationException e){
                 model.addAttribute("message", "用户名或密码错误");
             }
         }
-        return "login/sysEmployee";
+        return "view/login/sysEmployee";
     }
 }
