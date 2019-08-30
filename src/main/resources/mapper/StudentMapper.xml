@@ -127,4 +127,14 @@
       s_state = #{sState,jdbcType=VARCHAR}
     where s_id = #{sId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--追加-->
+  <select id="queryStudentByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM t_student LIMIT #{0},#{1}
+  </select>
+  
+  <select id="totalStudentCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM t_student
+  </select>
 </mapper>
