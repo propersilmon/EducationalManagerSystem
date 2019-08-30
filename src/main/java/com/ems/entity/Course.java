@@ -76,4 +76,16 @@ public class Course {
     public void seteId(Integer eId) {
         this.eId = eId;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cCredit=" + cCredit +
+                ", elective=" + elective +
+                ", createDate=" + createDate +
+                ", eId=" + eId +
+                '}';
+    }
 }

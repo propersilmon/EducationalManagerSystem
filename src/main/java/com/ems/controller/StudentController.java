@@ -18,7 +18,7 @@ public class StudentController {
     @Autowired
     private StudentSerivce studentSerivce;
 
-    @RequestMapping("/queryAll/${currentPage}")
+    @RequestMapping("/queryAll/{currentPage}")
     public String queryStudentByPage(@PathVariable("currentPage") String currentPage, Model model){
         //目前分页页数定为10
         int currentPageIdx=Integer.parseInt(currentPage);
