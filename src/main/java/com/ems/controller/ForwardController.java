@@ -11,8 +11,13 @@ public class ForwardController {
         return "view/welcome";
     }
 
-    @RequestMapping("/login")
-    public void getLogin(){
-        System.out.println("login");
+    @RequestMapping("/studentLogin")
+    public String getLogin(){
+        return "view/login/studentLogin";
+    }
+
+    @RequestMapping("/index")
+    public String getIndex(){
+        return "index.jsp";
     }
 }

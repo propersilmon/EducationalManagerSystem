@@ -24,12 +24,12 @@ public class LoginController {
             CustomizedToken customizedToken = new CustomizedToken(username, password, STUDENT_LOGIN_TYOPE);
             try {
                 currentStudent.login(customizedToken);
-                return "student/index";
+                return "/index";
             }catch(AuthenticationException e){
                 model.addAttribute("message", "用户名或密码错误");
             }
         }
-        return "login/student";
+        return "view/login/studentLogin";
     }
 
     @RequestMapping("/SysEmployee")
