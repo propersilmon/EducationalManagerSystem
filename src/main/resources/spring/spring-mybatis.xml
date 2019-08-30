@@ -79,11 +79,23 @@
     </bean>
 
     <!-- 自定义Realm -->
-    <bean id="myRealm" class="com.ems.realm.MyRealm"/>
+    <bean id="studentRealm" class="com.ems.realm.StudentRealm"/>
+    <bean id="teacherRealm" class="com.ems.realm.TeacherRealm"/>
+
+    <!-- Session管理 -->
+    <bean id="mySessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="2400000"/>
+    </bean>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="myRealm"/>
+        <property name="sessionManager" ref="mySessionManager"/>
+        <property name="realms">
+            <list>
+                <ref bean="studentRealm"/>
+                <ref bean="teacherRealm"/>
+            </list>
+        </property>
     </bean>
 
     <!-- Shiro过滤器 -->
