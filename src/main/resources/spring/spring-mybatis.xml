@@ -114,7 +114,7 @@
             <value>
                 /login=anon
                 /admin*=authc
-                /student=roles[teacher]
+                /student=roles[teac0her]
                 /teacher=perms["user:create"]
             </value>
         </property>

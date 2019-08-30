@@ -16,4 +16,6 @@ public interface StudentSerivce {
     int updateStudentByStudent(Student student);
 
     int delteStudentById(String id);
+
+    Student queryStudentById(String id);
 }
