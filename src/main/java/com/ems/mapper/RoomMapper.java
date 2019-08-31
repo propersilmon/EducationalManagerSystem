@@ -18,4 +18,5 @@ public interface RoomMapper {
     int updateByPrimaryKey(Room record);
 
     List<Room> queryRoomByPosition(String position);
+
 }

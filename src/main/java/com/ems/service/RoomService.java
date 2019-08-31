@@ -18,4 +18,5 @@ public interface RoomService {
     int updateByPrimaryKey(Room record);
 
     List<Room> queryRoomByPosition(String position);
+
 }
