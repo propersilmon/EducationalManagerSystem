@@ -5,10 +5,9 @@ import com.ems.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -19,40 +18,35 @@ public class RoomController {
     private RoomService roomservice;
 
     @RequestMapping(value = "/removeRoom")
-    public String deleteRoom(@RequestParam("rId")Integer rId){
-        int rs = roomservice.deleteByPrimaryKey(rId);
+    public String deleteRoom(HttpServletRequest req, HttpServletResponse resp){
+        Room record = new Room();
+        record.setrId(Integer.parseInt(req.getParameter("rId")));
         return null;
     }
 
     @RequestMapping(value = "/addRoom")
-    public String addRoom(HttpServletRequest req, @RequestParam("rId")Integer rId, @RequestParam("position")String position, @RequestParam("maxCount")Integer maxCount){
-        try {
-            req.setCharacterEncoding("Utf8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public String addRoom(HttpServletRequest req,HttpServletResponse resp){
         Room record = new Room();
-        record.setrId(rId);
-        record.setPosition(position);
-        record.setMaxCount(maxCount);
+        record.setrId(Integer.valueOf(req.getParameter("rId")));
+        record.setPosition(req.getParameter("position"));
+        record.setMaxCount(Integer.valueOf(req.getParameter("maxCount")));
         int rs = roomservice.insert(record);
-        System.out.println(record);
         return null;
     }
 
     @RequestMapping(value = "/modifyRoom")
-    public String updateRoom(@RequestParam("rId")Integer rId,@RequestParam("position")String position,@RequestParam("maxCount")Integer maxCount){
+    public String updateRoom(HttpServletRequest req,HttpServletResponse resp){
         Room record = new Room();
-        record.setrId(rId);
-        record.setPosition(position);
-        record.setMaxCount(maxCount);
+        record.setrId(Integer.valueOf(req.getParameter("rId")));
+        record.setPosition(req.getParameter("position"));
+        record.setMaxCount(Integer.valueOf(req.getParameter("maxCOunt")));
         int rs = roomservice.updateByPrimaryKeySelective(record);
         return null;
     }
 
     @RequestMapping(value ="/seekRoom")
-    public String queryRoom(@RequestParam("position")String position){
-        List<Room> rs = roomservice.queryRoomByPosition("%" + position + "%");
+    public String queryRoom(HttpServletRequest req,HttpServletResponse resp){
+        List<Room> rs = roomservice.queryRoomByPosition("%" + req.getParameter("position") + "%");
         System.out.println(rs.toString());
         return null;
     }
