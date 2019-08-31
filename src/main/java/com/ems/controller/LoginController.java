@@ -44,6 +44,6 @@ public class LoginController {
                 model.addAttribute("message", "用户名或密码错误");
             }
         }
-        return "view/login/sysEmployee";
+        return "view/login/sysEmployeeLogin";
     }
 }
