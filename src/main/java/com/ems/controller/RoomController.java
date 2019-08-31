@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -23,12 +25,18 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/addRoom")
-    public String addRoom(@RequestParam("rId")Integer rId,@RequestParam("position")String position,@RequestParam("maxCount")Integer maxCount){
+    public String addRoom(HttpServletRequest req, @RequestParam("rId")Integer rId, @RequestParam("position")String position, @RequestParam("maxCount")Integer maxCount){
+        try {
+            req.setCharacterEncoding("Utf8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         Room record = new Room();
         record.setrId(rId);
         record.setPosition(position);
         record.setMaxCount(maxCount);
         int rs = roomservice.insert(record);
+        System.out.println(record);
         return null;
     }
 
@@ -45,6 +53,7 @@ public class RoomController {
     @RequestMapping(value ="/seekRoom")
     public String queryRoom(@RequestParam("position")String position){
         List<Room> rs = roomservice.queryRoomByPosition("%" + position + "%");
+        System.out.println(rs.toString());
         return null;
     }
 }
