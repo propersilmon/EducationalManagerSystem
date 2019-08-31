@@ -29,12 +29,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<CourseRoom> selectCourseRoomByCourseId(int cId) {
-        return courseRoomMapper.selectCourseRoomByCourseId(cId);
+    public List<CourseRoom> selectCourseRoom() {
+        return courseRoomMapper.selectCourseRoom();
     }
 
     @Override
-    public List<Room> selectRoomByRoomId(int rid) {
-        return roomMapper.selectRoomByRoomId(rid);
+    public List<Room> selectRoom() {
+        return roomMapper.selectRoom();
     }
 }

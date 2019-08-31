@@ -70,4 +70,11 @@
       max_count = #{maxCount,jdbcType=INTEGER}
     where r_id = #{rId,jdbcType=INTEGER}
   </update>
+<!--  ***********************   -->
+  <select id="selectRoom" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+   *
+    from t_room
+  </select>
+  <!--  ***********************   -->
 </mapper>

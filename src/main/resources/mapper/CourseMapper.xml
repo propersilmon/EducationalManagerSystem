@@ -108,9 +108,11 @@
   <select id="queryAllCourse" resultType="com.ems.entity.Course">
     select * from t_course
   </select>
-  
-  <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
+
+<!--************************-->
+  <select id="selectCourseById" parameterType="java.lang.String" resultType="com.ems.entity.Course">
     select * from t_course where
-     c_name like #{cName}
+     e_id = #{eId,jdbcType=INTEGER}
   </select>
+  <!--************************-->
 </mapper>
