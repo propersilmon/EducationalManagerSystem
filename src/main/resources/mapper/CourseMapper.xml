@@ -109,10 +109,10 @@
     select * from t_course
   </select>
 
-<!--************************-->
-  <select id="selectCourseById" parameterType="java.lang.String" resultType="com.ems.entity.Course">
+<!--**********根据教师id查询课程**************-->
+  <select id="selectCourseById" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
     select * from t_course where
-     e_id = #{eId,jdbcType=INTEGER}
+     e_id = #{eId}
   </select>
   <!--************************-->
 

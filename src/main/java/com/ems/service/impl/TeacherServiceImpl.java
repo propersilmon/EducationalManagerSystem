@@ -3,13 +3,10 @@ package com.ems.service.impl;
 import com.ems.entity.Course;
 import com.ems.entity.CourseRoom;
 import com.ems.entity.Room;
-import com.ems.entity.SysEmployee;
 import com.ems.mapper.CourseMapper;
 import com.ems.mapper.CourseRoomMapper;
 import com.ems.mapper.RoomMapper;
-import com.ems.mapper.SysEmployeeMapper;
 import com.ems.service.TeacherService;
-import com.ems.vo.TeacherCourseAndRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +21,8 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private RoomMapper roomMapper;
     @Override
-    public List<Course> selectCourseById(int employeeId) {
-        return courseMapper.selectCourseById(employeeId);
+    public List<Course> selectCourseById(int eId) {
+        return courseMapper.selectCourseById(eId);
     }
 
     @Override
@@ -37,4 +34,5 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Room> selectRoom() {
         return roomMapper.selectRoom();
     }
+
 }

@@ -8,7 +8,6 @@ import com.ems.vo.TeacherCourseAndRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,9 +27,9 @@ public class TeacherController {
         List<CourseRoom> courseRoomList;
 
         List<Room> roomList = null;
-        int employeeId = 1;
+        int eId = 1;
         /*通过Employee_id查询courser表中信息*/
-        courseList = teacherService.selectCourseById(employeeId);
+        courseList = teacherService.selectCourseById(eId);
         teacherCourseAndRoom.setCourse(courseList);
 
         /*查询courser_room表中信息*/
@@ -41,6 +40,6 @@ public class TeacherController {
         roomList = teacherService.selectRoom();
         teacherCourseAndRoom.setRoom(roomList);
         session.setAttribute("teacherCourseAndRoom", teacherCourseAndRoom);
-        return "TeacherCourseRoomList";
+        return "view/teacher/tables";
     }
 }

@@ -1,7 +1,6 @@
 package com.ems.mapper;
 
 import com.ems.entity.Course;
-import com.ems.entity.SysEmployee;
 
 import java.util.List;
 
@@ -18,5 +17,9 @@ public interface CourseMapper {
 
     int updateByPrimaryKey(Course record);
     /*查询courser*/
-    List<Course> selectCourseById(int employeeId);
+    List<Course> selectCourseById(int eId);
+
+    List<Course> queryBycName(String s);
+
+    List<Course> queryAllCourse();
 }
