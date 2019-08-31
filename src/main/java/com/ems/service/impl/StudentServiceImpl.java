@@ -1,6 +1,7 @@
 package com.ems.service.impl;
 
 import com.ems.entity.Student;
+import com.ems.entity.StudentCourse;
 import com.ems.mapper.StudentMapper;
 import com.ems.service.StudentSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,26 @@ public class StudentServiceImpl implements StudentSerivce {
     public Student queryStudentById(String id) {
         return studentMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int dropCourseCourseByS_c_id(int sCId) {
+        return studentMapper.dropCourseCourseByS_c_id(sCId);
+    }
+
+    @Override
+    public List<StudentCourse> queryAllStudentCourseByS_id(int currentPageIdx,String sId) {
+        return studentMapper.queryAllStudentCourseByS_id(sId,(currentPageIdx-1),10);
+    }
+
+    @Override
+    public int updateT_scoreByS_c_id(int sCId,int tScore) {
+        return studentMapper.updateT_scoreByS_c_id(sCId,tScore);
+    }
+
+    @Override
+    public int totalStudentCourseCount() {
+        return studentMapper.totalStudentCourseCount();
+    }
+
+
 }

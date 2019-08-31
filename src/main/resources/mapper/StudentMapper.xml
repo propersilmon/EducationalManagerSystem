@@ -137,4 +137,23 @@
   <select id="totalStudentCount" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM t_student
   </select>
+
+  <!--退课-->
+  <delete id="dropCourseCourseByS_c_id" parameterType="java.lang.Integer " >
+    delete from t_student_course
+    where s_c_id = #{sCId,jdbcType=Integer}
+  </delete>
+<!--查询选课表-->
+  <select id=" queryAllStudentCourseByS_id" resultMap="BaseResultMap">
+    SELECT * FROM t_student_course where s_id = #{0} LIMIT #{1},#{2}
+  </select>
+  <select id="totalStudentCourseCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM t_student_course
+  </select>
+<!--修改选课表中的t_score字段-->
+  <update id="updateByPrimaryKey" parameterType="com.ems.entity.Student" >
+    update t_student_course
+    set t_score = #{tScore,jdbcType=Integer}
+    where s_c_id = #{sCId,jdbcType=Integer}
+  </update>
 </mapper>
