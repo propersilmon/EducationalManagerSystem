@@ -2,6 +2,8 @@ package com.ems.mapper;
 
 import com.ems.entity.Room;
 
+import java.util.List;
+
 public interface RoomMapper {
     int deleteByPrimaryKey(Integer rId);
 
@@ -14,4 +16,6 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+
+    List<Room> queryRoomByPosition(String position);
 }
