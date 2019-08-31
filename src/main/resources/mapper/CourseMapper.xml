@@ -113,4 +113,11 @@
     select * from t_course where
      c_name like #{cName}
   </select>
+
+  <insert id="addCourse" parameterType="com.ems.entity.Course">
+    <selectKey keyColumn="c_Id" order="AFTER" resultType="java.lang.Integer" keyProperty="cId">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into t_course(c_name,c_credit,elective,create_date,e_id) values(#{cName},#{cCredit},#{elective},#{createDate},#{eId})
+  </insert>
 </mapper>
