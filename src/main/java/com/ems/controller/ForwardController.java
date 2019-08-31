@@ -12,8 +12,13 @@ public class ForwardController {
     }
 
     @RequestMapping("/studentLogin")
-    public String getLogin(){
+    public String getStudentLogin(){
         return "view/login/studentLogin";
+    }
+
+    @RequestMapping("/sysEmployeeLogin")
+    public String getSysEmployeeLogin(){
+        return "view/login/sysEmployeeLogin";
     }
 
     @RequestMapping("/index")

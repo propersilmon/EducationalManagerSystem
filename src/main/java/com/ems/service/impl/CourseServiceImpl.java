@@ -18,9 +18,15 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseMapper courseMapper;
+
     @Override
-    public int addCourse(Course course) {
-        return 0;
+    public Course addCourse(Course course) {
+        int cId= courseMapper.addCourse(course);
+        if (cId != 0){
+            return course;
+        }
+        else
+            return null;
     }
 
     @Override
@@ -30,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> selectAll() {
-        List<Course> list=courseMapper.queryAllCourse();
+        List<Course> list = courseMapper.queryAllCourse();
 
         return list;
     }
@@ -44,6 +50,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> selectBycName(String cName) {
 
-        return courseMapper.queryBycName("%"+cName+"%");
+        return courseMapper.queryBycName("%" + cName + "%");
     }
 }

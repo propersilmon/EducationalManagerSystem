@@ -10,7 +10,7 @@ public interface CourseMapper {
 
     int insert(Course record);
 
-    int insertSelective(Course record);
+    int addCourse(Course record);
 
     Course selectByPrimaryKey(Integer cId);
 
