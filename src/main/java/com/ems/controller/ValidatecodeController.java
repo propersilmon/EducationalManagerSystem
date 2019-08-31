@@ -13,7 +13,6 @@ import java.util.Random;
 
 @Controller
 public class ValidatecodeController {
-
     @RequestMapping("/validatecode")
     public void getValidatecode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         BufferedImage bi = new BufferedImage(68, 22, BufferedImage.TYPE_INT_RGB);
@@ -29,7 +28,7 @@ public class ValidatecodeController {
         for (int i = 0; i < 4; i++) {
             index = r.nextInt(len);
             g.setColor(new Color(r.nextInt(88), r.nextInt(188), r.nextInt(255)));
-            g.drawString(ch[index]+"", (i*15)+3, 18);
+            g.drawString(ch[index] + "", (i * 15) + 3, 18);
             sb.append(ch[index]);
         }
         req.getSession().setAttribute("piccode", sb.toString());

@@ -51,12 +51,13 @@
     </init-param>
   </filter>
 
-  <!-- 过滤所有请求 -->
+  <!-- 字符编码过滤所有请求 -->
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!-- shiro过滤所有请求 -->
   <filter-mapping>
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
