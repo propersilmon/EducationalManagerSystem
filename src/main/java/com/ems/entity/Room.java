@@ -41,4 +41,13 @@ public class Room {
     public void setMaxCount(Integer maxCount) {
         this.maxCount = maxCount;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "rId=" + rId +
+                ", position='" + position + '\'' +
+                ", maxCount=" + maxCount +
+                '}';
+    }
 }

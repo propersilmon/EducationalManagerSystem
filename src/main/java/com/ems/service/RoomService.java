@@ -1,10 +1,10 @@
-package com.ems.mapper;
+package com.ems.service;
 
 import com.ems.entity.Room;
 
 import java.util.List;
 
-public interface RoomMapper {
+public interface RoomService {
     int deleteByPrimaryKey(Integer rId);
 
     int insert(Room record);
