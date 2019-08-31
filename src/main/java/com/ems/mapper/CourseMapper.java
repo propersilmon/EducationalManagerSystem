@@ -18,4 +18,6 @@ public interface CourseMapper {
     int updateByPrimaryKey(Course record);
     List<Course> queryAllCourse();
     List<Course> queryBycName(String cName);
+
+    List<Course> selectCNameByEId(int eId);
 }

@@ -63,4 +63,15 @@ public class SysEmployee {
     public void seteAvgScore(Integer eAvgScore) {
         this.eAvgScore = eAvgScore;
     }
+
+    @Override
+    public String toString() {
+        return "SysEmployee{" +
+                "eId=" + eId +
+                ", eName='" + eName + '\'' +
+                ", ePassword='" + ePassword + '\'' +
+                ", eSex='" + eSex + '\'' +
+                ", eAvgScore=" + eAvgScore +
+                '}';
+    }
 }

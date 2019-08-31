@@ -92,4 +92,13 @@
       e_avg_score = #{eAvgScore,jdbcType=INTEGER}
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
+
+  <!--######################################################################-->
+  <select id="selectEmployeeByENameAndEPassword" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where e_name = #{eName,jdbcType=VARCHAR}
+       and e_password = #{ePassword,jdbcType=VARCHAR}
+  </select>
 </mapper>
