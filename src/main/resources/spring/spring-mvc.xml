@@ -24,7 +24,7 @@
     <mvc:resources mapping="/img/**" location="/resources/img/"/>
     <mvc:resources mapping="/vendors/**" location="/resources/vendors/"/>
     <mvc:resources mapping="/styles/**" location="/resources/styles/"/>
-    <mvc:resources mapping="/fonts/**" location="/resources/fonts"/>
+    <mvc:resources mapping="/fonts/**" location="/resources/fonts/"/>
     <mvc:resources mapping="/less/**" location="/resources/less/"/>
     <mvc:resources mapping="/media/**" location="/resources/media/"/>
 

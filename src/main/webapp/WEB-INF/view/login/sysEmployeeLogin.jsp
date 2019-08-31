@@ -44,7 +44,7 @@
         </div>
 
         <div class="label">
-            ${message}
+            <font color="#5f9ea0">${message}</font>
         </div>
 
         <div class="clearfix"></div>

@@ -42,4 +42,15 @@ public class CourseController {
         System.out.println(list);
         return null;
     }
+    @RequestMapping("/addCourse")
+    public String addCourse(HttpServletRequest request, HttpServletResponse response){
+        Course course=new Course();
+        course.setcName(request.getParameter("cName"));
+        course.seteId(Integer.valueOf(request.getParameter("eId")));
+        course.setElective(Byte.valueOf(request.getParameter("Elective")));
+        course=courseService.addCourse(course);
+
+        System.out.println(course);
+        return null;
+    }
 }

@@ -113,9 +113,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /login=anon
-                /admin*=authc
-                /student=roles[teac0her]
-                /teacher=perms["user:create"]
+                /student=roles[admin]
+                /teacher=perms["user:update"]
             </value>
         </property>
     </bean>

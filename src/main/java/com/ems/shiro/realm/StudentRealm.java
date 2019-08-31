@@ -27,14 +27,11 @@ public class StudentRealm extends AuthorizingRealm {
         String username = customizedToken.getUsername();
         String password = new String((char[])token.getCredentials());
 
-        //TODO:通过StudentService中查询对应username的账户和密码
-        student = studentSerivce.queryStudentById(username);
-
+        System.out.println(student);
         if (student == null){
             throw new UnknownAccountException();
         }
 
-        //TODO:通过查询后的student来获取密码;
         if (!student.getsPassword().equals(password)){
             throw new IncorrectCredentialsException();
         }
