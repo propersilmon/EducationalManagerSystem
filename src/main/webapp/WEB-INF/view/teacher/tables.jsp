@@ -71,7 +71,164 @@
                     </ul>
                 </li>
             </ul>
+
+
+            <!-- Top Search Content -->
+            <div id="top-search-wrap">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                    <input type="text">
+                </div>
+            </div>
         </header>
+
+        <section id="main">
+            <aside id="sidebar" class="sidebar c-overflow">
+                <div class="profile-menu">
+                    <a href="">
+                        <div class="profile-pic">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+
+                        <div class="profile-info">
+                            Malinda Hollaway
+
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </a>
+
+                    <ul class="main-menu">
+                        <li>
+                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="WEB-INF/index.jsp"><i class="zmdi zmdi-home"></i> Home</a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
+
+                        <ul>
+                            <li><a href="textual-menu.html">Textual menu</a></li>
+                            <li><a href="image-logo.html">Image logo</a></li>
+                            <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </aside>
+
+            <aside id="chat" class="sidebar c-overflow">
+
+                <div class="chat-search">
+                    <div class="fg-line">
+                        <input type="text" class="form-control" placeholder="Search People">
+                    </div>
+                </div>
+
+                <div class="listview">
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left p-relative">
+                                <img class="lv-img-sm" src="img/profile-pics/2.jpg" alt="">
+                                <i class="chat-status-busy"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Jonathan Morris</div>
+                                <small class="lv-small">Available</small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">David Belle</div>
+                                <small class="lv-small">Last seen 3 hours ago</small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left p-relative">
+                                <img class="lv-img-sm" src="img/profile-pics/3.jpg" alt="">
+                                <i class="chat-status-online"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Fredric Mitchell Jr.</div>
+                                <small class="lv-small">Availble</small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left p-relative">
+                                <img class="lv-img-sm" src="img/profile-pics/4.jpg" alt="">
+                                <i class="chat-status-online"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Glenn Jecobs</div>
+                                <small class="lv-small">Availble</small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="lv-img-sm" src="img/profile-pics/5.jpg" alt="">
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Bill Phillips</div>
+                                <small class="lv-small">Last seen 3 days ago</small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="lv-img-sm" src="img/profile-pics/6.jpg" alt="">
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Wendy Mitchell</div>
+                                <small class="lv-small">Last seen 2 minutes ago</small>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="lv-item" href="">
+                        <div class="media">
+                            <div class="pull-left p-relative">
+                                <img class="lv-img-sm" src="img/profile-pics/7.jpg" alt="">
+                                <i class="chat-status-busy"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">Teena Bell Ann</div>
+                                <small class="lv-small">Busy</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </aside>
+
+
             <section id="content">
                 <div class="container">
                     <div class="card">
@@ -125,8 +282,9 @@
 
                 </div>
             </section>
+        </section>
 
-            <footer id="footer">
+        <footer id="footer">
             Copyright &copy; 2019 教务管理系统
             
             <ul class="f-menu">
@@ -138,8 +296,8 @@
             </ul>
         </footer>
 
-         <!-- Page Loader -->
-         <div class="page-loader">
+        <!-- Page Loader -->
+        <div class="page-loader">
             <div class="preloader pls-blue">
                 <svg class="pl-circular" viewBox="25 25 50 50">
                     <circle class="plc-path" cx="50" cy="50" r="20" />
@@ -209,6 +367,7 @@
         
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
+
 
     </body>
   </html>
