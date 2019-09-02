@@ -12,6 +12,15 @@ public class PageBean<T> {
      */
     private int totalPageCode;
 
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "currentPageCode=" + currentPageCode +
+                ", totalPageCode=" + totalPageCode +
+                ", beanList=" + beanList +
+                '}';
+    }
+
     /**
      * 每页记录的实体
      */
