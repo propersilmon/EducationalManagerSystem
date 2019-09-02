@@ -106,7 +106,7 @@
     SELECT COUNT(*) FROM sys_employee
     </select>
 
-  <insert id="addEmployeeBackId" parameterType="com.zuikaku.pojo.SysEmployee">
+  <insert id="addEmployeeBackId" parameterType="com.ems.entity.SysEmployee">
     <selectKey keyProperty="eId" order="AFTER" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>
