@@ -6,8 +6,6 @@ import com.ems.service.CourseRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @program: EMS->CourseRoomServicImpl
  * @description:
@@ -19,8 +17,13 @@ public class CourseRoomServiceImpl implements CourseRoomService {
     @Autowired
     CourseRoomMapper courseRoomMapper;
     @Override
-    public List<CourseRoom> selectByCId(Integer cId) {
-        List<CourseRoom> list= courseRoomMapper.selectByCId(cId);
+    public CourseRoom selectByCId(Integer cId) {
+        CourseRoom list= courseRoomMapper.selectByCId(cId);
         return list;
+    }
+
+    @Override
+    public int insertSelective(CourseRoom record) {
+        return courseRoomMapper.insertSelective(record);
     }
 }
