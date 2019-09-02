@@ -1,6 +1,10 @@
 package com.ems.shiro.realm;
 
 import com.ems.entity.SysEmployee;
+import com.ems.entity.SysPermission;
+import com.ems.entity.SysRole;
+import com.ems.service.PermissionService;
+import com.ems.service.RoleService;
 import com.ems.service.TeacherService;
 import com.ems.shiro.token.CustomizedToken;
 import org.apache.shiro.authc.*;
@@ -10,7 +14,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SysEmployeeRealm extends AuthorizingRealm {
@@ -18,18 +24,37 @@ public class SysEmployeeRealm extends AuthorizingRealm {
     @Autowired
     TeacherService teacherService;
 
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    private PermissionService permissionService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("进行了教师权限的验证");
         SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
+        int username = Integer.parseInt((String)principals.getPrimaryPrincipal());
+
+        //List<SysRole>转List<String>
+        List<SysRole> sysRoleList = roleService.queryRoleByEId(username);
+        List<String> sysRoleStrList = new ArrayList<>();
+        for(SysRole sysRole : sysRoleList){
+            sysRoleStrList.add(sysRole.getrName());
+        }
+
+        //List<SysPermission>转List<String>
+        List<SysPermission> sysPermissionList = permissionService.queryPermissionByUserId(username);
+        List<String> sysPermissionStrList = new ArrayList<>();
+        for(SysPermission sysPermission : sysPermissionList){
+            sysRoleStrList.add(sysPermission.getpName());
+        }
+
         //进行授权角色
-        Set<String> roleSet = new HashSet<>();
-        roleSet.add("admin");
-        authorizationInfo.setRoles(roleSet);
-        Set<String> permissionSet = new HashSet<>();
+        Set<String> roleSet = new HashSet<String>(sysRoleStrList);
         //进行授权权限
-        permissionSet.add("user:delete");
-        permissionSet.add("user:update");
+        Set<String> permissionSet = new HashSet<>(sysPermissionStrList);
+        authorizationInfo.setRoles(roleSet);
         authorizationInfo.setStringPermissions(permissionSet);
         return authorizationInfo;
     }

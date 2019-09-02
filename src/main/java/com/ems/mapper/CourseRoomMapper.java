@@ -14,4 +14,7 @@ public interface CourseRoomMapper {
     int updateByPrimaryKeySelective(CourseRoom record);
 
     int updateByPrimaryKey(CourseRoom record);
+
+    CourseRoom selectByCId(Integer cId);
+
 }

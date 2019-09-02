@@ -12,6 +12,17 @@ public class SysEmployee {
     //学生评教平均得分
     private Integer eAvgScore;
 
+    @Override
+    public String toString() {
+        return "SysEmployee{" +
+                "eId=" + eId +
+                ", eName='" + eName + '\'' +
+                ", ePassword='" + ePassword + '\'' +
+                ", eSex='" + eSex + '\'' +
+                ", eAvgScore=" + eAvgScore +
+                '}';
+    }
+
     public SysEmployee(Integer eId, String eName, String ePassword, String eSex, Integer eAvgScore) {
         this.eId = eId;
         this.eName = eName;

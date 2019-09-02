@@ -70,4 +70,23 @@
       r_desc = #{rDesc,jdbcType=VARCHAR}
     where r_id = #{rId,jdbcType=INTEGER}
   </update>
+
+
+  <!--  追加-->
+  <select id="queryAll" resultMap="BaseResultMap">
+    SELECT * FROM sys_role
+  </select>
+
+
+  <select id="queryRoleByEId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+sys_role.r_id,
+sys_role.r_name,
+sys_role.r_desc
+FROM
+sys_employee_role
+INNER JOIN sys_role ON sys_employee_role.r_id = sys_role.r_id
+WHERE sys_employee_role.e_id=#{eId}
+
+  </select>
 </mapper>

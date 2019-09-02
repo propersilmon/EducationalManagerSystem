@@ -7,6 +7,8 @@ import com.ems.service.EmployeeService;
 import com.ems.service.PermissionService;
 import com.ems.vo.ActiveEmployee;
 import com.ems.vo.PageBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +76,7 @@ public class EmployeeController {
     @RequestMapping("/toInnerIndex")
     public String toInnerIndex(){
         //todo 添加教务广播信息
-        return "/employee/innerIndex";
+        return "view/employee/innerIndex";
     }
 
 
@@ -84,7 +86,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/updatePassword",method = RequestMethod.GET )
     public String toUpdatePassword(){
-        return "/employee/updateCurrentEmployeePassword";
+        return "view/employee/updateCurrentEmployeePassword";
     }
 
 
@@ -111,7 +113,11 @@ public class EmployeeController {
      */
     @RequestMapping("/toHome")
     public String toHome(){
-        return "/employee/employeeHome";
+//        Subject subject = SecurityUtils.getSubject();
+//        if (!subject.isPermitted("employee:*")){
+//            return "redirect:/sysEmployeeLogin";
+//        }
+        return "view/employee/employeeHome";
 
     }
 
@@ -151,7 +157,7 @@ public class EmployeeController {
         model.addAttribute("pageBean",pageBean);
 
         //forward跳转到员工列表页面
-        return "/employee/employeeList";
+        return "view/employee/employeeList";
     }
 
     /**
@@ -161,7 +167,7 @@ public class EmployeeController {
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String toAddPage(){
         //forward跳转到添加员工页面
-        return "/employee/addEmployee";
+        return "view/employee/addEmployee";
     }
 
     /**
