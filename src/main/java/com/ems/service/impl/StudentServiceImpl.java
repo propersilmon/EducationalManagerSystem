@@ -2,6 +2,7 @@ package com.ems.service.impl;
 
 import com.ems.entity.Student;
 import com.ems.entity.StudentCourse;
+import com.ems.mapper.StudentCourseMapper;
 import com.ems.mapper.StudentMapper;
 import com.ems.service.StudentSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,8 @@ import java.util.List;
 public class StudentServiceImpl implements StudentSerivce {
     @Autowired
     private StudentMapper studentMapper;
-
+    @Autowired
+    private StudentCourseMapper studentCourseMapper;
 
     @Override
     public List<Student> queryStudentByPage(int currentPageIdx) {
@@ -52,18 +54,13 @@ public class StudentServiceImpl implements StudentSerivce {
     }
 
     @Override
-    public List<StudentCourse> queryAllStudentCourseByS_id(int currentPageIdx,String sId) {
-        return studentMapper.queryAllStudentCourseByS_id(sId,(currentPageIdx-1),10);
+    public List<StudentCourse> queryAllStudentCourseByS_id(String sId) {
+        return studentCourseMapper.queryAllStudentCourseByS_id(sId);
     }
 
     @Override
-    public int updateT_scoreByS_c_id(int sCId,int tScore) {
-        return studentMapper.updateT_scoreByS_c_id(sCId,tScore);
-    }
-
-    @Override
-    public int totalStudentCourseCount() {
-        return studentMapper.totalStudentCourseCount();
+    public int updateT_scoreByS_c_id(int tScore,int sCId) {
+        return studentMapper.updateT_scoreByS_c_id(tScore,sCId);
     }
 
 

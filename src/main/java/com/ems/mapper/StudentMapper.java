@@ -25,9 +25,7 @@ public interface StudentMapper {
 
     int dropCourseCourseByS_c_id(int s_c_id);
 
-    List<StudentCourse> queryAllStudentCourseByS_id(String agr1,int agr2,int agr3);
 
-    int updateT_scoreByS_c_id(int sCId,int tScore);
+    int updateT_scoreByS_c_id(int tScore,int sCId);
 
-    int totalStudentCourseCount();
 }

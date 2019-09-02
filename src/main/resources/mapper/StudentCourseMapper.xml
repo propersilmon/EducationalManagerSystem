@@ -92,4 +92,9 @@
       t_score = #{tScore,jdbcType=INTEGER}
     where s_c_id = #{sCId,jdbcType=INTEGER}
   </update>
+
+  <!--查询选课表-->
+  <select id="queryAllStudentCourseByS_id" resultMap="BaseResultMap">
+    SELECT * FROM t_student_course where s_id = #{sId,jdbcType=VARCHAR}
+  </select>
 </mapper>

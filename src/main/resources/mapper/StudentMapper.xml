@@ -130,7 +130,7 @@
 
 
   <!--追加-->
-  <select id="queryStudentByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="queryStudentByPage" resultMap="BaseResultMap">
     SELECT * FROM t_student LIMIT #{0},#{1}
   </select>
   
@@ -139,21 +139,15 @@
   </select>
 
   <!--退课-->
-  <delete id="dropCourseCourseByS_c_id" parameterType="java.lang.Integer " >
+  <delete id="dropCourseCourseByS_c_id" parameterType="java.lang.Integer" >
     delete from t_student_course
-    where s_c_id = #{sCId,jdbcType=Integer}
+    where s_c_id = #{sCId,jdbcType=INTEGER}
   </delete>
-<!--查询选课表-->
-  <select id=" queryAllStudentCourseByS_id" resultMap="BaseResultMap">
-    SELECT * FROM t_student_course where s_id = #{0} LIMIT #{1},#{2}
-  </select>
-  <select id="totalStudentCourseCount" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM t_student_course
-  </select>
+
 <!--修改选课表中的t_score字段-->
-  <update id="updateByPrimaryKey" parameterType="com.ems.entity.Student" >
+  <update id="updateT_scoreByS_c_id" >
     update t_student_course
-    set t_score = #{tScore,jdbcType=Integer}
-    where s_c_id = #{sCId,jdbcType=Integer}
+    set t_score = #{0}
+    where s_c_id = #{1}
   </update>
 </mapper>

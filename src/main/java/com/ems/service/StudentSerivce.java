@@ -19,13 +19,11 @@ public interface StudentSerivce {
     int delteStudentById(String id);
 
     Student queryStudentById(String id);
-
+    /*退课*/
     int dropCourseCourseByS_c_id(int sCId);
+    /*查询学生选课表*/
+    List<StudentCourse> queryAllStudentCourseByS_id(String sId);
+    /*修改教师评分*/
+    int updateT_scoreByS_c_id(int tScore,int sCId);
 
-
-    List<StudentCourse> queryAllStudentCourseByS_id(int currentPageIdx,String sId);
-
-    int updateT_scoreByS_c_id(int sCId,int tScore);
-
-    int totalStudentCourseCount();
 }

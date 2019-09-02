@@ -97,14 +97,13 @@ public class StudentController {
 
     }
     /*退课*/
-    @RequestMapping(value = "/dropCourse/{currentPage}")
-    public String dropCourse(@PathVariable("currentPage") String currentPage,HttpServletRequest Request, HttpServletResponse Response, HttpSession Session){
+    @RequestMapping(value = "/deleteCourse")
+    public String deleteCourse(HttpServletRequest request, HttpServletResponse response, HttpSession session){
         int sCId = 1;
         String sId = "001";
-        //目前分页页数定为10
-        int currentPageIdx=Integer.parseInt(currentPage);
         int n = studentSerivce.dropCourseCourseByS_c_id(sCId);
-        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(currentPageIdx,sId);
+        System.out.println(n);
+        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(sId);
         if(n>0){
             return "";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
@@ -112,39 +111,31 @@ public class StudentController {
         }
     }
     /*查看选课情况*/
-    @RequestMapping(value = "/queryChoseCourse/{currentPage}")
-    public String queryChoseCourse(@PathVariable("currentPage") String currentPage,HttpServletRequest Request, HttpServletResponse Response,HttpSession Session,Model model){
+    @RequestMapping(value = "/queryChoseCourse")
+    public String queryChoseCourse(HttpServletRequest Request, HttpServletResponse Response, HttpSession Session){
         String sId = "001";
-        //目前分页页数定为10
-        int currentPageIdx=Integer.parseInt(currentPage);
-        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(currentPageIdx,sId);
-        int totalStudentCourseCount= studentSerivce.totalStudentCourseCount();
-        int totalPage=totalStudentCourseCount%10==0?totalStudentCourseCount/10:(totalStudentCourseCount/10)+1;//算的总页数
-        PageBean<StudentCourse> pageBean=new PageBean<StudentCourse>();
-        pageBean.setBeanList(studentCourseList);
-        pageBean.setCurrentPageCode(currentPageIdx);
-        model.addAttribute("pageBean",pageBean);
+        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(sId);
+        for(StudentCourse studentCourse:studentCourseList){
+            System.out.println(studentCourse);
+        }
         return "";
     }
     /*查看选课情况*/
-    @RequestMapping(value = "/selectChoseCourse/{currentPage}")
-    public String selectChoseCourse(@PathVariable("currentPage") String currentPage,HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
+    @RequestMapping(value = "/selectChoseCourse")
+    public String selectChoseCourse(HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
         String sId = "001";
-        //目前分页页数定为10
-        int currentPageIdx=Integer.parseInt(currentPage);
-        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(currentPageIdx,sId);
+        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(sId);
         return "";
     }
     /*评教*/
-    @RequestMapping(value = "/dropCourse/{currentPage}")
-    public String evaluationTeaching(@PathVariable("currentPage") String currentPage,HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
-        int sCId = 1;
+    @RequestMapping(value = "/evaluationTeaching")
+    public String evaluationTeaching(HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
+        int sCId = 3;
         int tScore = 5;
         String sId = "001";
-        //目前分页页数定为10
-        int currentPageIdx=Integer.parseInt(currentPage);
-        int n = studentSerivce.updateT_scoreByS_c_id(sCId,tScore);
-        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(currentPageIdx,sId);
+        int n = studentSerivce.updateT_scoreByS_c_id(tScore,sCId);
+        System.out.println(n);
+        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(sId);
         if(n>0){
             return "";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
