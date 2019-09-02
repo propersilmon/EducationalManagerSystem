@@ -16,6 +16,7 @@ public class ForwardController {
         return "view/sysEmployee/index";
     }
 
+
     @RequestMapping("/studentLogin")
     public String getStudentLogin(){
         return "view/login/studentLogin";
