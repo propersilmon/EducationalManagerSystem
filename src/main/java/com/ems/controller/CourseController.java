@@ -6,8 +6,6 @@ import com.ems.entity.SysEmployee;
 import com.ems.service.CourseRoomService;
 import com.ems.service.CourseService;
 import com.ems.service.EmployeeService;
-import com.ems.service.impl.CourseRoomServicImpl;
-import com.ems.service.impl.EmployeeServiceImpl;
 import com.ems.vo.Course_Teacher_RoomVoPoJO;
 import com.ems.vo.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +29,12 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService courseService;
-    private CourseRoomService courseRoomService =new CourseRoomServicImpl();
-    private EmployeeService employeeService=new EmployeeServiceImpl();
-    private  static List<Course_Teacher_RoomVoPoJO> course_teacher_roomVoPoJOS=new ArrayList<>();
+    @Autowired
+    private CourseRoomService courseRoomService;
+    @Autowired
+    private EmployeeService employeeService ;
+    private static List<Course_Teacher_RoomVoPoJO> course_teacher_roomVoPoJOS = new ArrayList<>();
+
     @RequestMapping("/queryAll")
     public String queryAll(HttpServletRequest request, HttpServletResponse response, Model model) {
         PageBean<Course> pageBean = new PageBean<>();
@@ -48,20 +49,25 @@ public class CourseController {
 
         pageBean.setTotalPageCode(maxPage);
         pageBean = courseService.selectAll(pageBean);
-        for (Course course:pageBean.getBeanList()){
+        for (Course course : pageBean.getBeanList()) {
 //            根据id中间表查询教师，教室封装到实体类集合中
-            Course_Teacher_RoomVoPoJO course_teacher_roomVoPoJO=new Course_Teacher_RoomVoPoJO();
+            Course_Teacher_RoomVoPoJO course_teacher_roomVoPoJO = new Course_Teacher_RoomVoPoJO();
             course_teacher_roomVoPoJO.setCourse(course);
-
-            List<CourseRoom> courseRooms=courseRoomService.selectByCId(course.getcId());
-            course_teacher_roomVoPoJO.setCourseRooms(courseRooms);
-            SysEmployee employee=employeeService.queryEmployeeById(course.geteId());
-            course_teacher_roomVoPoJO.setSysEmployee(employee);
+            if (course.getcId() != null && course.getcId() != 0) {
+                List<CourseRoom> courseRooms = courseRoomService.selectByCId(course.getcId());
+                course_teacher_roomVoPoJO.setCourseRooms(courseRooms);
+            }
+            if (course.geteId() != null && course.geteId() != 0) {
+                SysEmployee employee = employeeService.queryEmployeeById(course.geteId());
+                course_teacher_roomVoPoJO.setSysEmployee(employee);
+            }
             course_teacher_roomVoPoJOS.add(course_teacher_roomVoPoJO);
         }
+
+        System.out.println(course_teacher_roomVoPoJOS);
 //        将数据传到model中
 
-        model.addAttribute("pageBean", pageBean);
+
 //        返回跳转页面的url
         return null;
 
@@ -77,11 +83,11 @@ public class CourseController {
 
     @RequestMapping("/selectBycName")
     public String selectBycName(HttpServletRequest request, HttpServletResponse response) {
-        PageBean<Course> pagebean=new PageBean<Course>();
+        PageBean<Course> pagebean = new PageBean<Course>();
         if (request.getParameter("cName") != null && !request.getParameter("cName").trim().equals("")) {
             pagebean = courseService.selectBycName(request.getParameter("cName"),
                     Integer.parseInt(request.getParameter("page")));
-        }else {
+        } else {
             pagebean.setCurrentPageCode(Integer.parseInt(request.getParameter("page")));
             //获取当前数据的最大页数
             int maxPage = 0;

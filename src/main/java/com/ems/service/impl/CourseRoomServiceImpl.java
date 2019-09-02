@@ -4,6 +4,7 @@ import com.ems.entity.CourseRoom;
 import com.ems.mapper.CourseRoomMapper;
 import com.ems.service.CourseRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,7 +14,8 @@ import java.util.List;
  * @author: lyl
  * @create: 2019-09-02 10:31
  **/
-public class CourseRoomServicImpl implements CourseRoomService {
+@Service
+public class CourseRoomServiceImpl implements CourseRoomService {
     @Autowired
     CourseRoomMapper courseRoomMapper;
     @Override
