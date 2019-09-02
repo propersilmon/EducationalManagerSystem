@@ -1,6 +1,9 @@
 package com.ems.mapper;
 
 import com.ems.entity.SysRole;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysRoleMapper {
     int deleteByPrimaryKey(Integer rId);
@@ -14,4 +17,9 @@ public interface SysRoleMapper {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+    //追加
+
+    List<SysRole> queryAll();
+
+    List<SysRole> queryRoleByEId(@Param("eId")int eid);
 }
