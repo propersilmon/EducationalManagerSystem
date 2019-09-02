@@ -16,20 +16,20 @@
     <title>Material Admin</title>
 
     <!-- Vendor CSS -->
-    <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
+    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/animate.css/animate.min.css"
           rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
+    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
           rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
+    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
           rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
           rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
 
 
     <!-- CSS -->
-    <link href="${pageContext.request.contextPath}/css/app.min.1.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/app.min.2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/app.min.1.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/app.min.2.css" rel="stylesheet">
 </head>
 <body>
 
@@ -113,18 +113,18 @@
 
 
 <!-- Javascript Libraries -->
-<script src="${pageContext.request.contextPath}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/bower_components/Waves/dist/waves.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bower_components/Waves/dist/waves.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
 
 
-<script src="${pageContext.request.contextPath}/js/functions.js"></script>
-<script src="${pageContext.request.contextPath}/js/demo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/functions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
 
 <!-- Data Table -->
 <script type="text/javascript">

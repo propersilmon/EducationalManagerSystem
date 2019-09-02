@@ -111,7 +111,7 @@ public class EmployeeController {
      */
     @RequestMapping("/toHome")
     public String toHome(){
-        return "/employee/employeeHome";
+        return "view/employee/employeeHome";
 
     }
 

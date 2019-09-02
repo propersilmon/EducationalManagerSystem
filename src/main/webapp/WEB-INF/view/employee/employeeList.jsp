@@ -16,7 +16,7 @@
     <title>Material Admin</title>
 
     <!-- Vendor CSS -->
-    <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
+    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/animate.css/animate.min.css"
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
           rel="stylesheet">
