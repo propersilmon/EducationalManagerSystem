@@ -3,6 +3,7 @@ package com.ems.controller;
 import com.ems.entity.Student;
 import com.ems.entity.StudentCourse;
 import com.ems.service.StudentSerivce;
+import com.ems.vo.ActiveStudent;
 import com.ems.vo.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,14 +101,15 @@ public class StudentController {
     @RequestMapping(value = "/deleteCourse")
     public String deleteCourse(HttpServletRequest request, HttpServletResponse response, HttpSession session){
         int sCId = 1;
-        String sId = "001";
+        ActiveStudent activeStudent = (ActiveStudent)session.getAttribute("activeStudent");
+        String sId = activeStudent.getsId();
         int n = studentSerivce.dropCourseCourseByS_c_id(sCId);
         System.out.println(n);
         List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(sId);
         if(n>0){
-            return "";//todo 重定向到/queryChoseCourse/${currentPage}
+            return "view/studentCourse/studendCourseList";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
-            return "";//todo 跳转到本页面，显示错误信息
+            return "view/studentCourse/studendCourseList";//todo 跳转到本页面，显示错误信息
         }
     }
     /*查看选课情况*/
