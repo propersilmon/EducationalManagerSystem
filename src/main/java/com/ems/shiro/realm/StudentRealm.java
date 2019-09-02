@@ -5,9 +5,13 @@ import com.ems.service.StudentSerivce;
 import com.ems.shiro.token.CustomizedToken;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class StudentRealm extends AuthorizingRealm {
 
@@ -15,8 +19,19 @@ public class StudentRealm extends AuthorizingRealm {
     StudentSerivce studentSerivce;
 
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        System.out.println("进行了学生的认证");
+        String userName = (String)principals.getPrimaryPrincipal();
+        //进行授权角色
+        Set<String> roleSet = new HashSet<>();
+        roleSet.add("student");
+        info.setRoles(roleSet);
+        Set<String> permissionSet = new HashSet<>();
+        //进行授权权限
+        permissionSet.add("user:delete");
+        info.setStringPermissions(permissionSet);
+        return info;
     }
 
     @Override
@@ -27,7 +42,8 @@ public class StudentRealm extends AuthorizingRealm {
         String username = customizedToken.getUsername();
         String password = new String((char[])token.getCredentials());
 
-        System.out.println(student);
+        student = studentSerivce.queryStudentById(username);
+
         if (student == null){
             throw new UnknownAccountException();
         }

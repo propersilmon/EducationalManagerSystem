@@ -19,11 +19,14 @@ public class LoginController {
 
     @RequestMapping("/student")
     public String studentLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+        System.out.println("进行了学生登录");
         Subject currentStudent = SecurityUtils.getSubject();
         if (!currentStudent.isAuthenticated()){
             CustomizedToken customizedToken = new CustomizedToken(username, password, STUDENT_LOGIN_TYOPE);
             try {
                 currentStudent.login(customizedToken);
+                System.out.println(currentStudent.hasRole("student"));
+                System.out.println(currentStudent.hasRole("admin"));
                 return "view/student/index";
             }catch(AuthenticationException e){
                 model.addAttribute("message", "用户名或密码错误");
@@ -34,11 +37,14 @@ public class LoginController {
 
     @RequestMapping("/SysEmployee")
     public String sysEmployeeLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+        System.out.println("进行教职工登录");
         Subject currentSysEmployee = SecurityUtils.getSubject();
         if (!currentSysEmployee.isAuthenticated()){
             CustomizedToken customizedToken = new CustomizedToken(username, password, SYSEMPLOYEE_LOGIN_TYOPE);
             try {
                 currentSysEmployee.login(customizedToken);
+                System.out.println(currentSysEmployee.hasRole("student"));
+                System.out.println(currentSysEmployee.hasRole("admin"));
                 return "view/sysEmployee/index";
             }catch(AuthenticationException e){
                 model.addAttribute("message", "用户名或密码错误");

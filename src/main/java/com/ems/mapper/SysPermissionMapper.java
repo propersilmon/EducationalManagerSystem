@@ -1,6 +1,9 @@
 package com.ems.mapper;
 
 import com.ems.entity.SysPermission;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysPermissionMapper {
     int deleteByPrimaryKey(Integer pId);
@@ -14,4 +17,8 @@ public interface SysPermissionMapper {
     int updateByPrimaryKeySelective(SysPermission record);
 
     int updateByPrimaryKey(SysPermission record);
+
+    List<SysPermission> queryMenuByUserId(@Param("employeeId") Integer geteId);
+
+    List<SysPermission> queryPermissionByUserId(@Param("employeeId") Integer geteId);
 }

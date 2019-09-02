@@ -1,6 +1,9 @@
 package com.ems.mapper;
 
 import com.ems.entity.SysEmployee;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysEmployeeMapper {
     int deleteByPrimaryKey(Integer eId);
@@ -14,4 +17,11 @@ public interface SysEmployeeMapper {
     int updateByPrimaryKeySelective(SysEmployee record);
 
     int updateByPrimaryKey(SysEmployee record);
+    int updatePasswordByEmployeeId(@Param("employeeId") int employeeId, @Param("newPassword") String newPassword);
+
+    List<SysEmployee> queryEmployeeByPage(int i, int recordPerPage);
+
+    int getTotalCount();
+
+    int addEmployeeBackId(SysEmployee employee);
 }
