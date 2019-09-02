@@ -20,6 +20,17 @@ public class SysPermission {
         this.pDesc = pDesc;
     }
 
+    @Override
+    public String toString() {
+        return "SysPermission{" +
+                "pId=" + pId +
+                ", parentId=" + parentId +
+                ", type='" + type + '\'' +
+                ", pName='" + pName + '\'' +
+                ", pDesc='" + pDesc + '\'' +
+                '}';
+    }
+
     public SysPermission() {
         super();
     }

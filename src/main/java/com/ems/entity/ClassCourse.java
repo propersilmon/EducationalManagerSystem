@@ -14,6 +14,15 @@ public class ClassCourse {
         this.cId = cId;
     }
 
+    @Override
+    public String toString() {
+        return "ClassCourse{" +
+                "cCId=" + cCId +
+                ", sClass='" + sClass + '\'' +
+                ", cId=" + cId +
+                '}';
+    }
+
     public ClassCourse() {
         super();
     }

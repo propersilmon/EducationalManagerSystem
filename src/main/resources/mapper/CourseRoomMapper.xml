@@ -127,4 +127,7 @@
       end_week = #{endWeek,jdbcType=VARCHAR}
     where c_r_id = #{cRId,jdbcType=INTEGER}
   </update>
+  <select id="selectByCId" parameterType="java.lang.Integer" resultType="com.ems.entity.CourseRoom">
+    select * from t_course_room where c_id=#{cId};
+  </select>
 </mapper>
