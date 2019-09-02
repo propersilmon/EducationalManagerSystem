@@ -1,13 +1,13 @@
 package com.ems.service;
 
 import com.ems.entity.Course;
-
-import java.util.List;
+import com.ems.vo.PageBean;
 
 public interface CourseService {
     Course addCourse(Course course);
     int updateCourse(Course course);
-    List<Course> selectAll();
+    PageBean<Course> selectAll(PageBean<Course> pageBean);
     int deletCourseById(Course course);
-    List<Course> selectBycName(String cName);
+    PageBean<Course>  selectBycName(String cName,int Npage);
+    int getCount();
 }

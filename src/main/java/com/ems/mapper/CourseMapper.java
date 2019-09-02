@@ -16,6 +16,8 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
-    List<Course> queryAllCourse();
-    List<Course> queryBycName(String cName);
+    List<Course> queryAllCourse(int page);
+    List<Course> queryBycName(String cName,int nPage);
+    int queryCourseCount();
+    int queryBycNameCount();
 }
