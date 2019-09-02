@@ -19,8 +19,8 @@
     </style>
 </head>
 <body>
-<div class="col-md-5 card" style="margin: auto; top: 200px;">
-    <div class="card-body" style="height: 400px; width: 600px;">
+<div class="col-md-5 card" style="margin: auto; top: 200px; border: 1px solid black">
+    <div class="card-body" style="height: 200px; width: 600px;">
         <center>
             <button type="button" class="btn btn-outline-dark" onclick="window.location.href='${pageContext.request.contextPath}/studentLogin'">学生登录</button>
             <button type="button" class="btn btn-outline-dark" onclick="window.location.href='${pageContext.request.contextPath}/sysEmployeeLogin'">教职工登录</button>
