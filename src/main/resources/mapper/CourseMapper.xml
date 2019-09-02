@@ -114,6 +114,12 @@
     select * from t_course where
      e_id = #{eId}
   </select>
+  <!--**********根据教师id和课程名查询课程**************-->
+  <select id="selectCourseByIdAndCourseName" resultMap="BaseResultMap">
+    select * from t_course
+    where e_id = #{eId}
+     and c_name = #{cName}
+  </select>
   <!--************************-->
 
   <insert id="addCourse" parameterType="com.ems.entity.Course">

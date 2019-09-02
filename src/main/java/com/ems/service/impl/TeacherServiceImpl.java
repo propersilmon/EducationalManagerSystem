@@ -35,4 +35,9 @@ public class TeacherServiceImpl implements TeacherService {
         return roomMapper.selectRoom();
     }
 
+    @Override
+    public Course selectCourseByIdAndCourseName(int eId, String cName) {
+        return courseMapper.selectCourseByIdAndCourseName(eId,cName);
+    }
+
 }

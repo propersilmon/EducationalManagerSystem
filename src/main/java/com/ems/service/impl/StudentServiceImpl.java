@@ -44,4 +44,14 @@ public class StudentServiceImpl implements StudentSerivce {
     public Student queryStudentById(String id) {
         return studentMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Student> selectStudent() {
+        return studentMapper.selectStudent();
+    }
+
+    @Override
+    public Student selectStudentById(int s_id) {
+        return studentMapper.selectStudentById(s_id);
+    }
 }

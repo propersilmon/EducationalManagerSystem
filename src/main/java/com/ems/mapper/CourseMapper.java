@@ -1,6 +1,7 @@
 package com.ems.mapper;
 
 import com.ems.entity.Course;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface CourseMapper {
     List<Course> queryBycName(String s);
 
     List<Course> queryAllCourse();
+
+    Course selectCourseByIdAndCourseName(@Param("eId")int eId, @Param("cName")String cName);
 }

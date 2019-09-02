@@ -13,4 +13,5 @@ public interface TeacherService {
 
     List<Room> selectRoom();
 
+    Course selectCourseByIdAndCourseName(int eId, String cName);
 }

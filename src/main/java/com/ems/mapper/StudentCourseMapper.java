@@ -1,6 +1,9 @@
 package com.ems.mapper;
 
 import com.ems.entity.StudentCourse;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StudentCourseMapper {
     int deleteByPrimaryKey(Integer sCId);
@@ -14,4 +17,10 @@ public interface StudentCourseMapper {
     int updateByPrimaryKeySelective(StudentCourse record);
 
     int updateByPrimaryKey(StudentCourse record);
+
+    List<StudentCourse> selectStudentCourse();
+
+    int updateScore(StudentCourse studentCourse);
+
+    StudentCourse selectStudentById(@Param("sId") String s_id, @Param("cId")int c_id);
 }

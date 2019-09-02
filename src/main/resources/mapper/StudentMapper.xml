@@ -137,4 +137,15 @@
   <select id="totalStudentCount" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM t_student
   </select>
+
+  <!--*********查询所有学生信息********************-->
+  <select id="selectStudent" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM t_student
+  </select>
+  <!--**************通过sid查询学生信息***********-->
+  <select id="selectStudentById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM t_student
+    where s_id = #{sId,jdbcType=VARCHAR}
+  </select>
+  <!--*****************************-->
 </mapper>

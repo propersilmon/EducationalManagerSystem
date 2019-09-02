@@ -96,4 +96,18 @@ public class Student {
     public void setsState(String sState) {
         this.sState = sState == null ? null : sState.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sId='" + sId + '\'' +
+                ", sName='" + sName + '\'' +
+                ", sPassword='" + sPassword + '\'' +
+                ", sSex='" + sSex + '\'' +
+                ", sStartYear='" + sStartYear + '\'' +
+                ", sEndYear='" + sEndYear + '\'' +
+                ", sClass='" + sClass + '\'' +
+                ", sState='" + sState + '\'' +
+                '}';
+    }
 }
