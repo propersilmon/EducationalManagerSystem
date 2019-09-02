@@ -14,6 +14,15 @@ public class SysEmployeeRole {
         this.rId = rId;
     }
 
+    @Override
+    public String toString() {
+        return "SysEmployeeRole{" +
+                "eRId=" + eRId +
+                ", eId=" + eId +
+                ", rId=" + rId +
+                '}';
+    }
+
     public SysEmployeeRole() {
         super();
     }

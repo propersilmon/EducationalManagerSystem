@@ -1,8 +1,11 @@
 package com.ems.vo;
 
 import com.ems.entity.Course;
+import com.ems.entity.CourseRoom;
 import com.ems.entity.Room;
 import com.ems.entity.SysEmployee;
+
+import java.util.List;
 
 /**
  * @program: EMS->Course_Teacher_RoomVoPoJO
@@ -10,19 +13,30 @@ import com.ems.entity.SysEmployee;
  * @author: lyl
  * @create: 2019-09-02 09:35
  **/
-public class Course_Teacher_RoomVoPoJO
-{
-    SysEmployee sysEmployee;
-    Course course;
-    Room room;
+public class Course_Teacher_RoomVoPoJO {
+    private SysEmployee sysEmployee;
+    private Course course;
+    private List<Room> room;
+    private List<CourseRoom> courseRooms;
 
-    public Course_Teacher_RoomVoPoJO(SysEmployee sysEmployee, Course course, Room room) {
-        this.sysEmployee = sysEmployee;
-        this.course = course;
-        this.room = room;
+    @Override
+    public String toString() {
+        return "Course_Teacher_RoomVoPoJO{" +
+                "sysEmployee=" + sysEmployee +
+                ", course=" + course +
+                ", room=" + room +
+                ", courseRooms=" + courseRooms +
+                '}';
     }
 
     public Course_Teacher_RoomVoPoJO() {
+    }
+
+    public Course_Teacher_RoomVoPoJO(SysEmployee sysEmployee, Course course, List<Room> room, List<CourseRoom> courseRooms) {
+        this.sysEmployee = sysEmployee;
+        this.course = course;
+        this.room = room;
+        this.courseRooms = courseRooms;
     }
 
     public SysEmployee getSysEmployee() {
@@ -41,20 +55,19 @@ public class Course_Teacher_RoomVoPoJO
         this.course = course;
     }
 
-    public Room getRoom() {
+    public List<Room> getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(List<Room> room) {
         this.room = room;
     }
 
-    @Override
-    public String toString() {
-        return "Course_Teacher_RoomVoPoJO{" +
-                "sysEmployee=" + sysEmployee +
-                ", course=" + course +
-                ", room=" + room +
-                '}';
+    public List<CourseRoom> getCourseRooms() {
+        return courseRooms;
+    }
+
+    public void setCourseRooms(List<CourseRoom> courseRooms) {
+        this.courseRooms = courseRooms;
     }
 }
