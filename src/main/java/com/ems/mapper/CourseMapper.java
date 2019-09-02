@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CourseMapper {
-    int deleteByPrimaryKey(Integer cId);
+    int deleteByPrimaryKey(Course record);
 
     int insert(Course record);
 
@@ -25,4 +25,9 @@ public interface CourseMapper {
     List<Course> queryAllCourse();
 
     Course selectCourseByIdAndCourseName(@Param("eId")int eId, @Param("cName")String cName);
+    List<Course> queryAllCourse(int page);
+    List<Course> queryBycName(String cName,int nPage);
+    int queryCourseCount();
+    int queryBycNameCount();
+
 }

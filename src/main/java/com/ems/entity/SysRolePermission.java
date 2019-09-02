@@ -14,6 +14,15 @@ public class SysRolePermission {
         this.pId = pId;
     }
 
+    @Override
+    public String toString() {
+        return "SysRolePermission{" +
+                "rPId=" + rPId +
+                ", rId=" + rId +
+                ", pId=" + pId +
+                '}';
+    }
+
     public SysRolePermission() {
         super();
     }

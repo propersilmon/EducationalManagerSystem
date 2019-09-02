@@ -14,6 +14,15 @@ public class SysRole {
         this.rDesc = rDesc;
     }
 
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "rId=" + rId +
+                ", rName='" + rName + '\'' +
+                ", rDesc='" + rDesc + '\'' +
+                '}';
+    }
+
     public SysRole() {
         super();
     }

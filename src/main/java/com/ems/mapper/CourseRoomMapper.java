@@ -18,4 +18,7 @@ public interface CourseRoomMapper {
     int updateByPrimaryKey(CourseRoom record);
         /*查询courser_room*/
     List<CourseRoom> selectCourseRoom();
+
+    List<CourseRoom> selectByCId(Integer cId);
+
 }

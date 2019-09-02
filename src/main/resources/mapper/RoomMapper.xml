@@ -77,4 +77,9 @@
     from t_room
   </select>
   <!--  ***********************   -->
+
+  <select id="queryRoomByPosition" parameterType="java.lang.String" resultType="Room">
+    select * from t_room where position like #{position}
+  </select>
+
 </mapper>

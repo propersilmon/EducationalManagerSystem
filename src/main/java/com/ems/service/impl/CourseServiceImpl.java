@@ -3,6 +3,7 @@ package com.ems.service.impl;
 import com.ems.entity.Course;
 import com.ems.mapper.CourseMapper;
 import com.ems.service.CourseService;
+import com.ems.vo.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +36,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> selectAll() {
-        List<Course> list = courseMapper.queryAllCourse();
-
-        return list;
+    public PageBean<Course> selectAll(PageBean<Course> pageBean) {
+        List<Course> list = courseMapper.queryAllCourse((pageBean.getCurrentPageCode()-1)*10);
+        pageBean.setBeanList(list);
+        return pageBean;
     }
 
     @Override
@@ -49,8 +50,23 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> selectBycName(String cName) {
+    public PageBean<Course>  selectBycName(String cName , int Npage) {
+        PageBean<Course> pageBean=new PageBean<>();
+        pageBean.setCurrentPageCode(Npage);
+        int maxPage=0;
+        if (courseMapper.queryBycNameCount()%10==0){
+            maxPage=courseMapper.queryBycNameCount()/10;
+        }else{
+            maxPage=courseMapper.queryBycNameCount()/10+1;
+        }
+        pageBean.setTotalPageCode(maxPage);
+        pageBean.setBeanList(courseMapper.queryBycName("%"+cName+"%",(Npage-1)*10));
+        return pageBean;
+    }
 
-        return courseMapper.queryBycName("%" + cName + "%");
+    @Override
+    public int getCount() {
+
+        return courseMapper.queryCourseCount();
     }
 }

@@ -6,14 +6,23 @@ import com.ems.entity.Room;
 import com.ems.mapper.CourseMapper;
 import com.ems.mapper.CourseRoomMapper;
 import com.ems.mapper.RoomMapper;
+import com.ems.entity.SysEmployee;
+import com.ems.mapper.SysEmployeeMapper;
 import com.ems.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
+
+    @Autowired
+    SysEmployeeMapper sysEmployeeMapper;
+
+    @Override
+    public SysEmployee queryByUsername(int username) {
+        return sysEmployeeMapper.selectByPrimaryKey(username);
+    }
     @Autowired
     private CourseMapper courseMapper;
     @Autowired

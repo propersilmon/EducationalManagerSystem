@@ -133,4 +133,7 @@
     *
     from t_course_room
   </select>
+  <select id="selectByCId" parameterType="java.lang.Integer" resultType="com.ems.entity.CourseRoom">
+    select * from t_course_room where c_id=#{cId};
+  </select>
 </mapper>
