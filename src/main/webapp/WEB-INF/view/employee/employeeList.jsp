@@ -84,7 +84,9 @@
                                 <td>${temp.eName}</td>
                                 <td>${temp.eSex}</td>
                                 <td>${temp.eAvgScore}</td>
-                                <td><button class="btn bgm-cyan waves-effect">修改信息</button>
+                                <td>
+
+                                    <button class="btn bgm-cyan waves-effect">修改信息</button>
                                     <button class="btn bgm-orange waves-effect">分配权限</button>
                                     <button class="btn bgm-lightgreen waves-effec">删除员工</button>
                                 </td>
