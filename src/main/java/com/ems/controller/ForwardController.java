@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ForwardController {
 
-    @RequestMapping("/view/welcome")
-    public String getWelcome(){
-        return "view/welcome";
+    @RequestMapping("/student/index")
+    public String getStudentIndex(){
+        return "view/student/index";
+    }
+
+    @RequestMapping("/sysEmployee/index")
+    public String getSysEmployee(){
+        return "view/sysEmployee/index";
     }
 
     @RequestMapping("/studentLogin")
@@ -21,8 +26,13 @@ public class ForwardController {
         return "view/login/sysEmployeeLogin";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/toIndex")
     public String getIndex(){
-        return "index.jsp";
+        return "index";
+    }
+
+    @RequestMapping("/unauthor")
+    public String getUnauthor(){
+        return "unauthor";
     }
 }

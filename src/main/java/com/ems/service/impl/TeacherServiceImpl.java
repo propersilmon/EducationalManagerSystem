@@ -14,6 +14,14 @@ import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
+
+    @Autowired
+    SysEmployeeMapper sysEmployeeMapper;
+
+    @Override
+    public SysEmployee queryByUsername(int username) {
+        return sysEmployeeMapper.selectByPrimaryKey(username);
+    }
     @Autowired
     private CourseMapper courseMapper;
     @Autowired

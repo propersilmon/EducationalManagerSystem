@@ -101,4 +101,30 @@
     where e_name = #{eName,jdbcType=VARCHAR}
        and e_password = #{ePassword,jdbcType=VARCHAR}
   </select>
+
+  <!--追加-->
+  <update id="updatePasswordByEmployeeId">
+    UPDATE sys_employee SET e_password=#{newPassword} WHERE e_id=#{employeeId}
+  </update>
+
+  <select id="queryEmployeeByPage" resultMap="BaseResultMap">
+    SELECT * FROM sys_employee LIMIT #{0},#{1}
+    </select>
+
+  <select id="getTotalCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM sys_employee
+    </select>
+
+  <insert id="addEmployeeBackId" parameterType="com.zuikaku.pojo.SysEmployee">
+    <selectKey keyProperty="eId" order="AFTER" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO sys_employee
+    (e_id, e_name, e_password,
+    e_sex, e_avg_score)
+    VALUES
+    (#{eId,jdbcType=INTEGER}, #{eName,jdbcType=VARCHAR}, #{ePassword,jdbcType=VARCHAR},
+    #{eSex,jdbcType=VARCHAR}, #{eAvgScore,jdbcType=INTEGER})
+
+  </insert>
 </mapper>
