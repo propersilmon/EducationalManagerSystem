@@ -86,7 +86,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/updatePassword",method = RequestMethod.GET )
     public String toUpdatePassword(){
-        return "/employee/updateCurrentEmployeePassword";
+        return "view/employee/updateCurrentEmployeePassword";
     }
 
 
@@ -153,7 +153,7 @@ public class EmployeeController {
         model.addAttribute("pageBean",pageBean);
 
         //forward跳转到员工列表页面
-        return "/employee/employeeList";
+        return "view/employee/employeeList";
     }
 
     /**
@@ -163,7 +163,7 @@ public class EmployeeController {
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String toAddPage(){
         //forward跳转到添加员工页面
-        return "/employee/addEmployee";
+        return "view/employee/addEmployee";
     }
 
     /**

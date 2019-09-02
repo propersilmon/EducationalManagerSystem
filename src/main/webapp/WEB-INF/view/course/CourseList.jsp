@@ -6,7 +6,7 @@
   Time: 22:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -16,7 +16,7 @@
     <title>Material Admin</title>
 
     <!-- Vendor CSS -->
-    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/animate.css/animate.min.css"
+    <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
           rel="stylesheet">
@@ -53,39 +53,66 @@
                     <h2>员工列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>
 
-                            <a href="${pageContext.request.contextPath}/employee/add" class="btn bgm-blue waves-effect" ><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>员工添加</a>
-                            <button class="btn bgm-green waves-effect" ><i class="tm-icon zmdi zmdi-search"></i>员工查询</button>
+                            <a href="${pageContext.request.contextPath}/employee/add" class="btn bgm-blue waves-effect"><i
+                                    class="zmdi zmdi-account-add zmdi-hc-fw"></i>员工添加</a>
+                            <button class="btn bgm-green waves-effect"><i
+                                    class="tm-icon zmdi zmdi-search"></i>员工查询</button>
                             &nbsp;&nbsp;
                             <input type="text">
                             &nbsp;&nbsp;
-                            <button class="btn bgm-red waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i>批量删除</button>
+                            <button class="btn bgm-red waves-effect"><i
+                                    class="zmdi zmdi-delete zmdi-hc-fw"></i>批量删除</button>
                         </span>
 
                     </h2>
                 </div>
 
                 <div class="table-responsive">
-                    <table id="data-table-selection" class="table table-striped" >
+                    <table id="data-table-selection" class="table table-striped">
                         <thead>
                         <tr align="center">
-                            <th class="select-cell" style="text-align: center;"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box" value="all" onchange="allSelect(this)"><i class="input-helper"></i></label></div></th>
-                            <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%" style="text-align: center;">ID</th>
-                            <th data-column-id="sender" width="20%" style="text-align: center;">名字</th>
-                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">性别</th>
-                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">平均得分</th>
-                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作</th>
+                            <th class="select-cell" style="text-align: center;">
+                                <div class="checkbox"><label><input name="select" type="checkbox" class="select-box"
+                                                                    value="all" onchange="allSelect(this)"><i
+                                        class="input-helper"></i></label></div>
+                            </th>
+                            <th data-column-id="sender" width="20%" style="text-align: center;">课程名</th>
+                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">学分
+                            </th>
+                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">
+                                任课教师
+                            </th>
+                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">
+                                上课时间
+                            </th>
+
+                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">
+                                所在教室
+                            </th>
+                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">
+                                是否选修
+                            </th>
+                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作
+                            </th>
                         </tr>
                         </thead>
                         <tbody align="center">
-                        <c:forEach items="${requestScope.pageBean.beanList}" var="temp">
+                        <c:forEach items="${ctroom}" var="ctroomS">
                             <tr>
-                                <td class="select-cell"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box myOption" value="${temp.eId}" ><i class="input-helper"></i></label></div></td>
-                                <td>${temp.eId}</td>
-                                <td>${temp.eName}</td>
-                                <td>${temp.eSex}</td>
-                                <td>${temp.eAvgScore}</td>
+                                <td class="select-cell">
+                                    <div class="checkbox"><label><input name="select" type="checkbox"
+                                                                        class="select-box myOption" value="${temp.eId}"><i
+                                            class="input-helper"></i></label></div>
+                                </td>
+                                <td>${ctroomS.course.cName}</td>
+                                <td>${ctroomS.course.cCredit}</td>
+                                <td>${ctroomS.sysEmployee.eName}</td>
+                                <td>${ctroomS.courseRooms.startWeek}到${ctroomS.courseRooms.endWeek}的
+                                    每周${ctroomS.courseRooms.week}的${ctroomS.courseRooms.interval}
+                                </td>
+                                <td>${ctroomS.room.position}</td>
+                                <td>${ctroomS.course.elective}</td>
                                 <td>
-
                                     <button class="btn bgm-cyan waves-effect">修改信息</button>
                                     <button class="btn bgm-orange waves-effect">分配权限</button>
                                     <button class="btn bgm-lightgreen waves-effec">删除员工</button>
@@ -112,8 +139,6 @@
 </footer>
 
 
-
-
 <!-- Javascript Libraries -->
 <script src="${pageContext.request.contextPath}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -132,21 +157,18 @@
 <script type="text/javascript">
     //全选复选框选中
     function allSelect(obj) {
-        var value=obj.checked;
+        var value = obj.checked;
         console.log(value);
-        var options= document.getElementsByClassName("myOption");
-        if(value)
-        {
+        var options = document.getElementsByClassName("myOption");
+        if (value) {
             //全选所有的勾
-            for(var temp in options)
-            {
-                options[temp].checked='checked';
+            for (var temp in options) {
+                options[temp].checked = 'checked';
             }
-        }else{
+        } else {
             //取消所有的勾
-            for(var temp in options)
-            {
-                options[temp].checked='';
+            for (var temp in options) {
+                options[temp].checked = '';
             }
         }
     }
