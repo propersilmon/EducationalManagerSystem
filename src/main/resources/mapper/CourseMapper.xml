@@ -21,14 +21,23 @@
     where c_id = #{cId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_course
+        where c_id = #{cId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.ems.entity.Course">
     delete from t_course
     where c_id = #{cId,jdbcType=INTEGER}
   </delete>
+    <insert id="insert" parameterType="com.ems.entity.Course">
+    insert into t_course (c_id, c_name, c_credit, 
   <insert id="insert" parameterType="com.ems.entity.Course" >
     insert into t_course (c_id, c_name, c_credit,
       elective, create_date, e_id
       )
-    values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cCredit,jdbcType=INTEGER},
+    values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cCredit,jdbcType=INTEGER}, 
       #{elective,jdbcType=TINYINT}, #{createDate,jdbcType=DATE}, #{eId,jdbcType=INTEGER}
       )
   </insert>
@@ -105,6 +114,27 @@
       e_id = #{eId,jdbcType=INTEGER}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
+    <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
+    select * from t_course limit #{page} ,10
+  </select>
+
+    <select id="queryCourseCount" resultType="java.lang.Integer">
+        select count(*) from t_course
+
+  </select>
+
+    <select id="queryBycName" resultType="com.ems.entity.Course">
+        select * from t_course
+            where
+            c_name like #{0}
+        limit #{1},10
+    </select>
+
+    <select id="queryBycNameCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from t_course
+        where c_name like #{cName}
+
+    </select>
 
   <!--#######################################################################################-->
 
