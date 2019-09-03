@@ -16,8 +16,8 @@ public class StudentServiceImpl implements StudentSerivce {
 
     @Override
     public List<Student> queryStudentByPage(int currentPageIdx) {
-        //每页查10个
-        return studentMapper.queryStudentByPage((currentPageIdx-1),10);
+        //每页查10个【已弃用】
+        return studentMapper.queryStudentByPage((currentPageIdx-1)*10,10);
     }
 
     @Override
@@ -43,5 +43,10 @@ public class StudentServiceImpl implements StudentSerivce {
     @Override
     public Student queryStudentById(String id) {
         return studentMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Student> queryByPage(int currentPage, int recordPerPage) {
+        return studentMapper.queryStudentByPage((currentPage-1)*recordPerPage,recordPerPage);
     }
 }

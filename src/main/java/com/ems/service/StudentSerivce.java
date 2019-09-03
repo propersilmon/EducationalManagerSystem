@@ -18,4 +18,7 @@ public interface StudentSerivce {
     int delteStudentById(String id);
 
     Student queryStudentById(String id);
+
+    List<Student> queryByPage(int currentPage, int recordPerPage);
+
 }

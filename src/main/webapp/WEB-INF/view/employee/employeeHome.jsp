@@ -120,8 +120,9 @@
                 <ul>
 
                     <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
-                    <li><a href="textual-menu.html">角色管理</a></li>
-                    <li><a href="textual-menu.html">权限管理</a></li>
+                    <li><a href="javascript:changeFrame('1')">角色管理</a></li>
+                    <li><a href="javascript:changeFrame('2')">权限管理</a></li>
+                    <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
                     <li><a href="textual-menu.html">教室管理</a></li>
                     <li><a href="textual-menu.html">课程管理</a></li>
                     <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
@@ -190,6 +191,9 @@
 
         }else if(arg==='managerUser'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/queryEmployee/1");
+        }else if(arg==='managerStudent')
+        {
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/managerStudent/queryStudent/1");
         }
     }
 </script>
