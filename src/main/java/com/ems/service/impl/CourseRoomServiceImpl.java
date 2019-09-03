@@ -26,4 +26,9 @@ public class CourseRoomServiceImpl implements CourseRoomService {
     public int insertSelective(CourseRoom record) {
         return courseRoomMapper.insertSelective(record);
     }
+
+    @Override
+    public int deleteCourseRoom(CourseRoom courseRoom) {
+        return courseRoomMapper.deleteByPrimaryKey(courseRoom.getcRId());
+    }
 }

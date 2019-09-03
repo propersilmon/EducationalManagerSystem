@@ -40,4 +40,9 @@ RoomMapper roommapper;
     public List<Room> queryRoomByPosition(String position){
         return roommapper.queryRoomByPosition(position);
     }
+
+    @Override
+    public List<Room> queryAllRoom() {
+        return roommapper.queryAllRoom();
+    }
 }

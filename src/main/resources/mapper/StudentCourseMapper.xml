@@ -92,4 +92,7 @@
       t_score = #{tScore,jdbcType=INTEGER}
     where s_c_id = #{sCId,jdbcType=INTEGER}
   </update>
+  <delete id="deletbycId" parameterType="java.lang.Integer">
+    delete from t_student_course where  c_id = #{cId,jdbcType=INTEGER}
+  </delete>
 </mapper>

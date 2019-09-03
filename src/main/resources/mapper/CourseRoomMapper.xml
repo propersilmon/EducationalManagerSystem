@@ -35,59 +35,10 @@
       #{endWeek,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ems.entity.CourseRoom" >
-    insert into t_course_room
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="cRId != null" >
-        c_r_id,
-      </if>
-      <if test="interval != null" >
-        interval,
-      </if>
-      <if test="cId != null" >
-        c_id,
-      </if>
-      <if test="rId != null" >
-        r_id,
-      </if>
-      <if test="week != null" >
-        week,
-      </if>
-      <if test="desc != null" >
-        desc,
-      </if>
-      <if test="startWeek != null" >
-        start_week,
-      </if>
-      <if test="endWeek != null" >
-        end_week,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="cRId != null" >
-        #{cRId,jdbcType=INTEGER},
-      </if>
-      <if test="interval != null" >
-        #{interval,jdbcType=VARCHAR},
-      </if>
-      <if test="cId != null" >
-        #{cId,jdbcType=INTEGER},
-      </if>
-      <if test="rId != null" >
-        #{rId,jdbcType=INTEGER},
-      </if>
-      <if test="week != null" >
-        #{week,jdbcType=VARCHAR},
-      </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
-      </if>
-      <if test="startWeek != null" >
-        #{startWeek,jdbcType=VARCHAR},
-      </if>
-      <if test="endWeek != null" >
-        #{endWeek,jdbcType=VARCHAR},
-      </if>
-    </trim>
+     insert into t_course_room
+    values (#{cRId,jdbcType=INTEGER}, #{interval,jdbcType=VARCHAR}, #{cId,jdbcType=INTEGER},
+      #{rId,jdbcType=INTEGER}, #{week,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{startWeek,jdbcType=VARCHAR},
+      #{endWeek,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.CourseRoom" >
     update t_course_room
