@@ -58,7 +58,7 @@
                                     class="zmdi zmdi-account-add zmdi-hc-fw"></i>添加课程</a>
                             <input type="text" name="cName">
                             <input type="text" name="page" value="1" hidden="hidden">
-                            <input class="btn bgm-green waves-effect" type="submit" value="课程名查询"></input>
+                            <button class="btn bgm-green waves-effect" type="submit" >课程名查询</button>
 
                         </span>
 
@@ -101,7 +101,11 @@
                                     每周${ctroomS.courseRooms.week}的${ctroomS.courseRooms.interval}
                                 </td>
                                 <td>${ctroomS.course.cCredit}</td>
-                                <td>${ctroomS.course.elective}</td>
+                                <td><c:if test="${ctroomS.course.elective==1}">
+                                    选修
+                                </c:if><c:if test="${ctroomS.course.elective==0}">
+                                    必修
+                                </c:if></td>
                                 <td>
                                     <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/deletCourseById?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >删除课程</a>
                                     <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/toUpdateCourse?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >修改课程</a>

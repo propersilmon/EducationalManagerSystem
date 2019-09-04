@@ -168,7 +168,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <input type="number" name="cCredit" class="form-control" placeholder="${course.cCredit}">
+                                    <input type="text" name="cCredit" class="form-control" placeholder="${course.cCredit}">
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success waves-effect">确认修改

@@ -175,7 +175,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <input type="number" name="cCredit" class="form-control" placeholder="学分">
+                                    <input type="text" name="cCredit" class="form-control" placeholder="学分">
                                 </div>
                                 <br>
                                 <div class="form-group">
