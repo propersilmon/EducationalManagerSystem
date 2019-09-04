@@ -124,7 +124,7 @@
                     <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
                     <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
                     <li><a href="textual-menu.html">教室管理</a></li>
-                    <li><a href="textual-menu.html">课程管理</a></li>
+                    <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
                     <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
                 </ul>
             </li>
@@ -196,6 +196,8 @@
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerStudent/queryStudent/1");
         }else if (arg === 'managerRoles'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerRoles/queryRole/1")
+        }else if (arg === 'managerCourse'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/courseController/toListCourse")
         }
     }
 </script>
