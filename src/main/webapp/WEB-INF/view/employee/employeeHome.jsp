@@ -120,8 +120,8 @@
                 <ul>
 
                     <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
-                    <li><a href="javascript:changeFrame('1')">角色管理</a></li>
-                    <li><a href="javascript:changeFrame('2')">权限管理</a></li>
+                    <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
+                    <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
                     <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
                     <li><a href="textual-menu.html">教室管理</a></li>
                     <li><a href="textual-menu.html">课程管理</a></li>
@@ -194,6 +194,8 @@
         }else if(arg==='managerStudent')
         {
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerStudent/queryStudent/1");
+        }else if (arg === 'managerRoles'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/managerRoles/queryRole/1")
         }
     }
 </script>

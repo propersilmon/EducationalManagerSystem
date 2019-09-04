@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -41,7 +42,6 @@
         <div class="container">
             <div class="block-header">
                 <h2>Data Table</h2>
-
                 <ul class="actions">
 
                 </ul>
@@ -50,11 +50,11 @@
 
             <div class="card" style="position: absolute; top: 0px;width: 100%">
                 <div class="card-header">
-                    <h2>员工列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h2>角色列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>
 
-                            <a href="${pageContext.request.contextPath}/employee/add" class="btn bgm-blue waves-effect" ><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>员工添加</a>
-                            <button class="btn bgm-green waves-effect" ><i class="tm-icon zmdi zmdi-search"></i>员工查询</button>
+                            <a href="${pageContext.request.contextPath}/role/add" class="btn bgm-blue waves-effect" ><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>角色添加</a>
+                            <button class="btn bgm-green waves-effect" ><i class="tm-icon zmdi zmdi-search"></i>角色查询</button>
                             &nbsp;&nbsp;
                             <input type="text">
                             &nbsp;&nbsp;
@@ -70,25 +70,21 @@
                         <tr align="center">
                             <th class="select-cell" style="text-align: center;"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box" value="all" onchange="allSelect(this)"><i class="input-helper"></i></label></div></th>
                             <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%" style="text-align: center;">ID</th>
-                            <th data-column-id="sender" width="20%" style="text-align: center;">名字</th>
-                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">性别</th>
-                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">平均得分</th>
+                            <th data-column-id="sender" width="20%" style="text-align: center;">名称</th>
+                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">描述</th>
                             <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作</th>
                         </tr>
                         </thead>
                         <tbody align="center">
                         <c:forEach items="${requestScope.pageBean.beanList}" var="temp">
                             <tr>
-                                <td class="select-cell"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box myOption" value="${temp.eId}" ><i class="input-helper"></i></label></div></td>
-                                <td>${temp.eId}</td>
-                                <td>${temp.eName}</td>
-                                <td>${temp.eSex}</td>
-                                <td>${temp.eAvgScore}</td>
+                                <td class="select-cell"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box myOption" value="${temp.rId}" ><i class="input-helper"></i></label></div></td>
+                                <td>${temp.rId}</td>
+                                <td>${temp.rName}</td>
+                                <td>${temp.rDesc}</td>
                                 <td>
-
-                                    <button class="btn bgm-cyan waves-effect">修改信息</button>
-                                    <button class="btn bgm-orange waves-effect">分配权限</button>
-                                    <button class="btn bgm-lightgreen waves-effec">删除员工</button>
+                                    <button class="btn bgm-cyan waves-effect">修改角色</button>
+                                    <button class="btn bgm-lightgreen waves-effec">删除角色</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -106,7 +102,7 @@
 <footer id="footer" style="position: absolute; top: 555px">
     <span>当前页码数:${requestScope.pageBean.currentPageCode}/${requestScope.pageBean.totalPageCode} 页</span>
     <c:forEach begin="1" end="${requestScope.pageBean.totalPageCode}" var="tempNum">
-        <span>    <a href="${pageContext.request.contextPath}/employee/queryEmployee/${tempNum}">${tempNum}</a></span>
+        <span>    <a href="${pageContext.request.contextPath}/role/queryRole/${tempNum}">${tempNum}</a></span>
     </c:forEach>
 </footer>
 
@@ -152,34 +148,3 @@
 </script>
 </body>
 </html>
-<%--<html>--%>
-<%--<head>--%>
-<%--<title>Title</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<table>--%>
-<%--<thead>--%>
-<%--<th>id</th>--%>
-<%--<th>用户名</th>--%>
-<%--<th>性别</th>--%>
-<%--<th>学生反馈平均分数</th>--%>
-<%--<th>操作</th>--%>
-<%--</thead>--%>
-<%--<tbody>--%>
-<%--<c:forEach items="${requestScope.pageBean.beanList}" var="temp">--%>
-<%--<tr>--%>
-<%--<td>${temp.eId}</td>--%>
-<%--<td>${temp.eName}</td>--%>
-<%--<td>${temp.eSex}</td>--%>
-<%--<td>${temp.eAvgScore}</td>--%>
-<%--</tr>--%>
-<%--</c:forEach>--%>
-<%--</tbody>--%>
-<%--</table>--%>
-<%--&lt;%&ndash;页码部分&ndash;%&gt;--%>
-<%--<span>当前页码数:${requestScope.pageBean.currentPageCode}/${requestScope.pageBean.totalPageCode} 页</span>--%>
-<%--<c:forEach begin="1" end="${requestScope.pageBean.totalPageCode}" var="tempNum">--%>
-<%--<span>    <a href="${pageContext.request.contextPath}/employee/queryEmployee/${tempNum}">${tempNum}</a></span>--%>
-<%--</c:forEach>--%>
-<%--</body>--%>
-<%--</html>--%>
