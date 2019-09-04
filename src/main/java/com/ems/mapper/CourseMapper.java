@@ -20,10 +20,6 @@ public interface CourseMapper {
     /*查询courser*/
     List<Course> selectCourseById(int eId);
 
-    List<Course> queryBycName(String s);
-
-    List<Course> queryAllCourse();
-
     Course selectCourseByIdAndCourseName(@Param("eId")int eId, @Param("cName")String cName);
     List<Course> queryAllCourse(int page);
     List<Course> queryBycName(String cName,int nPage);

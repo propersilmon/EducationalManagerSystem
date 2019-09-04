@@ -94,12 +94,12 @@
                         &nbsp;&nbsp;
                         <form action="<%=basePath%>teacherController/searchCourse" method="post">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-info waves-effect" id="checkAll" value="全选">全选</button>
+                            <button type="button" class="btn btn-info waves-effect" id="checkAll"   value="全选">全选</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              <input type="text"  name="courseName" placeholder="输入查询课程关键名">
                         &nbsp;&nbsp;
                             <button class="btn btn-info waves-effect" ><trans oldtip="Submit" newtip="搜索" style="">搜索</trans></button>
-                        &nbsp;&nbsp; <button type="button" onclick="batchInsert()" <%--href="<%=basePath%>teacherController/batchInsert"--%>  class="btn btn-info waves-effect" ><trans oldtip="Submit" newtip="批量录入" style="">批量录入</trans></button>
+                            &nbsp;&nbsp; <button type="button" onclick="batchInsert()" <%--href="<%=basePath%>teacherController/batchInsert"--%>  class="btn btn-info waves-effect" ><trans oldtip="Submit" newtip="批量录入" style="">批量录入</trans></button>
                         </form>
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -117,10 +117,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${teacherCourseAndRoom.course}" var="course">
-                                    <c:forEach items="${studentCoursesList}" var="studentCourses">
-                                        <c:if test="${course.cId==studentCourses.cId}">
-                                            <c:forEach items="${studentList}" var="student">
+                                <c:forEach items="${teacherCourseAndRoom.course}" var="courses">
+                                    <c:if test="${course.cName==courses.cName}">
+                                        <c:forEach items="${studentCoursesList}" var="studentCourses">
+                                            <c:if test="${courses.cId==studentCourses.cId}">
+                                              <c:forEach items="${studentList}" var="student">
                                                 <c:if test="${studentCourses.sId==student.sId}">
                                                     <tr>
                                                         <th>
@@ -132,8 +133,8 @@
                                                         <th>${student.sName}</th>
                                                         <th>${student.sClass}</th>
                                                         <th>${student.sState}</th>
-                                                        <th>${course.cName}</th>
-                                                        <th>${course.cCredit}</th>
+                                                        <th>${courses.cName}</th>
+                                                        <th>${courses.cCredit}</th>
                                                         <th>${studentCourses.sScore}</th>
                                                         <th>
                                                             <button id="entry" onclick="entry(this)" data-toggle="modal" href="#modalColor" class="btn btn-default waves-effect"><trans oldtip="Prevent Outside Click" newtip="录入成绩" style="">录入成绩</trans></button>
@@ -143,6 +144,7 @@
                                             </c:forEach>
                                         </c:if>
                                     </c:forEach>
+                                    </c:if>
                                 </c:forEach>
                                 </tbody>
                             </table>
@@ -294,6 +296,7 @@
         $("#name").val(name);
         $("#course").val(course);
         $("#studentScore").val(score);
+
     }
 </script>
 <script type="text/javascript">
@@ -304,19 +307,19 @@
             alert("请至少选择一项!");
             return false;
         }
-            let checkedList = new Array();
-            $("input[name='check']:checked").each(function(){
-                checkedList.push($(this).val());
-            });
-            $.ajax({
-                type:"POST",
-                url:"${pageContext.request.contextPath}/teacherController/batchInsert",
-                data:{"checkList":checkedList.toString()},
-                dataType:"script",
-                success:function(){
+        let checkedList = new Array();
+        $("input[name='check']:checked").each(function(){
+            checkedList.push($(this).val());
+        });
+        $.ajax({
+            type:"POST",
+            url:"${pageContext.request.contextPath}/teacherController/batchInsert",
+            data:{"checkList":checkedList.toString()},
+            dataType:"script",
+            success:function(){
 
-                },
-            });
+            },
+        });
 
     }
 </script>

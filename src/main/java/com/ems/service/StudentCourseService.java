@@ -11,4 +11,6 @@ public interface StudentCourseService {
     int updateScore(StudentCourse studentCourse);
 
     StudentCourse selectStudentById(String s_id, int c_id);
+
+    int insertCourse(int scId, int course);
 }

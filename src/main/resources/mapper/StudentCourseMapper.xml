@@ -125,5 +125,10 @@
     AND c_id = #{cId,jdbcType=INTEGER}
   </select>
 
+  <update id="insertCourse" parameterType="com.ems.entity.StudentCourse" >
+    update t_student_course
+    set  s_score = #{sScore,jdbcType=INTEGER}
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </update>
   <!--*******************-->
 </mapper>

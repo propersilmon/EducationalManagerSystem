@@ -132,10 +132,10 @@
                 <a href=""><i class="zmdi zmdi-collection-item"></i>教师管理系统</a>
                 <ul>
 
-                    <li><a href="profile-about.html">查看课程安排</a></li>
-                    <li><a href="list-view.html">查看选课学生</a></li>
-                    <li><a href="messages.html">录入成绩</a></li>
-                    <li><a href="pricing-table.html">查看成绩</a></li>
+                    <li><a href="javascript:changeFrame('selectCourseManager')">查看课程安排</a></li>
+                    <li><a href="javascript:changeFrame('selectCourseStudent')">查看选课学生</a></li>
+                    <li><a href="javascript:changeFrame('entryScore')">录入成绩</a></li>
+                    <li><a href="javascript:changeFrame('lookScore')">查看成绩</a></li>
                 </ul>
             </li>
 
@@ -190,6 +190,14 @@
 
         }else if(arg==='managerUser'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/queryEmployee/1");
+        }else if(arg==='selectCourseManager'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/selectCourse");
+        }else if(arg==='selectCourseStudent'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/scoresList");
+        }else if(arg==='entryScore'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/scoresList");
+        }else if(arg==='lookScore'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/selectAllScoresList");
         }
     }
 </script>

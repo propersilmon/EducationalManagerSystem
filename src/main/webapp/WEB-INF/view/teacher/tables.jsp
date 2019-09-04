@@ -21,7 +21,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>教师课程安排信息</title>
+        <title></title>
     
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
@@ -34,199 +34,6 @@
         <link href="css/app.min.2.css" rel="stylesheet">
     </head>
     <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
-            <ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
-
-                <li class="logo hidden-xs">
-                    <a href="index.jsp">教务管理系统首页</a>
-                </li>
-                <li class="pull-right">
-                    <ul class="top-menu">
-                        <li id="toggle-width">
-                            <div class="toggle-switch">
-                                <input id="tw-switch" type="checkbox" hidden="hidden">
-                                <label for="tw-switch" class="ts-helper"></label>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu dm-icon pull-right">
-                                <li class="skin-switch hidden-xs">
-                                    <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
-                                    <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
-                                    <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
-                                    <span class="ss-skin bgm-teal" data-skin="teal"></span>
-                                    <span class="ss-skin bgm-orange" data-skin="orange"></span>
-                                    <span class="ss-skin bgm-blue" data-skin="blue"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-
-            <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-        </header>
-
-        <section id="main">
-            <aside id="sidebar" class="sidebar c-overflow">
-                <div class="profile-menu">
-                    <a href="">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/1.jpg" alt="">
-                        </div>
-
-                        <div class="profile-info">
-                            Malinda Hollaway
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="main-menu">
-                    <li>
-                        <a href="WEB-INF/index.jsp"><i class="zmdi zmdi-home"></i> Home</a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
-
-                        <ul>
-                            <li><a href="textual-menu.html">Textual menu</a></li>
-                            <li><a href="image-logo.html">Image logo</a></li>
-                            <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </aside>
-
-            <aside id="chat" class="sidebar c-overflow">
-
-                <div class="chat-search">
-                    <div class="fg-line">
-                        <input type="text" class="form-control" placeholder="Search People">
-                    </div>
-                </div>
-
-                <div class="listview">
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left p-relative">
-                                <img class="lv-img-sm" src="img/profile-pics/2.jpg" alt="">
-                                <i class="chat-status-busy"></i>
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Jonathan Morris</div>
-                                <small class="lv-small">Available</small>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left">
-                                <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">David Belle</div>
-                                <small class="lv-small">Last seen 3 hours ago</small>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left p-relative">
-                                <img class="lv-img-sm" src="img/profile-pics/3.jpg" alt="">
-                                <i class="chat-status-online"></i>
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Fredric Mitchell Jr.</div>
-                                <small class="lv-small">Availble</small>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left p-relative">
-                                <img class="lv-img-sm" src="img/profile-pics/4.jpg" alt="">
-                                <i class="chat-status-online"></i>
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Glenn Jecobs</div>
-                                <small class="lv-small">Availble</small>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left">
-                                <img class="lv-img-sm" src="img/profile-pics/5.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Bill Phillips</div>
-                                <small class="lv-small">Last seen 3 days ago</small>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left">
-                                <img class="lv-img-sm" src="img/profile-pics/6.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Wendy Mitchell</div>
-                                <small class="lv-small">Last seen 2 minutes ago</small>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="lv-item" href="">
-                        <div class="media">
-                            <div class="pull-left p-relative">
-                                <img class="lv-img-sm" src="img/profile-pics/7.jpg" alt="">
-                                <i class="chat-status-busy"></i>
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Teena Bell Ann</div>
-                                <small class="lv-small">Busy</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </aside>
 
 
             <section id="content">
@@ -282,7 +89,7 @@
 
                 </div>
             </section>
-        </section>
+
 
         <footer id="footer">
             Copyright &copy; 2019 教务管理系统

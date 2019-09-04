@@ -16,7 +16,7 @@
 
     <!--加载db.properties-->
     <context:property-placeholder location="classpath:db.properties"/>
-
+    <import resource="spring-mvc.xml"/>
 
     <!--配置druid连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -146,6 +146,4 @@
     <aop:config>
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.ems.service.impl.*.*(..))"/>
     </aop:config>
-
-
 </beans>

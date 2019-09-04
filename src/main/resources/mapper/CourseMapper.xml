@@ -121,9 +121,9 @@
      and c_name = #{cName}
   </select>
   <!--************************-->
-    <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
-    select * from t_course limit #{page} ,10
-  </select>
+<!--    <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">-->
+<!--    select * from t_course limit #{page} ,10-->
+<!--  </select>-->
 
     <select id="queryCourseCount" resultType="java.lang.Integer">
         select count(*) from t_course

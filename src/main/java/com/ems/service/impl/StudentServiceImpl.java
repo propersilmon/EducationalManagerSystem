@@ -13,7 +13,6 @@ public class StudentServiceImpl implements StudentSerivce {
     @Autowired
     private StudentMapper studentMapper;
 
-
     @Override
     public List<Student> queryStudentByPage(int currentPageIdx) {
         //每页查10个

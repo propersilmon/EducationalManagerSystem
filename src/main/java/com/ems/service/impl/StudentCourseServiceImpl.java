@@ -27,4 +27,11 @@ public class StudentCourseServiceImpl implements StudentCourseService {
     public StudentCourse selectStudentById(String s_id, int c_id) {
         return studentCourseMapper.selectStudentById(s_id,c_id);
     }
+
+    @Override
+    public int insertCourse(int scId, int course) {
+        return studentCourseMapper.insertCourse(scId,course);
+    }
+
+
 }

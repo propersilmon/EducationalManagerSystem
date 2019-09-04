@@ -23,4 +23,6 @@ public interface StudentCourseMapper {
     int updateScore(StudentCourse studentCourse);
 
     StudentCourse selectStudentById(@Param("sId") String s_id, @Param("cId")int c_id);
+
+    int insertCourse(@Param("sCId")int scId,  @Param("sScore")int course);
 }

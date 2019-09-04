@@ -62,9 +62,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${teacherCourseAndRoom.course}" var="course">
+                                <c:forEach items="${teacherCourseAndRoom.course}" var="courses">
+                                    <c:if test="${course.cName==courses.cName}">
                                     <c:forEach  items="${studentCoursesList}" var="studentCourses">
-                                        <c:if test="${course.cId==studentCourses.cId}">
+                                        <c:if test="${courses.cId==studentCourses.cId}">
                                             <c:forEach  items="${studentList}" var="student">
                                                 <c:if test="${studentCourses.sId==student.sId}">
                                                     <tr>
@@ -72,14 +73,15 @@
                                                         <th>${student.sName}</th>
                                                         <th>${student.sClass}</th>
                                                         <th>${student.sState}</th>
-                                                        <th>${course.cName}</th>
-                                                        <th>${course.cCredit}</th>
+                                                        <th>${courses.cName}</th>
+                                                        <th>${courses.cCredit}</th>
                                                         <th>${studentCourses.sScore}</th>
                                                     </tr>
                                                 </c:if>
                                             </c:forEach>
                                         </c:if>
                                     </c:forEach>
+                                    </c:if>
                                     </c:forEach>
                                 </tbody>
                             </table>
