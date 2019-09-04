@@ -31,4 +31,14 @@ public class CourseRoomServiceImpl implements CourseRoomService {
     public int deleteCourseRoom(CourseRoom courseRoom) {
         return courseRoomMapper.deleteByPrimaryKey(courseRoom.getcRId());
     }
+
+    @Override
+    public CourseRoom selectByKey(int crid) {
+        return courseRoomMapper.selectByPrimaryKey(crid);
+    }
+
+    @Override
+    public int updateCourseRoom(CourseRoom courseRoom) {
+        return courseRoomMapper.updateByPrimaryKeySelective(courseRoom);
+    }
 }

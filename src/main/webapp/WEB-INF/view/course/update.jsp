@@ -68,12 +68,14 @@
                     <div class="row">
                         <div class="col-sm-4">
 
-                            <form id="addForm" name="addForm" action="${pageContext.request.contextPath}/courseController/addCourse"
+                            <form id="addForm" name="addForm" action="${pageContext.request.contextPath}/courseController/updateCourse"
                                   method="post">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                                     <div class="fg-line">
-                                        <input type="text" name="cName" class="form-control" placeholder="课程名">
+                                        <input type="text" name="cName" class="form-control" placeholder="${course.cName}">
+                                        <input type="text" name="cId" hidden="hidden" value="${course.cId}">
+                                        <input type="text" name="crId" hidden="hidden" value="${courseRoom.cRId}">
                                     </div>
                                 </div>
                                 <br>
@@ -94,15 +96,6 @@
                                         <option>周三</option>
                                         <option>周四</option>
                                         <option>周五</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>选择第几节课</label>
-                                    <select class="form-control" name="Interval">
-                                        <option>第一节</option>
-                                        <option>第二节</option>
-                                        <option>第三节</option>
-                                        <option>第四节</option>
                                     </select>
                                 </div>
                                 <br/>
@@ -175,12 +168,9 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <input type="number" name="cCredit" class="form-control" placeholder="学分">
+                                    <input type="number" name="cCredit" class="form-control" placeholder="${course.cCredit}">
                                 </div>
                                 <br>
-                                <div class="form-group">
-                                    <input type="text" name="Desc" class="form-control" placeholder="描述">
-                                </div>
                                 <button type="submit" class="btn btn-success waves-effect">添加课程
                                 </button>
                             </form>

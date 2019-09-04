@@ -20,4 +20,5 @@ public interface CourseMapper {
     List<Course> queryBycName(String cName,int nPage);
     int queryCourseCount();
     int queryBycNameCount();
+    Course queryByKey(int cId);
 }

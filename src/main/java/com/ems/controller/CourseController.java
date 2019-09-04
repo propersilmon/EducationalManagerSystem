@@ -1,6 +1,9 @@
 package com.ems.controller;
 
-import com.ems.entity.*;
+import com.ems.entity.Course;
+import com.ems.entity.CourseRoom;
+import com.ems.entity.Room;
+import com.ems.entity.SysEmployee;
 import com.ems.mapper.ClassCourseMapper;
 import com.ems.mapper.RoomMapper;
 import com.ems.mapper.StudentCourseMapper;
@@ -66,20 +69,22 @@ public class CourseController {
 
             pagebean.setCurrentPageCode(Integer.parseInt(request.getParameter("page")));
             //获取当前数据的最大页数
-            int maxPage = 0;
-            if (courseService.getCount() % 10 == 0) {
-                maxPage = courseService.getCount() / 10;
+            int maxPage = 1;
+            if (courseService.getCount() % 8 == 0) {
+                maxPage = courseService.getCount() / 8;
             } else {
-                maxPage = courseService.getCount() / 10 + 1;
+                maxPage = courseService.getCount() / 8 + 1;
             }
-
+            System.out.println(maxPage);
             pagebean.setTotalPageCode(maxPage);
             pagebean = courseService.selectAll(pagebean);
+            System.out.println(pagebean.getBeanList());
         }
 
         List<Course_Teacher_RoomVoPoJO> course_teacher_roomVoPoJOS = queryEmpAndRoomByCourse(pagebean);
 
         model.addAttribute("ctroom", course_teacher_roomVoPoJOS);
+        model.addAttribute("pagebean",pagebean);
         return "view/course/CourseList";
     }
 
@@ -120,11 +125,55 @@ public class CourseController {
         return "view/course/addCourse";
     }
 
-    @RequestMapping("toListCourse")
-    private String toListCourse(){
+    @RequestMapping("/toListCourse")
+    public String toListCourse() {
         return "redirect:/courseController/selectBycName?page=1";
     }
 
+
+    @RequestMapping("/updateCourse")
+    public String updateCourse(HttpServletRequest request, HttpServletResponse response) {
+        Course course = new Course();
+//        获取的课程的字段，通过service添加到数据库
+
+        course.setcName(request.getParameter("cName"));
+        course.seteId(Integer.valueOf(request.getParameter("eId")));
+        course.setElective(Byte.valueOf(request.getParameter("Elective")));
+        course.setcCredit(Integer.valueOf(request.getParameter("cCredit")));
+        course.setcId(Integer.valueOf(request.getParameter("cId")));
+
+        int flag1 = courseService.updateCourse(course);
+
+        CourseRoom courseRoom = new CourseRoom();
+//         获取前端传来的教室信息，保存到数据库
+        courseRoom.setcId(course.getcId());
+        courseRoom.setcRId(Integer.valueOf(request.getParameter("crId")));
+        courseRoom.setEndWeek(request.getParameter("EndWeek"));
+        courseRoom.setStartWeek(request.getParameter("StartWeek"));
+        courseRoom.setWeek(request.getParameter("Week"));
+        courseRoom.setrId(Integer.valueOf(request.getParameter("rId")));
+        int flag = courseRoomService.updateCourseRoom(courseRoom);
+
+
+        return "redirect:/courseController/selectBycName?page=1";
+    }
+
+    @RequestMapping("/toUpdateCourse")
+    public String toUpdate(HttpServletRequest request, HttpServletResponse response,Model model) {
+
+        Course course=courseService.queryByKey(Integer.parseInt(request.getParameter("cid")));
+        CourseRoom courseRoom=courseRoomService.selectByKey(Integer.valueOf(request.getParameter("crId")));
+        model.addAttribute("course",course);
+        model.addAttribute("courseRoom",courseRoom);
+        List<Room> rooms = roomMapper.queryAllRoom();
+        List<SysEmployee> employees = employeeService.queryAll();
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("Employees", employees);
+        return "view/course/update";
+    }
+
+
+    //---------------------------------------------------------------------------------------------------------------------------
     private List<Course_Teacher_RoomVoPoJO> queryEmpAndRoomByCourse(PageBean<Course> pageBean) {
         List<Course_Teacher_RoomVoPoJO> course_teacher_roomVoPoJOS = new ArrayList<>();
         for (Course course : pageBean.getBeanList()) {
@@ -137,7 +186,6 @@ public class CourseController {
                 course_teacher_roomVoPoJO.setCourseRooms(courseRooms);
 
                 Room room = roomMapper.selectByPrimaryKey(courseRooms.getrId());
-                System.out.println(room);
                 course_teacher_roomVoPoJO.setRoom(room);
 
             }

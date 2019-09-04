@@ -104,6 +104,7 @@
                                 <td>${ctroomS.course.elective}</td>
                                 <td>
                                     <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/deletCourseById?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >删除课程</a>
+                                    <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/toUpdateCourse?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >修改课程</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -120,9 +121,9 @@
 </section>
 
 <footer id="footer" style="position: absolute; top: 555px">
-    <span>当前页码数:${requestScope.pageBean.currentPageCode}/${requestScope.pageBean.totalPageCode} 页</span>
-    <c:forEach begin="1" end="${requestScope.pageBean.totalPageCode}" var="tempNum">
-        <span>    <a href="${pageContext.request.contextPath}/employee/queryEmployee/${tempNum}">${tempNum}</a></span>
+    <span>当前页码数:${pagebean.currentPageCode}页</span>
+    <c:forEach begin="1" end="${pagebean.totalPageCode}" var="tempNum">
+        <span>    <a href="${pageContext.request.contextPath}/courseController/selectBycName?page=${tempNum}">${tempNum}</a></span>
     </c:forEach>
 </footer>
 
