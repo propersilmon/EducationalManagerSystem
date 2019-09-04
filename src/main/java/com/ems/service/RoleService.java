@@ -10,4 +10,8 @@ public interface RoleService {
     List<SysRole> queryAll();
 
     List<SysRole> queryRoleByEId(int eid);
+
+    List<SysRole> queryRolesByPage(int currentPageIdx, int recordPerPage);
+
+    int getTotalCount();
 }

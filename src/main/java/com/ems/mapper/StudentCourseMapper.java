@@ -4,6 +4,7 @@ import com.ems.entity.StudentCourse;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import com.ems.vo.StudentChoseCourse;
 
 public interface StudentCourseMapper {
     int deleteByPrimaryKey(Integer sCId);
@@ -25,4 +26,7 @@ public interface StudentCourseMapper {
     StudentCourse selectStudentById(@Param("sId") String s_id, @Param("cId")int c_id);
 
     int insertCourse(@Param("sCId")int scId,  @Param("sScore")int course);
+    int deletbycId(int cId);
+
+    List<StudentCourse> queryAllStudentCourseByS_id(String sId);
 }

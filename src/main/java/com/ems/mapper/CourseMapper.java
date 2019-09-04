@@ -26,4 +26,5 @@ public interface CourseMapper {
     int queryCourseCount();
     int queryBycNameCount();
 
+    Course queryByKey(int cId);
 }

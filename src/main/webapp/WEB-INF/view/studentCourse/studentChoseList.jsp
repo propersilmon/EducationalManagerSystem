@@ -6,7 +6,7 @@
   Time: 22:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
 <head>
@@ -49,66 +49,58 @@
 
 
             <div class="card" style="position: absolute; top: 0px;width: 100%">
-                <form action="${pageContext.request.contextPath}/courseController/selectBycName" method="get">
-                    <div class="card-header">
-                        <h2>课程列表</h2>
+                <div class="card-header">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>
 
-                            <a href="${pageContext.request.contextPath}/courseController/toAddCourse" class="btn bgm-blue waves-effect"><i
-                                    class="zmdi zmdi-account-add zmdi-hc-fw"></i>添加课程</a>
-                            <input type="text" name="cName">
-                            <input type="text" name="page" value="1" hidden="hidden">
-                            <button class="btn bgm-green waves-effect" type="submit" >课程名查询</button>
-
+                            <a href="${pageContext.request.contextPath}/student/queryChoseCourse"
+                               class="btn bgm-blue waves-effect"><i
+                                    class="zmdi zmdi-account-add zmdi-hc-fw"></i>查看已选课程</a>
                         </span>
 
-                        </h2>
-                    </div>
-                </form>
+                    </h2>
+                </div>
+
                 <div class="table-responsive">
                     <table id="data-table-selection" class="table table-striped">
                         <thead>
                         <tr align="center">
-                            <th data-column-id="sender" width="8%" style="text-align: center;">课程名</th>
+                            <th class="select-cell" style="text-align: center;">
+                                <div class="checkbox"><label><input name="select" type="checkbox" class="select-box"
+                                                                    value="all" onchange="allSelect(this)"><i
+                                        class="input-helper"></i></label></div>
+                            </th>
+                            <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%"
+                                style="text-align: center;">课程号
+                            </th>
+                            <th data-column-id="sender" width="20%" style="text-align: center;">课程名</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">
-                                所在教室
+                                课程总分
                             </th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">
-                                任课教师
+                                教师评教得分
                             </th>
-                            <th data-column-id="received" data-order="desc" width="20%" style="text-align: center;">
-                                上课时间
-                            </th>
-                            <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">
-                                学分
-                            </th>
-
-                            <th data-column-id="received" data-order="desc" width="15%" style="text-align: center;">
-                                是否选修
-                            </th>
-                            <th data-column-id="received" data-order="desc" width="47%" style="text-align: center;">
-                                操作
+                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作
                             </th>
                         </tr>
                         </thead>
                         <tbody align="center">
-                        <c:forEach items="${ctroom}" var="ctroomS">
+                        <c:forEach items="${studentCourseList}" var="studentCourse">
                             <tr>
-                                <td>${ctroomS.course.cName}</td>
-                                <td>${ctroomS.room.position}</td>
-                                <td>${ctroomS.sysEmployee.eName}</td>
-                                <td>${ctroomS.courseRooms.startWeek}到${ctroomS.courseRooms.endWeek}的
-                                    每周${ctroomS.courseRooms.week}的${ctroomS.courseRooms.interval}
+                                <td class="select-cell">
+                                    <input name="select" type="checkbox" class="select-box myOption"
+                                           value="${studentCourse.sId}">
+                                    <input type="hidden" name="sCid" id="sId" value="${studentCourse.sCId}"/>
                                 </td>
-                                <td>${ctroomS.course.cCredit}</td>
-                                <td><c:if test="${ctroomS.course.elective==1}">
-                                    选修
-                                </c:if><c:if test="${ctroomS.course.elective==0}">
-                                    必修
-                                </c:if></td>
+                                <td>${studentCourse.cId}</td>
+                                <td>${studentCourse.cName}</td>
+                                <td>${studentCourse.sScore}</td>
+                                <td>${studentCourse.tScore}</td>
                                 <td>
-                                    <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/deletCourseById?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >删除课程</a>
-                                    <a class="btn bgm-lightgreen waves-effec" href="${pageContext.request.contextPath}/courseController/toUpdateCourse?cid=${ctroomS.course.cId}&crId=${ctroomS.courseRooms.cRId}" >修改课程</a>
+                                    <%--<a href="javascript:openModal(this)">评教</a>--%>
+                                    <a id="entry" onclick="entry(this)" data-toggle="modal" href="#preventClick">评教</a>
+
+                                    <a href="${pageContext.request.contextPath}/student/deleteCourse?sCId=${studentCourse.sCId}">退课</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -118,16 +110,36 @@
                 </div>
             </div>
 
-
+            <div class="modal fade in" id="preventClick" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-hidden="true" style="display: none; padding-right: 16px;">
+                <form action="${pageContext.request.contextPath}/student/evaluationTeaching" method="post">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="sCId" id="scId" value="">
+                                请为该教师评分（不能为空，满分为100）：
+                                <input type="text" name="tScore" id="tScore" value="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-link waves-effect">提交</button>
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
 </section>
 
 <footer id="footer" style="position: absolute; top: 555px">
-    <span>当前页码数:${pagebean.currentPageCode}页</span>
-    <c:forEach begin="1" end="${pagebean.totalPageCode}" var="tempNum">
-        <span>    <a href="${pageContext.request.contextPath}/courseController/selectBycName?page=${tempNum}">${tempNum}</a></span>
+    <span>当前页码数:${requestScope.pageBean.currentPageCode}/${requestScope.pageBean.totalPageCode} 页</span>
+    <c:forEach begin="1" end="${requestScope.pageBean.totalPageCode}" var="tempNum">
+        <span>    <a href="${pageContext.request.contextPath}/employee/queryEmployee/${tempNum}">${tempNum}</a></span>
     </c:forEach>
 </footer>
 
@@ -148,6 +160,29 @@
 
 <!-- Data Table -->
 <script type="text/javascript">
+/*    function openModal(obj) {
+        $("#preventClick").modal();
+        var scId = $(obj).parent().parent().find('input').eq(1).val();
+        //console.log($(obj).parent().siblings().eq(0).children('input'));
+
+       // console.log($(obj).parent().parent().find('input').eq(1));
+        var tScore = $(obj).parent().siblings().eq(4).text();
+        console.log(tScore);
+        $("#scId").val(scId);
+        $("#tScore").val(tScore);
+
+    }*/
+
+
+function entry(obj){
+
+    var scId = $(obj).parent().parent().find('input').eq(1).val();
+    var tScore = $(obj).parent().siblings().eq(4).text();
+    $("#scId").val(scId);
+    $("#tScore").val(tScore);
+
+}
+
     //全选复选框选中
     function allSelect(obj) {
         var value = obj.checked;

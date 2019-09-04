@@ -118,4 +118,8 @@
     #{eSex,jdbcType=VARCHAR}, #{eAvgScore,jdbcType=INTEGER})
 
   </insert>
+
+  <select id="queryAll" resultType="com.ems.entity.SysEmployee">
+    select * from sys_employee order by e_name;
+  </select>
 </mapper>

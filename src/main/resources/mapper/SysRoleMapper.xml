@@ -89,4 +89,7 @@ INNER JOIN sys_role ON sys_employee_role.r_id = sys_role.r_id
 WHERE sys_employee_role.e_id=#{eId}
 
   </select>
+    <select id="queryRolesByPage" resultType="com.ems.entity.SysRole">
+      SELECT * FROM sys_role LIMIT #{0},#{1}
+    </select>
 </mapper>

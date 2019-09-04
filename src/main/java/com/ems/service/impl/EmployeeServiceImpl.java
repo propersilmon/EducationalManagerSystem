@@ -38,4 +38,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public int addEmployeeBackId(SysEmployee employee) {
         return sysEmployeeMapper.addEmployeeBackId(employee);
     }
+
+    @Override
+    public List<SysEmployee> queryAll() {
+        return sysEmployeeMapper.queryAll();
+    }
 }

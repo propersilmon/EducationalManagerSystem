@@ -82,4 +82,7 @@
     select * from t_room where position like #{position}
   </select>
 
+  <select id="queryAllRoom" resultType="com.ems.entity.Room">
+    select * from t_room order by position
+  </select>
 </mapper>

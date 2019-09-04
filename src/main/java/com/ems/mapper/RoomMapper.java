@@ -21,4 +21,5 @@ public interface RoomMapper {
 
             /*查询room*/
     List<Room> selectRoom();
+    List<Room> queryAllRoom();
 }

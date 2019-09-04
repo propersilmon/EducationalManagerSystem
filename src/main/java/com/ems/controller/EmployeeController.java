@@ -7,8 +7,6 @@ import com.ems.service.EmployeeService;
 import com.ems.service.PermissionService;
 import com.ems.vo.ActiveEmployee;
 import com.ems.vo.PageBean;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -113,10 +111,6 @@ public class EmployeeController {
      */
     @RequestMapping("/toHome")
     public String toHome(){
-//        Subject subject = SecurityUtils.getSubject();
-//        if (!subject.isPermitted("employee:*")){
-//            return "redirect:/sysEmployeeLogin";
-//        }
         return "view/employee/employeeHome";
 
     }
@@ -130,7 +124,7 @@ public class EmployeeController {
     public String logout(HttpSession session){
         session.removeAttribute("activeEmployee");
         //重定向在主页
-        return "redirect:/index.jsp";
+        return "redirect:/toIndex";
     }
 
     /**
@@ -141,7 +135,7 @@ public class EmployeeController {
     @RequestMapping("/queryEmployee/{currentPage}")
     public String queryEmployeeByPage(@PathVariable("currentPage") String currentPage, Model model){
         int currentPageIdx=Integer.parseInt(currentPage);
-        int recordPerPage=10;//分页查询，每页查10个
+        int recordPerPage=8;//分页查询，每页查8个
         //获得本次分页查询所获得的列表
         List<SysEmployee> employees= employeeService.queryEmployeeByPage(currentPageIdx,recordPerPage);
         //获得总记录数
@@ -219,6 +213,4 @@ public class EmployeeController {
 
 
     }
-
-
 }

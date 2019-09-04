@@ -1,6 +1,7 @@
 package com.ems.mapper;
 
 import com.ems.entity.Student;
+import com.ems.entity.StudentCourse;
 
 import java.util.List;
 
@@ -24,4 +25,8 @@ public interface StudentMapper {
         List<Student> selectStudent();
 
         Student selectStudentById(int s_id);
-        }
+
+        int dropCourseCourseByS_c_id(int s_c_id);
+        int updateT_scoreByS_c_id(int tScore,int sCId);
+
+}

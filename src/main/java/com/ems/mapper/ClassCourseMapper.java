@@ -14,4 +14,5 @@ public interface ClassCourseMapper {
     int updateByPrimaryKeySelective(ClassCourse record);
 
     int updateByPrimaryKey(ClassCourse record);
+    int deletbycId(int cId);
 }

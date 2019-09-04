@@ -23,4 +23,15 @@ public class RoleServiceImpl implements RoleService {
     public List<SysRole> queryRoleByEId(int eid) {
         return roleMapper.queryRoleByEId(eid);
     }
+
+    @Override
+    public List<SysRole> queryRolesByPage(int currentPageIdx, int recordPerPage) {
+        return roleMapper.queryRolesByPage((currentPageIdx-1)*recordPerPage,recordPerPage);
+
+    }
+
+    @Override
+    public int getTotalCount() {
+        return 0;
+    }
 }
