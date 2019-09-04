@@ -75,10 +75,8 @@ public class CourseController {
             } else {
                 maxPage = courseService.getCount() / 8 + 1;
             }
-            System.out.println(maxPage);
             pagebean.setTotalPageCode(maxPage);
             pagebean = courseService.selectAll(pagebean);
-            System.out.println(pagebean.getBeanList());
         }
 
         List<Course_Teacher_RoomVoPoJO> course_teacher_roomVoPoJOS = queryEmpAndRoomByCourse(pagebean);
