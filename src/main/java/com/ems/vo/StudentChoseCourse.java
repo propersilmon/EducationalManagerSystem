@@ -1,6 +1,12 @@
-package com.ems.entity;
+package com.ems.vo;
 
-public class StudentCourse {
+/**
+ * @author czb
+ * @date 2019/9/3 - 10:13
+ */
+public class StudentChoseCourse {
+    //课程名称
+    private String cName;
     //选课表id
     private Integer sCId;
     //学生学号
@@ -12,16 +18,12 @@ public class StudentCourse {
     //评教成绩
     private Integer tScore;
 
-    public StudentCourse(Integer sCId, String sId, Integer cId, Integer sScore, Integer tScore) {
-        this.sCId = sCId;
-        this.sId = sId;
-        this.cId = cId;
-        this.sScore = sScore;
-        this.tScore = tScore;
+    public String getcName() {
+        return cName;
     }
 
-    public StudentCourse() {
-        super();
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
     public Integer getsCId() {
@@ -37,7 +39,7 @@ public class StudentCourse {
     }
 
     public void setsId(String sId) {
-        this.sId = sId == null ? null : sId.trim();
+        this.sId = sId;
     }
 
     public Integer getcId() {
@@ -66,8 +68,9 @@ public class StudentCourse {
 
     @Override
     public String toString() {
-        return "StudentCourse{" +
-                "sCId=" + sCId +
+        return "StudentChoseCourse{" +
+                "cName='" + cName + '\'' +
+                ", sCId=" + sCId +
                 ", sId='" + sId + '\'' +
                 ", cId=" + cId +
                 ", sScore=" + sScore +

@@ -92,6 +92,19 @@
       t_score = #{tScore,jdbcType=INTEGER}
     where s_c_id = #{sCId,jdbcType=INTEGER}
   </update>
+
+  <!--查询选课表-->
+  <select id="queryAllStudentCourseByS_id" resultMap="BaseResultMap">
+SELECT
+t_student_course.s_c_id,
+t_student_course.s_id,
+t_student_course.c_id,
+t_student_course.s_score,
+t_student_course.t_score
+FROM
+t_student_course
+WHERE s_id =#{sId,jdbcType=VARCHAR}
+  </select>
   <delete id="deletbycId" parameterType="java.lang.Integer">
     delete from t_student_course where  c_id = #{cId,jdbcType=INTEGER}
   </delete>

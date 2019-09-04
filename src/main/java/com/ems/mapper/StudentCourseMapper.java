@@ -1,6 +1,9 @@
 package com.ems.mapper;
 
 import com.ems.entity.StudentCourse;
+import com.ems.vo.StudentChoseCourse;
+
+import java.util.List;
 
 public interface StudentCourseMapper {
     int deleteByPrimaryKey(Integer sCId);
@@ -15,4 +18,6 @@ public interface StudentCourseMapper {
 
     int updateByPrimaryKey(StudentCourse record);
     int deletbycId(int cId);
+
+    List<StudentCourse> queryAllStudentCourseByS_id(String sId);
 }

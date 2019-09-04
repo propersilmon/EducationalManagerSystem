@@ -111,10 +111,6 @@ public class EmployeeController {
      */
     @RequestMapping("/toHome")
     public String toHome(){
-//        Subject subject = SecurityUtils.getSubject();
-//        if (!subject.isPermitted("employee:*")){
-//            return "redirect:/sysEmployeeLogin";
-//        }
         return "view/employee/employeeHome";
 
     }

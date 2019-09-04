@@ -130,11 +130,24 @@
 
 
   <!--追加-->
-  <select id="queryStudentByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="queryStudentByPage" resultMap="BaseResultMap">
     SELECT * FROM t_student LIMIT #{0},#{1}
   </select>
   
   <select id="totalStudentCount" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM t_student
   </select>
+
+  <!--退课-->
+  <delete id="dropCourseCourseByS_c_id" parameterType="java.lang.Integer" >
+    delete from t_student_course
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </delete>
+
+<!--修改选课表中的t_score字段-->
+  <update id="updateT_scoreByS_c_id" >
+    update t_student_course
+    set t_score = #{0}
+    where s_c_id = #{1}
+  </update>
 </mapper>
