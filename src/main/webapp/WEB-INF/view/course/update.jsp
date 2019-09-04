@@ -89,7 +89,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label>选择第几周</label>
+                                    <label>选择周几上课</label>
                                     <select class="form-control" name="Week">
                                         <option>周一</option>
                                         <option>周二</option>
@@ -171,7 +171,7 @@
                                     <input type="number" name="cCredit" class="form-control" placeholder="${course.cCredit}">
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-success waves-effect">添加课程
+                                <button type="submit" class="btn btn-success waves-effect">确认修改
                                 </button>
                             </form>
                             <div id="resultBox">

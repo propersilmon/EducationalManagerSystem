@@ -87,7 +87,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label>选择第几周</label>
+                                    <label>选择第几天上课</label>
                                     <select class="form-control" name="Week">
                                         <option>周一</option>
                                         <option>周二</option>
