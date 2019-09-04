@@ -55,6 +55,11 @@ public class StudentServiceImpl implements StudentSerivce {
     }
 
     @Override
+    public List<Student> queryByPage(int currentPage, int recordPerPage) {
+        return studentMapper.queryStudentByPage((currentPage-1)*recordPerPage,recordPerPage);
+    }
+
+    @Override
     public int dropCourseCourseByS_c_id(int sCId) {
         return studentMapper.dropCourseCourseByS_c_id(sCId);
     }

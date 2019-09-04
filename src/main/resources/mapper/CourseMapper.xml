@@ -106,7 +106,7 @@
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
     <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
-    select * from t_course limit #{page} ,10
+    select * from t_course limit #{page} ,8
   </select>
 
     <select id="queryCourseCount" resultType="java.lang.Integer">
@@ -134,4 +134,8 @@
         insert into t_course(c_name,c_credit,elective,create_date,e_id)
         values(#{cName},#{cCredit},#{elective},#{createDate},#{eId})
     </insert>
+
+    <select id="queryByKey" parameterType="int" resultType="com.ems.entity.Course">
+        select * from t_course where c_id=#{cId}
+    </select>
 </mapper>

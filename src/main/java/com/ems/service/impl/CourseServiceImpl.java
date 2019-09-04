@@ -32,12 +32,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int updateCourse(Course course) {
-        return 0;
+        return courseMapper.updateByPrimaryKeySelective(course);
     }
 
     @Override
     public PageBean<Course> selectAll(PageBean<Course> pageBean) {
-        List<Course> list = courseMapper.queryAllCourse((pageBean.getCurrentPageCode()-1)*10);
+        List<Course> list = courseMapper.queryAllCourse((pageBean.getCurrentPageCode()-1)*8);
         pageBean.setBeanList(list);
         return pageBean;
     }
@@ -53,13 +53,13 @@ public class CourseServiceImpl implements CourseService {
         PageBean<Course> pageBean=new PageBean<>();
         pageBean.setCurrentPageCode(Npage);
         int maxPage=0;
-        if (courseMapper.queryBycNameCount()%10==0){
-            maxPage=courseMapper.queryBycNameCount()/10;
+        if (courseMapper.queryBycNameCount()%8==0){
+            maxPage=courseMapper.queryBycNameCount()/8;
         }else{
-            maxPage=courseMapper.queryBycNameCount()/10+1;
+            maxPage=courseMapper.queryBycNameCount()/8+1;
         }
         pageBean.setTotalPageCode(maxPage);
-        pageBean.setBeanList(courseMapper.queryBycName("%"+cName+"%",(Npage-1)*10));
+        pageBean.setBeanList(courseMapper.queryBycName("%"+cName+"%",(Npage-1)*8));
         return pageBean;
     }
 
@@ -67,5 +67,10 @@ public class CourseServiceImpl implements CourseService {
     public int getCount() {
 
         return courseMapper.queryCourseCount();
+    }
+
+    @Override
+    public Course queryByKey(int cId) {
+        return courseMapper.queryByKey(cId);
     }
 }

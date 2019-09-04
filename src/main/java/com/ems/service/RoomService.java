@@ -19,4 +19,5 @@ public interface RoomService {
 
     List<Room> queryRoomByPosition(String position);
 
+    List<Room> queryAllRoom();
 }

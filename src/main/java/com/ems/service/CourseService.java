@@ -10,4 +10,5 @@ public interface CourseService {
     int deletCourseById(Course course);
     PageBean<Course>  selectBycName(String cName,int Npage);
     int getCount();
+    Course queryByKey(int cId);
 }

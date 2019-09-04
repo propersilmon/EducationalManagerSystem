@@ -20,6 +20,9 @@ public interface StudentSerivce {
     int delteStudentById(String id);
 
     Student queryStudentById(String id);
+
+    List<Student> queryByPage(int currentPage, int recordPerPage);
+
     /*退课*/
     int dropCourseCourseByS_c_id(int sCId);
     /*查询学生选课表*/

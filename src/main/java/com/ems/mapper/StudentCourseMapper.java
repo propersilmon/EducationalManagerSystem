@@ -17,6 +17,7 @@ public interface StudentCourseMapper {
     int updateByPrimaryKeySelective(StudentCourse record);
 
     int updateByPrimaryKey(StudentCourse record);
+    int deletbycId(int cId);
 
     List<StudentCourse> queryAllStudentCourseByS_id(String sId);
 }

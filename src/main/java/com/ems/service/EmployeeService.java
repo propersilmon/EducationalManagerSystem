@@ -15,4 +15,6 @@ public interface EmployeeService {
     int getTotalCount();
 
     int addEmployeeBackId(SysEmployee employee);
+
+    List<SysEmployee> queryAll();
 }
