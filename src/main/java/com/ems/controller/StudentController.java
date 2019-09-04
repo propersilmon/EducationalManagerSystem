@@ -5,6 +5,7 @@ import com.ems.entity.StudentCourse;
 import com.ems.service.StudentSerivce;
 import com.ems.vo.ActiveStudent;
 import com.ems.vo.PageBean;
+import com.ems.vo.StudentChoseCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,48 +101,44 @@ public class StudentController {
     /*退课*/
     @RequestMapping(value = "/deleteCourse")
     public String deleteCourse(HttpServletRequest request, HttpServletResponse response, HttpSession session){
-        int sCId = 1;
+        String sCIdStr = request.getParameter("sCId");
+        int sCId= Integer.parseInt(sCIdStr);
+
         ActiveStudent activeStudent = (ActiveStudent)session.getAttribute("activeStudent");
         String sId = activeStudent.getsId();
         int n = studentSerivce.dropCourseCourseByS_c_id(sCId);
         System.out.println(n);
-        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(sId);
+
+
         if(n>0){
-            return "view/studentCourse/studendCourseList";//todo 重定向到/queryChoseCourse/${currentPage}
+            return "redirect:/student/queryChoseCourse";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
-            return "view/studentCourse/studendCourseList";//todo 跳转到本页面，显示错误信息
+            return "view/studentCourse/studentChoseList";//todo 跳转到本页面，显示错误信息
         }
     }
     /*查看选课情况*/
     @RequestMapping(value = "/queryChoseCourse")
-    public String queryChoseCourse(HttpServletRequest Request, HttpServletResponse Response, HttpSession Session){
-        String sId = "001";
-        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(sId);
-        for(StudentCourse studentCourse:studentCourseList){
-            System.out.println(studentCourse);
-        }
-        return "";
-    }
-    /*查看选课情况*/
-    @RequestMapping(value = "/selectChoseCourse")
-    public String selectChoseCourse(HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
-        String sId = "001";
-        List<StudentCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(sId);
-        return "";
+    public String queryChoseCourse(HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model){
+        ActiveStudent activeStudent = (ActiveStudent)session.getAttribute("activeStudent");
+        String sId = activeStudent.getsId();
+        List<StudentChoseCourse> studentCourseList =studentSerivce.queryAllStudentCourseByS_id(sId);
+        model.addAttribute("studentCourseList",studentCourseList);
+        return "view/studentCourse/studentChoseList";
     }
     /*评教*/
     @RequestMapping(value = "/evaluationTeaching")
-    public String evaluationTeaching(HttpServletRequest Request, HttpServletResponse Response,HttpSession Session){
-        int sCId = 3;
-        int tScore = 5;
-        String sId = "001";
+    public String evaluationTeaching(HttpServletRequest request, HttpServletResponse response,HttpSession session){
+        ActiveStudent activeStudent = (ActiveStudent)session.getAttribute("activeStudent");
+        String sId = activeStudent.getsId();
+        String sCIdStr = request.getParameter("sCId");
+        int sCId= Integer.parseInt(sCIdStr);
+        String tScoreStr = request.getParameter("tScore");
+        int tScore = Integer.parseInt(tScoreStr);
         int n = studentSerivce.updateT_scoreByS_c_id(tScore,sCId);
-        System.out.println(n);
-        List<StudentCourse> studentCourseList = studentSerivce.queryAllStudentCourseByS_id(sId);
         if(n>0){
-            return "";//todo 重定向到/queryChoseCourse/${currentPage}
+            return "redirect:/student/queryChoseCourse";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
-            return "";//todo 跳转到本页面，显示错误信息
+            return "view/studentCourse/studentChoseList";//todo 跳转到本页面，显示错误信息
         }
     }
 }

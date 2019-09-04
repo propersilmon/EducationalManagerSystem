@@ -1,6 +1,7 @@
 package com.ems.mapper;
 
 import com.ems.entity.StudentCourse;
+import com.ems.vo.StudentChoseCourse;
 
 import java.util.List;
 

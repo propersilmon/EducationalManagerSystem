@@ -95,6 +95,14 @@
 
   <!--查询选课表-->
   <select id="queryAllStudentCourseByS_id" resultMap="BaseResultMap">
-    SELECT * FROM t_student_course where s_id = #{sId,jdbcType=VARCHAR}
+SELECT
+t_student_course.s_c_id,
+t_student_course.s_id,
+t_student_course.c_id,
+t_student_course.s_score,
+t_student_course.t_score
+FROM
+t_student_course
+WHERE s_id =#{sId,jdbcType=VARCHAR}
   </select>
 </mapper>
