@@ -29,4 +29,5 @@ public interface StudentMapper {
     List<Student> selectStudent();
 
     Student selectStudentById(int s_id);
+
 }

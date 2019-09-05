@@ -161,4 +161,5 @@
     set t_score = #{0}
     where s_c_id = #{1}
   </update>
+
 </mapper>

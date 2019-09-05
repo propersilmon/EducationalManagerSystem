@@ -139,6 +139,8 @@ public class StudentController {
             return "redirect:/student/queryChoseCourse";//todo 重定向到/queryChoseCourse/${currentPage}
         }else{
             return "view/studentCourse/studentChoseList";//todo 跳转到本页面，显示错误信息
+
+
         }
     }
 }

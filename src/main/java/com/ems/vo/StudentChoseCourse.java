@@ -76,5 +76,6 @@ public class StudentChoseCourse {
                 ", sScore=" + sScore +
                 ", tScore=" + tScore +
                 '}';
+
     }
 }
