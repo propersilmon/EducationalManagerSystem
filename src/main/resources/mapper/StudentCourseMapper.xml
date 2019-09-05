@@ -108,4 +108,5 @@ WHERE s_id =#{sId,jdbcType=VARCHAR}
   <delete id="deletbycId" parameterType="java.lang.Integer">
     delete from t_student_course where  c_id = #{cId,jdbcType=INTEGER}
   </delete>
+
 </mapper>

@@ -30,4 +30,5 @@ public interface StudentSerivce {
     /*修改教师评分*/
     int updateT_scoreByS_c_id(int tScore,int sCId);
 
+
 }

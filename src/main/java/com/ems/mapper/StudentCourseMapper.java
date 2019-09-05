@@ -20,4 +20,5 @@ public interface StudentCourseMapper {
     int deletbycId(int cId);
 
     List<StudentCourse> queryAllStudentCourseByS_id(String sId);
+
 }

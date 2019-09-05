@@ -28,4 +28,5 @@ public interface StudentMapper {
 
     int updateT_scoreByS_c_id(int tScore,int sCId);
 
+
 }
