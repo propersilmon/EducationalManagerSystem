@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" co6ntent="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Material Admin</title>
     <!-- Vendor CSS -->
@@ -22,24 +22,25 @@
 </head>
 
 <body class="login-content">
-<div class="lc-block lcb-alt toggled" id="l-lockscreen">
+    <div class="container" style="height: 800px;">
+        <div class="lc-block lcb-alt toggled" id="l-lockscreen">
 
-    <div class="fg-line">
-        <input type="text" class="form-control text-center" placeholder="当前时间" readonly="readonly">
+            <div class="fg-line">
+                <input type="text" class="form-control text-center" placeholder="当前时间" readonly="readonly">
+            </div>
+
+            <div class="fg-line">
+                <input type="text" class="form-control text-center" placeholder="站内消息" readonly="readonly">
+            </div>
+
+            <ul class="login-navigation">
+
+            </ul>
+        </div>
     </div>
-
-    <div class="fg-line">
-        <input type="text" class="form-control text-center" placeholder="站内消息" readonly="readonly">
-    </div>
-
-    <ul class="login-navigation">
-
-    </ul>
-</div>
-
 </body>
 <!-- Javascript Libraries -->
-<script src="${pageContext.request.contextPath}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendors/bower_components/jquer8UKOy/dist/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/Waves/dist/waves.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>

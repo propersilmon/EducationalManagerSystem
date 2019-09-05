@@ -145,9 +145,11 @@
 
 
     <section id="content">
-        <div class="container"  >
+        <div class="container">
         <%--使用内敛框架--%>
-            <iframe id="myFrame" src="${pageContext.request.contextPath}/employee/toInnerIndex" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
+            <div class="col" style="height: 1500px;">
+                <iframe id="myFrame" src="${pageContext.request.contextPath}/employee/toInnerIndex" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
+            </div>
         </div>
     </section>
 </section>
