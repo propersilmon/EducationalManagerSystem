@@ -133,7 +133,7 @@
   <select id="queryStudentByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     SELECT * FROM t_student LIMIT #{0},#{1}
   </select>
-
+  
   <select id="totalStudentCount" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM t_student
   </select>
@@ -156,4 +156,28 @@
       INNER JOIN t_course ON t_student_course.c_id = t_course.c_id
       WHERE t_course.c_id = #{cId,jdbcType=INTEGER}
   </select>
+
+  <!--*********查询所有学生信息********************-->
+  <select id="selectStudent"  resultMap="BaseResultMap">
+    SELECT * FROM t_student
+  </select>
+  <!--**************通过sid查询学生信息***********-->
+  <select id="selectStudentById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM t_student
+    where s_id = #{sId,jdbcType=VARCHAR}
+  </select>
+  <!--*****************************-->
+
+  <!--退课-->
+  <delete id="dropCourseCourseByS_c_id" parameterType="java.lang.Integer" >
+    delete from t_student_course
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </delete>
+
+<!--修改选课表中的t_score字段-->
+  <update id="updateT_scoreByS_c_id" >
+    update t_student_course
+    set t_score = #{0}
+    where s_c_id = #{1}
+  </update>
 </mapper>

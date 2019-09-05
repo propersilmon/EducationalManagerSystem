@@ -32,6 +32,41 @@
     <link href="${pageContext.request.contextPath}/css/app.min.2.css" rel="stylesheet">
 </head>
 <body>
+<!-- 修改弹出层 -->
+<div class="modal fade" id="updateWin" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;position: absolute;top:8px;">修改对话框</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="updateForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/employee/updateInfo" method="post">
+<%--                    隐藏域用来表单提交时知道员工id的--%>
+                    <input type="hidden" name="eId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">名字</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="employeeName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="sex" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="executeUpdate()">修改</button>
+                <button class="btn btn-success btn-sm" onclick="canceled()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <section id="main">
@@ -84,11 +119,9 @@
                                 <td>${temp.eName}</td>
                                 <td>${temp.eSex}</td>
                                 <td>${temp.eAvgScore}</td>
-                                <td>
-
-                                    <button class="btn bgm-cyan waves-effect">修改信息</button>
-                                    <button class="btn bgm-orange waves-effect">分配权限</button>
-                                    <button class="btn bgm-lightgreen waves-effec">删除员工</button>
+                                <td><button class="btn bgm-cyan waves-effect" onclick="openUpdateLayer(this)">修改信息</button>
+                                    <button class="btn bgm-orange waves-effect" onclick="setRole(this)">分配角色</button>
+                                    <button class="btn bgm-lightgreen waves-effec" onclick="deleteEmployee(this)">删除员工</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -149,6 +182,42 @@
                 options[temp].checked='';
             }
         }
+    }
+    //打开修改弹出层
+    function openUpdateLayer(obj) {
+        $("#updateWin").modal("show");//打开修改面板
+        //进行数据回显
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        var name=$(obj).parent().parent().find("td").eq(2).text();
+        var sex=$(obj).parent().parent().find("td").eq(3).text();
+        $("#updateWin").find("input").eq(0).val(id);
+        $("#updateWin").find("input").eq(1).val(name);
+        $("#updateWin").find("input").eq(2).val(sex);
+    }
+    //执行修改
+    function executeUpdate(){
+        $("#updateForm").submit();
+    }
+
+    //分配角色
+    function setRole(obj) {
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        console.log("要分配器角色的id"+id);
+        window.location.href="${pageContext.request.contextPath}/employee/setRole?eId="+id;
+    }
+    //删除记录
+    function deleteEmployee(obj) {
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        console.log("要删除的id"+id);
+        var sure= window.confirm("确定要删除");
+        if(sure){
+        window.location.href="${pageContext.request.contextPath}/employee/deleteEmployee?eid="+id;
+        }
+    }
+
+    //取消按钮
+    function canceled(){
+        $("#updateWin").modal("hide");
     }
 </script>
 </body>

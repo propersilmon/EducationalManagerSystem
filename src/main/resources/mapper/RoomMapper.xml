@@ -70,9 +70,19 @@
       max_count = #{maxCount,jdbcType=INTEGER}
     where r_id = #{rId,jdbcType=INTEGER}
   </update>
+<!--  ***********************   -->
+  <select id="selectRoom" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+   *
+    from t_room
+  </select>
+  <!--  ***********************   -->
 
   <select id="queryRoomByPosition" parameterType="java.lang.String" resultType="Room">
     select * from t_room where position like #{position}
   </select>
 
+  <select id="queryAllRoom" resultType="com.ems.entity.Room">
+    select * from t_room order by position
+  </select>
 </mapper>

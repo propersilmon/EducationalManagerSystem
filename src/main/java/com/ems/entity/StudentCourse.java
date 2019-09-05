@@ -20,17 +20,6 @@ public class StudentCourse {
         this.tScore = tScore;
     }
 
-    @Override
-    public String toString() {
-        return "StudentCourse{" +
-                "sCId=" + sCId +
-                ", sId='" + sId + '\'' +
-                ", cId=" + cId +
-                ", sScore=" + sScore +
-                ", tScore=" + tScore +
-                '}';
-    }
-
     public StudentCourse() {
         super();
     }
@@ -74,4 +63,16 @@ public class StudentCourse {
     public void settScore(Integer tScore) {
         this.tScore = tScore;
     }
+
+    @Override
+    public String toString() {
+        return "StudentCourse{" +
+                "sCId=" + sCId +
+                ", sId='" + sId + '\'' +
+                ", cId=" + cId +
+                ", sScore=" + sScore +
+                ", tScore=" + tScore +
+                '}';
+    }
+
 }

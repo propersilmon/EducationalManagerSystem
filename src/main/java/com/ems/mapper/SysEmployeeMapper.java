@@ -26,4 +26,5 @@ public interface SysEmployeeMapper {
     int getTotalCount();
 
     int addEmployeeBackId(SysEmployee employee);
+    List<SysEmployee> queryAll();
 }

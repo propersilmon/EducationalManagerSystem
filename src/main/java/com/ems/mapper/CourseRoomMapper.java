@@ -2,6 +2,8 @@ package com.ems.mapper;
 
 import com.ems.entity.CourseRoom;
 
+import java.util.List;
+
 public interface CourseRoomMapper {
     int deleteByPrimaryKey(Integer cRId);
 
@@ -14,6 +16,8 @@ public interface CourseRoomMapper {
     int updateByPrimaryKeySelective(CourseRoom record);
 
     int updateByPrimaryKey(CourseRoom record);
+        /*查询courser_room*/
+    List<CourseRoom> selectCourseRoom();
 
     CourseRoom selectByCId(Integer cId);
 

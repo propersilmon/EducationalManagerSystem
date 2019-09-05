@@ -22,4 +22,6 @@ public interface SysRoleMapper {
     List<SysRole> queryAll();
 
     List<SysRole> queryRoleByEId(@Param("eId")int eid);
+
+    List<SysRole> queryRolesByPage(int i, int recordPerPage);
 }

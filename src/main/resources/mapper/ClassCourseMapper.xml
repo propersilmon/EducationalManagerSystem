@@ -70,4 +70,7 @@
       c_id = #{cId,jdbcType=INTEGER}
     where c_c_id = #{cCId,jdbcType=INTEGER}
   </update>
+  <delete id="deletbycId" parameterType="java.lang.Integer">
+    delete from t_class_course where  c_id = #{cId,jdbcType=INTEGER}
+  </delete>
 </mapper>

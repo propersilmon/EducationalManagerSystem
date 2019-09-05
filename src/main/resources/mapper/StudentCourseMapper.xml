@@ -92,4 +92,59 @@
       t_score = #{tScore,jdbcType=INTEGER}
     where s_c_id = #{sCId,jdbcType=INTEGER}
   </update>
+  <!--********查询学生课程***********-->
+  <select id="selectStudentCourse" resultMap="BaseResultMap">
+    select
+    *
+    from t_student_course
+  </select>
+  <!--*******录入学生课程成绩************-->
+  <update id="updateScore" parameterType="com.ems.entity.StudentCourse" >
+    update t_student_course
+    <set >
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="sScore != null" >
+        s_score = #{sScore,jdbcType=INTEGER},
+      </if>
+      <if test="tScore != null" >
+        t_score = #{tScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </update>
+  <select id="selectStudentById" resultMap="BaseResultMap">
+    select
+    *
+    from t_student_course
+    WHERE s_id = #{sId,jdbcType=VARCHAR}
+    AND c_id = #{cId,jdbcType=INTEGER}
+  </select>
+
+  <update id="insertCourse" parameterType="com.ems.entity.StudentCourse" >
+    update t_student_course
+    set  s_score = #{sScore,jdbcType=INTEGER}
+    where s_c_id = #{sCId,jdbcType=INTEGER}
+  </update>
+  <!--*******************-->
+
+  <!--查询选课表-->
+  <select id="queryAllStudentCourseByS_id" resultMap="BaseResultMap">
+SELECT
+t_student_course.s_c_id,
+t_student_course.s_id,
+t_student_course.c_id,
+t_student_course.s_score,
+t_student_course.t_score
+FROM
+t_student_course
+WHERE s_id =#{sId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deletbycId" parameterType="java.lang.Integer">
+    delete from t_student_course where  c_id = #{cId,jdbcType=INTEGER}
+  </delete>
 </mapper>

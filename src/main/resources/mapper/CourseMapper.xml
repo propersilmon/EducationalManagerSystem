@@ -15,7 +15,7 @@
     c_id, c_name, c_credit, elective, create_date, e_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_course
     where c_id = #{cId,jdbcType=INTEGER}
@@ -105,27 +105,66 @@
       e_id = #{eId,jdbcType=INTEGER}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
-  <select id="queryAllCourse" resultType="com.ems.entity.Course">
+ <!-- <select id="queryAllCourse" resultType="com.ems.entity.Course">
     select * from t_course
+  </select>-->
+
+<!--**********根据教师id查询课程**************-->
+  <select id="selectCourseById" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
+    select * from t_course where
+     e_id = #{eId}
+    </select>
+    <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">
+    select * from t_course limit #{page} ,8
+  </select>
+  <!--**********根据教师id和课程名查询课程**************-->
+  <select id="selectCourseByIdAndCourseName" resultMap="BaseResultMap">
+    select * from t_course
+    where e_id = #{eId}
+     and c_name = #{cName}
+  </select>
+  <!--************************-->
+<!--    <select id="queryAllCourse" parameterType="java.lang.Integer" resultType="com.ems.entity.Course">-->
+<!--    select * from t_course limit #{page} ,10-->
+<!--  </select>-->
+
+    <select id="queryCourseCount" resultType="java.lang.Integer">
+        select count(*) from t_course
+
   </select>
 
-  <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
+    <select id="queryBycName" resultType="com.ems.entity.Course">
+        select * from t_course
+            where
+            c_name like #{0}
+        limit #{1},10
+    </select>
+
+    <select id="queryBycNameCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from t_course
+        where c_name like #{cName}
+
+    </select>
+    <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
     select * from t_course where
      c_name like #{cName}
   </select>
+    <insert id="addCourse" parameterType="com.ems.entity.Course">
+        <selectKey keyColumn="c_Id" order="AFTER" resultType="java.lang.Integer" keyProperty="cId">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_course(c_name,c_credit,elective,create_date,e_id)
+        values(#{cName},#{cCredit},#{elective},#{createDate},#{eId})
+    </insert>
 
-  <insert id="addCourse" parameterType="com.ems.entity.Course">
-    <selectKey keyColumn="c_Id" order="AFTER" resultType="java.lang.Integer" keyProperty="cId">
-      select LAST_INSERT_ID()
-    </selectKey>
-    insert into t_course(c_name,c_credit,elective,create_date,e_id) values(#{cName},#{cCredit},#{elective},#{createDate},#{eId})
-  </insert>
+    <select id="queryByKey" parameterType="int" resultType="com.ems.entity.Course">
+        select * from t_course where c_id=#{cId}
+    </select>
 
-
-  <select id="selectCNameByEId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from t_course
-    where e_id = #{eId,jdbcType=INTEGER}
-  </select>
+    <select id="selectCNameByEId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from t_course
+        where e_id = #{eId,jdbcType=INTEGER}
+    </select>
 </mapper>
