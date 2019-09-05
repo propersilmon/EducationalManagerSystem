@@ -189,6 +189,7 @@
     <%--点击按钮（超链接）后--%>
     function changeFrame(arg) {
         if(arg==='updatePassword'){
+
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/updatePassword");
 
         }else if(arg==='managerUser'){

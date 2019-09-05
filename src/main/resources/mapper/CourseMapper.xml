@@ -144,11 +144,11 @@
         select count(*) from t_course
         where c_name like #{cName}
 
-    </select>
-    <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
-    select * from t_course where
-     c_name like #{cName}
-  </select>
+   </select>
+  <!--  <select id="queryBycName" parameterType="java.lang.String" resultType="com.ems.entity.Course">
+   select * from t_course where
+    c_name like #{cName}
+ </select>-->
     <insert id="addCourse" parameterType="com.ems.entity.Course">
         <selectKey keyColumn="c_Id" order="AFTER" resultType="java.lang.Integer" keyProperty="cId">
             select LAST_INSERT_ID()

@@ -17,8 +17,12 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+/*
     List<Course> queryAllCourse();
+*/
+/*
     List<Course> queryBycName(String cName);
+*/
 
     List<Course> selectCNameByEId(int eId);
     /*查询courser*/
