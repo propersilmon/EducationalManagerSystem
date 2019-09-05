@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Material Admin</title>
+    <title>学生登录</title>
 
     <!-- Vendor CSS -->
     <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
@@ -177,7 +177,7 @@
 
 <!-- Placeholder for IE9 -->
 <!--[if IE 9 ]>
-<script src="/resources/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+<script src="/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
 <![endif]-->
 
 <script src="${pageContext.request.contextPath}/js/functions.js"></script>

@@ -17,7 +17,7 @@
     <title>Material Admin</title>
 
     <!-- Vendor CSS -->
-    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/animate.css/animate.min.css"
+    <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
           rel="stylesheet">
@@ -153,34 +153,3 @@
 </script>
 </body>
 </html>
-<%--<html>--%>
-<%--<head>--%>
-<%--<title>Title</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<table>--%>
-<%--<thead>--%>
-<%--<th>id</th>--%>
-<%--<th>用户名</th>--%>
-<%--<th>性别</th>--%>
-<%--<th>学生反馈平均分数</th>--%>
-<%--<th>操作</th>--%>
-<%--</thead>--%>
-<%--<tbody>--%>
-<%--<c:forEach items="${requestScope.pageBean.beanList}" var="temp">--%>
-<%--<tr>--%>
-<%--<td>${temp.eId}</td>--%>
-<%--<td>${temp.eName}</td>--%>
-<%--<td>${temp.eSex}</td>--%>
-<%--<td>${temp.eAvgScore}</td>--%>
-<%--</tr>--%>
-<%--</c:forEach>--%>
-<%--</tbody>--%>
-<%--</table>--%>
-<%--&lt;%&ndash;页码部分&ndash;%&gt;--%>
-<%--<span>当前页码数:${requestScope.pageBean.currentPageCode}/${requestScope.pageBean.totalPageCode} 页</span>--%>
-<%--<c:forEach begin="1" end="${requestScope.pageBean.totalPageCode}" var="tempNum">--%>
-<%--<span>    <a href="${pageContext.request.contextPath}/employee/queryEmployee/${tempNum}">${tempNum}</a></span>--%>
-<%--</c:forEach>--%>
-<%--</body>--%>
-<%--</html>--%>
