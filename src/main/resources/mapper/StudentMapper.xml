@@ -152,15 +152,8 @@
     t_student.s_state
     FROM
     t_student
-    <if test="elective == 1">
       INNER JOIN t_student_course ON t_student.s_id = t_student_course.s_id
       INNER JOIN t_course ON t_student_course.c_id = t_course.c_id
       WHERE t_course.c_id = #{cId,jdbcType=INTEGER}
-    </if>
-    <if test="elective == 0">
-      INNER JOIN t_class_course ON t_student.s_class = t_class_course.s_class
-      INNER JOIN t_course ON t_class_course.c_id = t_course.c_id
-      WHERE t_course.c_id = #{cId,jdbcType=INTEGER}
-    </if>
   </select>
 </mapper>

@@ -58,7 +58,6 @@
             var week=myDate.getDay();
             var myTime=year+"当前时间:"+year+"年"+month+"月"+mydate+"日 "+hour+":"+minu+":"+second+"秒"+" 今天是星期"+week;
             $timerBox.val(myTime);
-
         },1000);
     });
 

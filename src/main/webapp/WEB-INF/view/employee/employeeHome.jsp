@@ -133,7 +133,7 @@
                 <ul>
 
                     <li><a href="profile-about.html">查看课程安排</a></li>
-                    <li><a href="list-view.html">查看选课学生</a></li>
+                    <li><a href="javascript:changeFrame('showStudents')">查看选课学生</a></li>
                     <li><a href="messages.html">录入成绩</a></li>
                     <li><a href="pricing-table.html">查看成绩</a></li>
                 </ul>
@@ -190,6 +190,8 @@
 
         }else if(arg==='managerUser'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/queryEmployee/1");
+        }else if (arg==='showStudents'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/updateUI")
         }
     }
 </script>

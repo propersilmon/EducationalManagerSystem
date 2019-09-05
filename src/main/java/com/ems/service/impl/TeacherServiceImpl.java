@@ -16,13 +16,6 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    SysEmployeeMapper sysEmployeeMapper;
-
-    @Override
-    public SysEmployee queryByUsername(int username) {
-        return sysEmployeeMapper.selectByPrimaryKey(username);
-    }
-    @Autowired
     private CourseMapper courseMapper;
     @Autowired
     private SysEmployeeMapper sysEmployeeMapper;
@@ -30,7 +23,10 @@ public class TeacherServiceImpl implements TeacherService {
     private StudentMapper studentMapper;
 
 
-
+    @Override
+    public SysEmployee queryByUsername(int username) {
+        return sysEmployeeMapper.selectByPrimaryKey(username);
+    }
     @Override
 
     public List<Course> selectCNameByEId(int eId) {
