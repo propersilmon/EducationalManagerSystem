@@ -56,7 +56,7 @@ public class RoomController {
     @RequestMapping(value = "/modifyRoom")
     public String modifyRoom(HttpServletRequest req,HttpServletResponse resp){
         Room room = new Room();
-        room.setrId(Integer.valueOf(req.getParameter("rId")));
+        room.setrId(Integer.parseInt(req.getParameter("rId")));
         room.setPosition(req.getParameter("position"));
         room.setMaxCount(Integer.parseInt(req.getParameter("maxCount")));
         int rs = roomservice.updateByPrimaryKey(room);

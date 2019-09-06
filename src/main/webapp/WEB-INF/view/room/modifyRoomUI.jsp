@@ -73,12 +73,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>教室位置</label>
-                                    <input type="text" name="position" class="form-control" placeholder="${room.position}">
+                                    <input type="text" name="position" class="form-control" value="${room.position}" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')
+                                            this.value='${room.position}'">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label>教室容量</label>
-                                    <input type="text" name="maxCount" class="form-control" placeholder="${room.maxCount}">
+                                    <input type="text" name="maxCount" class="form-control" value="${room.maxCount}" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')
+                                            this.value='${room.maxCount}'">
                                 </div>
                                 <button type="submit" class="btn btn-success waves-effect">确认修改
                                 </button>
@@ -126,26 +128,4 @@
 <script src="${pageContext.request.contextPath}/js/demo.js"></script>
 
 </body>
-<script type="text/javascript">
-    function addUser() {
-        if ($("input:eq(0)").val() !== '' && $("input:eq(2)").val() !== '') {
-            //$("form").submit();
-
-            $.ajax({
-                type: 'POST',
-                data: new FormData($("#addForm")[0]),
-                url: '${pageContext.request.contextPath}/employee/add',
-                processData: false,
-                contentType: false,
-                dataType: "html",
-                success: function (data) {
-                    // window.alert("请求已发送");
-                    $("#resultBox").html(data);
-                }
-            });
-        } else {
-            window.alert("数据不能为空");
-        }
-    }
-</script>
 </html>
