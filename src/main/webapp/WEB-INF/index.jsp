@@ -13,13 +13,36 @@
     <title>登录选择</title>
     <style type="text/css">
         html{
-            font-size: 18px;
+            font-size: 20px;
             font-family: "Microsoft YaHei UI", serif;
+        }
+
+        body{
+            /*background-image: url("https://www.arch2o.com/wp-content/uploads/2018/06/Arch2O-Lishin-Elementary-School-Library-TALI-DESIGN-03.jpg");*/
+            background-color: papayawhip;
+            background-repeat: no-repeat;
+        }
+
+        .inside{
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "";
+            background-color: black;
+            opacity: 0.2;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .outside{
+            z-index: 2;
         }
     </style>
 </head>
 <body>
-<div class="col-md-5 card" style="margin: auto; top: 200px; border: 1px solid black">
+<div class="inside"></div>
+<div class="col-md-5 card bgm-white outside" style="margin: auto; top: 200px; border: 1px solid black; background: none;">
     <div class="card-body" style="height: 200px; width: 600px;">
         <center>
             <button type="button" class="btn btn-outline-dark" onclick="window.location.href='${pageContext.request.contextPath}/studentLogin'">学生登录</button>
