@@ -121,7 +121,7 @@
             <value>
                 /studentLogin=anon
                 /sysEmployeeLogin=anon
-                /**=authc
+                /employee/toHome=authc
             </value>
         </property>
     </bean>
