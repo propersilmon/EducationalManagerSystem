@@ -74,13 +74,13 @@
                                 <div class="form-group">
                                     <label>教室位置</label>
                                     <input type="text" name="position" class="form-control" value="${room.position}" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')
-                                            this.value='${room.position}'">
+                                            if(this.value.replace(/^ +| +$/g,'')=='')this.value='${room.position}'">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label>教室容量</label>
                                     <input type="text" name="maxCount" class="form-control" value="${room.maxCount}" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')
-                                            this.value='${room.maxCount}'">
+                                            if(this.value.replace(/^ +| +$/g,'')=='')this.value='${room.maxCount}'">
                                 </div>
                                 <button type="submit" class="btn btn-success waves-effect">确认修改
                                 </button>
