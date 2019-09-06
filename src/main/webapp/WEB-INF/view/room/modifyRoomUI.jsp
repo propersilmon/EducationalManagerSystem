@@ -56,10 +56,7 @@
         <div class="container">
             <div class="block-header">
                 <h1>修改教室信息</h1>
-
-
             </div>
-
             <div class="card">
                 <div class="card-body card-padding">
                     <p class="c-black f-500 m-b-5">教室信息</p>
@@ -71,13 +68,17 @@
                                   method="post">
                                 <br>
                                 <div class="form-group">
+                                    <label>教室编号</label>
+                                    <input type="text" name="rId" class="form-control" value="${room.rId}" readonly>
+                                </div>
+                                <div class="form-group">
                                     <label>教室位置</label>
-                                    <input type="text" name="position" class="form-control" placeholder="填写新的教室位置">
+                                    <input type="text" name="position" class="form-control" placeholder="${room.position}">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label>教室容量</label>
-                                    <input type="text" name="maxCount" class="form-control" placeholder="填写新的教室容量">
+                                    <input type="text" name="maxCount" class="form-control" placeholder="${room.maxCount}">
                                 </div>
                                 <button type="submit" class="btn btn-success waves-effect">确认修改
                                 </button>

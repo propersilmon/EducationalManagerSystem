@@ -58,8 +58,8 @@ public class RoomController {
         Room room = new Room();
         room.setrId(Integer.valueOf(req.getParameter("rId")));
         room.setPosition(req.getParameter("position"));
-        room.setMaxCount(Integer.valueOf(req.getParameter("maxCount")));
-        int rs = roomservice.updateByPrimaryKeySelective(room);
+        room.setMaxCount(Integer.parseInt(req.getParameter("maxCount")));
+        int rs = roomservice.updateByPrimaryKey(room);
         return "redirect:/roomController/roomList";
     }
 
@@ -73,14 +73,14 @@ public class RoomController {
     @RequestMapping(value ="/addRoomUI")
     public String addRoomUI(Model model){
         List<Room> room = roommapper.queryAllRoom();
-        model.addAttribute("room2add",room);
+        model.addAttribute("room",room);
         return "view/room/addRoomUI";
     }
 
     @RequestMapping(value ="/modifyRoomUI")
     public String modifyRoomUI(HttpServletRequest req,HttpServletResponse resp,Model model){
-        List<Room> room = roommapper.queryAllRoom();
-        model.addAttribute("room2modify",room);
+        Room room = roommapper.selectByPrimaryKey(Integer.parseInt(req.getParameter("rId")));
+        model.addAttribute("room",room);
         return "view/room/modifyRoomUI";
     }
 }
