@@ -73,4 +73,14 @@
   <delete id="deletbycId" parameterType="java.lang.Integer">
     delete from t_class_course where  c_id = #{cId,jdbcType=INTEGER}
   </delete>
+
+  <select id="queryAllBXCourse" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  SELECT
+  *
+  FROM
+  t_class_course
+  INNER JOIN t_student ON t_student.s_class = t_class_course.s_class
+  where t_student.s_class=#{sClass}
+  </select>
+
 </mapper>

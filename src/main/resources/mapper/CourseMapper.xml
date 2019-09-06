@@ -138,4 +138,25 @@
     <select id="queryByKey" parameterType="int" resultType="com.ems.entity.Course">
         select * from t_course where c_id=#{cId}
     </select>
+
+    <select id="queryBXByID" resultMap="BaseResultMap"  parameterType="java.lang.Integer" >
+    select * from t_course
+   where  c_id=#{cId}
+  </select>
+    <select id="queryAllXXCourse" resultMap="BaseResultMap"  >
+    select * from t_course
+   where  elective=0
+  </select>
+
+    <select id="queryAllCourse1" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    *
+    FROM
+    t_student_course
+    INNER JOIN t_course ON t_student_course.c_id = t_course.c_id
+    where s_id=#{sId}
+  </select>
+    <select id="queryAllC" resultMap="BaseResultMap"  >
+    select * from t_course
+  </select>
 </mapper>

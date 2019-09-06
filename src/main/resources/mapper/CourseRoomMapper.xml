@@ -80,4 +80,19 @@
   <select id="selectByCId" parameterType="java.lang.Integer" resultType="com.ems.entity.CourseRoom">
     select * from t_course_room where c_id=#{cId};
   </select>
+  <select id="queryAllCR" parameterType="java.lang.String" resultType="com.ems.entity.CourseRoom">
+    SELECT
+t_course_room.c_r_id,
+t_course_room.`interval`,
+t_course_room.c_id,
+t_course_room.r_id,
+t_course_room.`week`,
+t_course_room.`desc`,
+t_course_room.start_week,
+t_course_room.end_week
+FROM
+t_student_course
+INNER JOIN t_course_room ON t_student_course.c_id = t_course_room.c_id
+where s_id=#{sId};
+  </select>
 </mapper>

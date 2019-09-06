@@ -21,4 +21,7 @@ public interface StudentCourseMapper {
 
     List<StudentCourse> queryAllStudentCourseByS_id(String sId);
 
+    int delteXK(StudentCourse studentCourse);
+
+    int delteXX(StudentCourse studentCourse);
 }

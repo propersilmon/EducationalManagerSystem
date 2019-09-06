@@ -20,4 +20,6 @@ public interface RoomMapper {
     List<Room> queryRoomByPosition(String position);
 
     List<Room> queryAllRoom();
+
+    List<Room> queryAllRoom1();
 }
