@@ -123,7 +123,6 @@
 
                         <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
                         <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
-                        <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
                         <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
                         <li><a href="textual-menu.html">教室管理</a></li>
                         <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
@@ -198,8 +197,6 @@
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/queryEmployee/1");
         }else if(arg==='selectCourseManager'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/selectCourse");
-        }else if(arg==='selectCourseStudent'){
-            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/scoresList");
         }else if(arg==='entryScore'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/scoresList");
         }else if(arg==='lookScore'){

@@ -2,14 +2,14 @@ package com.ems.controller;
 
 
 import com.ems.entity.SysEmployee;
-import com.ems.entity.SysPermission;
 import com.ems.entity.SysRole;
 import com.ems.service.EmployeeService;
 import com.ems.service.PermissionService;
 import com.ems.service.RoleService;
 import com.ems.shiro.realm.SysEmployeeRealm;
-import com.ems.vo.ActiveEmployee;
 import com.ems.vo.PageBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,32 +53,32 @@ public class EmployeeController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@RequestParam("employeeId") String employeeId, @RequestParam("password") String password, Model model)
-    {
-        System.out.println("教职员工登录：工号"+employeeId+"密码"+password);
-        SysEmployee employee=employeeService.queryEmployeeById(Integer.parseInt(employeeId));
-        System.out.println(employee);
-        if(employee.getePassword().equals(password)){
-            ActiveEmployee activeEmployee=new ActiveEmployee();
-            // 查其的权限和菜单,进行set注入
-            List<SysPermission>  menuList =permissionService.queryMenuByUserId(employee.geteId());
-            List<SysPermission>  permissionList =permissionService.queryPermissionByUserId(employee.geteId());
-            activeEmployee.setEmployeeId(employee.geteId());
-            activeEmployee.setE_avg_score(employee.geteAvgScore());
-            activeEmployee.setEmployee_name(employee.geteName());
-            activeEmployee.setEployee_sex(employee.geteSex());
-            activeEmployee.setPassword(employee.getePassword());
-            activeEmployee.setMenuList(menuList);
-            activeEmployee.setPermissionList(permissionList);
-            model.addAttribute("activeEmployee",activeEmployee);
-            return "redirect:/employee/toHome";
-        }else{
-            model.addAttribute("message","账户名或密码错误");
-            return "/employee/employeeLoginPage";
-
-        }
-    }
+//    @RequestMapping(value = "/login",method = RequestMethod.POST)
+//    public String login(@RequestParam("employeeId") String employeeId, @RequestParam("password") String password, Model model)
+//    {
+//        System.out.println("教职员工登录：工号"+employeeId+"密码"+password);
+//        SysEmployee employee=employeeService.queryEmployeeById(Integer.parseInt(employeeId));
+//        System.out.println(employee);
+//        if(employee.getePassword().equals(password)){
+//            ActiveEmployee activeEmployee=new ActiveEmployee();
+//            // 查其的权限和菜单,进行set注入
+//            List<SysPermission>  menuList =permissionService.queryMenuByUserId(employee.geteId());
+//            List<SysPermission>  permissionList =permissionService.queryPermissionByUserId(employee.geteId());
+//            activeEmployee.setEmployeeId(employee.geteId());
+//            activeEmployee.setE_avg_score(employee.geteAvgScore());
+//            activeEmployee.setEmployee_name(employee.geteName());
+//            activeEmployee.setEployee_sex(employee.geteSex());
+//            activeEmployee.setPassword(employee.getePassword());
+//            activeEmployee.setMenuList(menuList);
+//            activeEmployee.setPermissionList(permissionList);
+//            model.addAttribute("activeEmployee",activeEmployee);
+//            return "redirect:/employee/toHome";
+//        }else{
+//            model.addAttribute("message","账户名或密码错误");
+//            return "/employee/employeeLoginPage";
+//
+//        }
+//    }
 
     /**
      * 首次登入后台后展示的内容
@@ -136,8 +136,10 @@ public class EmployeeController {
     @RequestMapping("/logout")
     public String logout(HttpSession session){
         session.removeAttribute("activeEmployee");
-        //重定向在主页
+        Subject currentEmployee = SecurityUtils.getSubject();
+        currentEmployee.logout();
         sysEmployeeRealm.clearCached();
+        //重定向在主页
         return "redirect:/toIndex";
     }
 

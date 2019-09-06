@@ -159,17 +159,37 @@
                         <h4 class="modal-title"><trans oldtip="Modal title" newtip="成绩录入">成绩录入</trans></h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<%=basePath%>teacherController/entryOneScores" method="post">
-                            <center>
+                        <form class="form-horizontal" action="<%=basePath%>teacherController/entryOneScores" method="post">
+                            <tr>
+                                <div class="form-group">
+                                    <input type="hidden" readonly= "true " name="scId" id="scId2" value="">
+                                    <label class="col-sm-4 control-label">学号：</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly= "true " name="sId" id="sId" value="">
+                                    </div>
+                                </div>
 
-                                <tr>
-                                    <input type="hidden" readonly= "true " name="scId" id="scId2" value=""></br>
-                                    学号：<input type="text" readonly= "true " name="sId" id="sId" value=""></br>
-                                    姓名：<input type="text" readonly= "true " name="name" id="name" value=""></br>
-                                    课程：<input type="text" readonly= "true " name="course" id="course" value=""></br>
-                                    成绩：<input type="text"  name="studentScore" id="studentScore" value="" placeholder="输入学生成绩"></br>
-                                </tr>
-                            </center>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">姓名：</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly= "true " name="name" id="name" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">课程：</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly= "true " name="course" id="course" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">成绩：</label>
+                                    <div class="col-sm-6">
+                                        <input type="text"  name="studentScore" id="studentScore" value="" placeholder="输入学生成绩">
+                                    </div>
+                                </div>
+                            </tr>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-link waves-effect"><trans oldtip="Submit" newtip="录入" style="">录入</trans></button>
                                 <button type="reset" class="btn btn-link waves-effect" data-dismiss="modal"><trans oldtip="Close" newtip="关闭" style="">关闭</trans></button>

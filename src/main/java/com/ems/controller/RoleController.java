@@ -35,7 +35,12 @@ public class RoleController {
         //获得总记录数
         int totalRecordCount=roleService.getTotalCount();
         //计算总页数
-        int totalPage=totalRecordCount%recordPerPage==0?totalRecordCount/recordPerPage :(totalRecordCount/recordPerPage)+1;
+        int totalPage = 0;
+        if (totalRecordCount < recordPerPage){
+            totalPage = 1;
+        }else{
+            totalPage=totalRecordCount%recordPerPage==0?totalRecordCount/recordPerPage :(totalRecordCount/recordPerPage)+1;
+        }
         //构造vo层对象
         PageBean<SysRole> pageBean=new PageBean<>();
         pageBean.setCurrentPageCode(currentPageIdx);

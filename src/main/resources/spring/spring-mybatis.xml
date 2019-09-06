@@ -119,11 +119,9 @@
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
-                /login/**=anon
                 /studentLogin=anon
                 /sysEmployeeLogin=anon
-                /student/index=roles[student]
-                /sysEmployee/index=roles[admin]
+                /**=authc
             </value>
         </property>
     </bean>
