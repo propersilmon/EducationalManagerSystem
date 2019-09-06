@@ -7,6 +7,7 @@ import com.ems.service.PermissionService;
 import com.ems.service.RoleService;
 import com.ems.service.TeacherService;
 import com.ems.shiro.token.CustomizedToken;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -79,5 +80,11 @@ public class SysEmployeeRealm extends AuthorizingRealm {
 
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password, getName());
         return info;
+    }
+
+    public void clearCached() {
+        PrincipalCollection principals = SecurityUtils.getSubject()
+                .getPrincipals();
+        super.clearCache(principals);
     }
 }

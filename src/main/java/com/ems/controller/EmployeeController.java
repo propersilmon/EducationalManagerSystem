@@ -3,8 +3,11 @@ package com.ems.controller;
 
 import com.ems.entity.SysEmployee;
 import com.ems.entity.SysPermission;
+import com.ems.entity.SysRole;
 import com.ems.service.EmployeeService;
 import com.ems.service.PermissionService;
+import com.ems.service.RoleService;
+import com.ems.shiro.realm.SysEmployeeRealm;
 import com.ems.vo.ActiveEmployee;
 import com.ems.vo.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -21,8 +26,16 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private SysEmployeeRealm sysEmployeeRealm;
+
 
     /**
      * 跳转教职工登录页面
@@ -124,7 +137,26 @@ public class EmployeeController {
     public String logout(HttpSession session){
         session.removeAttribute("activeEmployee");
         //重定向在主页
+        sysEmployeeRealm.clearCached();
         return "redirect:/toIndex";
+    }
+
+
+    //分配角色
+    @RequestMapping("/updateRole")
+    public String updateRole(HttpServletRequest req, HttpServletResponse resp){
+        String currentPageCode = req.getParameter("currentPage");
+        int eId = Integer.parseInt(req.getParameter("eId"));
+        String[] roleArray = req.getParameterValues("alterRoles");
+        employeeService.deleteRolesByeId(eId);
+        if (roleArray == null){
+            return "redirect:/employee/queryEmployee/" + currentPageCode;
+        }
+        for (String str : roleArray){
+            int rId = Integer.parseInt(str);
+            employeeService.addEmployeeRole(eId, rId);
+        }
+        return "redirect:/employee/queryEmployee/" + currentPageCode;
     }
 
     /**
@@ -149,6 +181,10 @@ public class EmployeeController {
         pageBean.setTotalPageCode(totalPage);
         pageBean.setBeanList(employees);
         model.addAttribute("pageBean",pageBean);
+
+        //查询所有角色便于分配
+        List<SysRole> roleList = roleService.queryAll();
+        model.addAttribute("roleList", roleList);
 
         //forward跳转到员工列表页面
         return "view/employee/employeeList";

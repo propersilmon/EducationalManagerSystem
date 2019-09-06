@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -115,19 +116,22 @@
 
         <ul class="main-menu">
 
-            <li class="sub-menu">
-                <a href=""><i class="zmdi zmdi-view-compact"></i> 系统管理</a>
-                <ul>
+            <shiro:hasRole name="admin">
+                <li class="sub-menu">
+                    <a href=""><i class="zmdi zmdi-view-compact"></i> 系统管理</a>
+                    <ul>
 
-                    <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
-                    <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
-                    <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
-                    <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
-                    <li><a href="textual-menu.html">教室管理</a></li>
-                    <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
-                    <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
-                </ul>
-            </li>
+                        <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
+                        <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
+                        <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
+                        <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
+                        <li><a href="textual-menu.html">教室管理</a></li>
+                        <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
+                            <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
+                    </ul>
+                </li>
+            </shiro:hasRole>
+
 
             <li class="sub-menu">
                 <a href=""><i class="zmdi zmdi-collection-item"></i>教师管理系统</a>
@@ -145,11 +149,9 @@
 
 
     <section id="content">
-        <div class="container">
+        <div class="container"  style="height: 1300px;">
         <%--使用内敛框架--%>
-            <div class="col" style="height: 1500px;">
-                <iframe id="myFrame" src="${pageContext.request.contextPath}/employee/toInnerIndex" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
-            </div>
+            <iframe id="myFrame" src="${pageContext.request.contextPath}/employee/toInnerIndex" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
         </div>
     </section>
 </section>

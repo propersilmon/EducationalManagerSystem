@@ -1,5 +1,8 @@
 package com.ems.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SysEmployee {
     //员工id
     private Integer eId;
@@ -11,6 +14,17 @@ public class SysEmployee {
     private String eSex;
     //学生评教平均得分
     private Integer eAvgScore;
+
+    //该员工的角色
+    private List<SysRole> roleList;
+
+    public List<SysRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRole> roleList) {
+        this.roleList = roleList;
+    }
 
     @Override
     public String toString() {

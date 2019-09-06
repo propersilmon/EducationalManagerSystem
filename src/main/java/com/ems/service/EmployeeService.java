@@ -17,4 +17,8 @@ public interface EmployeeService {
     int addEmployeeBackId(SysEmployee employee);
 
     List<SysEmployee> queryAll();
+
+    void deleteRolesByeId(int eId);
+
+    void addEmployeeRole(int eId, int rId);
 }

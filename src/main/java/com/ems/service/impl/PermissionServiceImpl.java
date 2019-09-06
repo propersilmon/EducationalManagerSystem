@@ -24,4 +24,9 @@ public class PermissionServiceImpl implements PermissionService {
     public List<SysPermission> queryPermissionByUserId(Integer geteId) {
         return sysPermissionMapper.queryPermissionByUserId(geteId);
     }
+
+    @Override
+    public List<SysPermission> queryAll() {
+        return sysPermissionMapper.queryAll();
+    }
 }

@@ -17,11 +17,15 @@
     from sys_role_permission
     where r_p_id = #{rPId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_role_permission
     where r_p_id = #{rPId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ems.entity.SysRolePermission" >
+    <delete id="deletePermissionByrId">
+      delete from sys_role_permission
+    where r_id = #{rId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ems.entity.SysRolePermission" >
     insert into sys_role_permission (r_p_id, r_id, p_id
       )
     values (#{rPId,jdbcType=INTEGER}, #{rId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}
@@ -51,6 +55,12 @@
         #{pId,jdbcType=INTEGER},
       </if>
     </trim>
+  </insert>
+  <insert id="addPermission">
+    insert into sys_role_permission (r_id, p_id
+      )
+    values (#{rId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysRolePermission" >
     update sys_role_permission

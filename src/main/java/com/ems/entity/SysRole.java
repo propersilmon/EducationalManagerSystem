@@ -1,5 +1,7 @@
 package com.ems.entity;
 
+import java.util.List;
+
 public class SysRole {
     //角色id
     private Integer rId;
@@ -7,6 +9,8 @@ public class SysRole {
     private String rName;
     //角色描述
     private String rDesc;
+    //角色对应的权限
+    private List<SysPermission> permissionList;
 
     public SysRole(Integer rId, String rName, String rDesc) {
         this.rId = rId;
@@ -21,6 +25,14 @@ public class SysRole {
                 ", rName='" + rName + '\'' +
                 ", rDesc='" + rDesc + '\'' +
                 '}';
+    }
+
+    public List<SysPermission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<SysPermission> permissionList) {
+        this.permissionList = permissionList;
     }
 
     public SysRole() {

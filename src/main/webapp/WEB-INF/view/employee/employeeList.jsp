@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -68,6 +69,41 @@
     </div>
 </div>
 
+<div class="modal fade" id="updateRole" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;margin: auto; position: absolute;top:8px;">分配角色</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="updateRoleForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/employee/updateRole?currentPage=${pageBean.currentPageCode}" method="post">
+                    <%--                    隐藏域用来表单提交时知道员工id的--%>
+                    <input type="hidden" name="eId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色</label>
+                        <div class="col-sm-6">
+                            <c:forEach items="${roleList}" var="role">
+                                <div class="col-sm-4">
+                                    <label>${role.rDesc}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="checkbox" type="checkbox" name="alterRoles" value="${role.rId}">
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="alterRole()">分配</button>
+                <button class="btn btn-success btn-sm" onclick="canceledAlter()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="main">
 
@@ -95,7 +131,6 @@
                             &nbsp;&nbsp;
                             <button class="btn bgm-red waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i>批量删除</button>
                         </span>
-
                     </h2>
                 </div>
 
@@ -105,10 +140,11 @@
                         <tr align="center">
                             <th class="select-cell" style="text-align: center;"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box" value="all" onchange="allSelect(this)"><i class="input-helper"></i></label></div></th>
                             <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%" style="text-align: center;">ID</th>
-                            <th data-column-id="sender" width="20%" style="text-align: center;">名字</th>
+                            <th data-column-id="sender" width="10%" style="text-align: center;">名字</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">性别</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">平均得分</th>
-                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">角色</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">操作</th>
                         </tr>
                         </thead>
                         <tbody align="center">
@@ -119,6 +155,11 @@
                                 <td>${temp.eName}</td>
                                 <td>${temp.eSex}</td>
                                 <td>${temp.eAvgScore}</td>
+                                <td>
+                                    <c:forEach items="${temp.roleList}" var="role">
+                                        &nbsp&nbsp<label>${role.rDesc}</label>&nbsp&nbsp
+                                    </c:forEach>
+                                </td>
                                 <td><button class="btn bgm-cyan waves-effect" onclick="openUpdateLayer(this)">修改信息</button>
                                     <button class="btn bgm-orange waves-effect" onclick="setRole(this)">分配角色</button>
                                     <button class="btn bgm-lightgreen waves-effec" onclick="deleteEmployee(this)">删除员工</button>
@@ -130,8 +171,6 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
     </section>
 
@@ -199,12 +238,18 @@
         $("#updateForm").submit();
     }
 
+    function alterRole(){
+        $("#updateRoleForm").submit();
+    }
+
     //分配角色
     function setRole(obj) {
-        var id=$(obj).parent().parent().find("td").eq(1).text();
-        console.log("要分配器角色的id"+id);
-        window.location.href="${pageContext.request.contextPath}/employee/setRole?eId="+id;
+       $("#updateRole").modal("show");
+       var id=$(obj).parent().parent().find("td").eq(1).text();
+       $("#updateRole").find("input").eq(0).val(id);
+
     }
+
     //删除记录
     function deleteEmployee(obj) {
         var id=$(obj).parent().parent().find("td").eq(1).text();
@@ -218,6 +263,10 @@
     //取消按钮
     function canceled(){
         $("#updateWin").modal("hide");
+    }
+
+    function canceledAlter(){
+        $("#updateRole").modal("hide");
     }
 </script>
 </body>

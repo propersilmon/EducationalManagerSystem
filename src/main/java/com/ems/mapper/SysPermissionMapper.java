@@ -21,4 +21,8 @@ public interface SysPermissionMapper {
     List<SysPermission> queryMenuByUserId(@Param("employeeId") Integer geteId);
 
     List<SysPermission> queryPermissionByUserId(@Param("employeeId") Integer geteId);
+
+    List<SysPermission> queryPermissionByrId(@Param("rId")int rId);
+
+    List<SysPermission> queryAll();
 }

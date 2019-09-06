@@ -14,4 +14,14 @@ public interface RoleService {
     List<SysRole> queryRolesByPage(int currentPageIdx, int recordPerPage);
 
     int getTotalCount();
+
+    void addRole(String roleName, String desc);
+
+    void alterRole(SysRole sysRole);
+
+    void deleteRoleByrId(int rId);
+
+    void deletePermissionByrId(int rId);
+
+    void addPermission(int rId, int pId);
 }

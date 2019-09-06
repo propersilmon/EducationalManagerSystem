@@ -90,6 +90,12 @@
         </property>
     </bean>
 
+    <!-- 缓存管理器 -->
+
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:spring/shiro-ehcache.xml"/>
+    </bean>
+
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="authenticator" ref="authenticator"/>
@@ -99,6 +105,7 @@
                 <ref bean="sysEmployeeRealm"/>
             </list>
         </property>
+        <property name="cacheManager" ref="cacheManager"/>
     </bean>
 
     <!-- Shiro过滤器 -->

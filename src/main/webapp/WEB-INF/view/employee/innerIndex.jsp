@@ -40,7 +40,7 @@
     </div>
 </body>
 <!-- Javascript Libraries -->
-<script src="${pageContext.request.contextPath}/vendors/bower_components/jquer8UKOy/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendors/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/Waves/dist/waves.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>

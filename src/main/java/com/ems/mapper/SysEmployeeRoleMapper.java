@@ -14,4 +14,8 @@ public interface SysEmployeeRoleMapper {
     int updateByPrimaryKeySelective(SysEmployeeRole record);
 
     int updateByPrimaryKey(SysEmployeeRole record);
+
+    void deleteByeId(int eId);
+
+    void addEmployeeRole(int eId, int rId);
 }
