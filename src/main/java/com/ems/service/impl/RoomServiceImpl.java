@@ -38,7 +38,7 @@ RoomMapper roommapper;
     }
 
     public List<Room> queryRoomByPosition(String position){
-        return roommapper.queryRoomByPosition(position);
+        return roommapper.queryRoomByPosition("%"+ position +"%");
     }
 
     @Override
