@@ -101,7 +101,7 @@
                 </li>
 
                 <li>
-                    <a href="${pageContext.request.contextPath}/employee/logout"><i class="zmdi zmdi-time-restore"></i> 注销</a>
+                    <a href="${pageContext.request.contextPath}/student/logout"><i class="zmdi zmdi-time-restore"></i> 注销</a>
                 </li>
             </ul>
         </div>

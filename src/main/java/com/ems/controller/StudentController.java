@@ -2,9 +2,12 @@ package com.ems.controller;
 
 import com.ems.entity.*;
 import com.ems.service.StudentSerivce;
+import com.ems.shiro.realm.StudentRealm;
 import com.ems.vo.ActiveStudent;
 import com.ems.vo.PageBean;
 import com.ems.vo.StudentChoseCourse;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,9 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentSerivce studentSerivce;
+
+    @Autowired
+    private StudentRealm studentRealm;
 
     @RequestMapping("/queryAll/{currentPage}")
     public String queryStudentByPage(@PathVariable("currentPage") String currentPage, Model model){
@@ -132,7 +138,6 @@ public class StudentController {
             studentCourse.setsId(activeStudent.getsId());
             int n=studentSerivce.delteXK(studentCourse);
             int m=studentSerivce.addAllBXCourse(studentCourse);
-            System.out.println(n+"################"+m);
         }
 
         return "view/student/index";
@@ -142,11 +147,7 @@ public class StudentController {
     @RequestMapping("/queryAllXXCourse")
     public String queryAllXXCourse(HttpServletRequest request, HttpServletResponse resp, Model model,
                                    Student student) throws IOException {
-        System.out.println("##############################");
         List<Course> list=studentSerivce.queryAllXXCourse();
-        for (Course course : list) {
-            System.out.println(course.toString());
-        }
         request.setAttribute("list", list);
         return"view/student/studentXXList";
     }
@@ -155,7 +156,6 @@ public class StudentController {
     @RequestMapping("/queryAllCourse")
     public String queryAllCourse(HttpServletRequest request, HttpServletResponse resp, Model model,
                                  Student student ,HttpSession session) throws IOException {
-        System.out.println("##############################");
         ActiveStudent activeStudent = (ActiveStudent) request.getSession().getAttribute("activeStudent");
         String sId=activeStudent.getsId();
         //查询所有的课程
@@ -200,7 +200,6 @@ public class StudentController {
         ActiveStudent activeStudent = (ActiveStudent)session.getAttribute("activeStudent");
         String sId = activeStudent.getsId();
         int n = studentSerivce.dropCourseCourseByS_c_id(sCId);
-        System.out.println(n);
 
 
         if(n>0){
@@ -235,5 +234,15 @@ public class StudentController {
 
 
         }
+    }
+
+    @RequestMapping("/logout")
+    public String studentLogout(HttpSession session){
+        session.removeAttribute("activeStudent");
+        Subject currentEmployee = SecurityUtils.getSubject();
+        currentEmployee.logout();
+        studentRealm.clearCached();
+        //重定向在主页
+        return "redirect:/toIndex";
     }
 }

@@ -84,8 +84,7 @@
                                     <label>教室容量</label>
                                     <input type="text" name="maxCount" class="form-control" placeholder="填写新的教室容量" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')">
                                 </div>
-                                <button type="submit" class="btn btn-success waves-effect">添加教室信息
-                                </button>
+                                <button type="submit" class="btn btn-success waves-effect">添加教室信息</button>
                             </form>
                             <div id="resultBox">
 

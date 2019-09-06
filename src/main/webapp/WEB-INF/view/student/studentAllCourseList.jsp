@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Material Admin</title>
+    <title>学生课程</title>
 
     <!-- Vendor CSS -->
     <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
@@ -31,6 +31,11 @@
     <!-- CSS -->
     <link href="${pageContext.request.contextPath}/css/app.min.1.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/app.min.2.css" rel="stylesheet">
+    <style type="text/css">
+        html{
+            font-family: "Microsoft YaHei UI", serif;
+        }
+    </style>
 </head>
 <body>
 <!-- 修改弹出层 -->
@@ -136,14 +141,10 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                    <center>
-                        <a href="<%=basePath%>student/index" style="color: blue">返回上级</a>
-                    </center>
                 </div>
             </div>
         </div>
     </section>
-
 </section>
 
 

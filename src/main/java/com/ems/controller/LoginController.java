@@ -41,7 +41,6 @@ public class LoginController {
 
     @RequestMapping("/student")
     public String studentLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
-        System.out.println("进行了学生登录");
         Subject currentStudent = SecurityUtils.getSubject();
         if (!currentStudent.isAuthenticated()){
             CustomizedToken customizedToken = new CustomizedToken(username, password, STUDENT_LOGIN_TYOPE);
@@ -70,7 +69,6 @@ public class LoginController {
 
     @RequestMapping("/SysEmployee")
     public String sysEmployeeLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
-        System.out.println("进行教职工登录");
         Subject currentSysEmployee = SecurityUtils.getSubject();
         if (!currentSysEmployee.isAuthenticated()){
             CustomizedToken customizedToken = new CustomizedToken(username, password, SYSEMPLOYEE_LOGIN_TYOPE);

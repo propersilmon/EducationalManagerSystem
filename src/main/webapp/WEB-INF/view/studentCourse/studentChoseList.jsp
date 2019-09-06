@@ -97,9 +97,9 @@
                                 <td>${studentCourse.tScore}</td>
                                 <td>
                                     <%--<a href="javascript:openModal(this)">评教</a>--%>
-                                    <a id="entry" onclick="entry(this)" data-toggle="modal" href="#preventClick">评教</a>
+                                    <a id="entry" class="btn btn-success btn-sm waves-effect" onclick="entry(this)" data-toggle="modal" href="#preventClick">评教</a>
 
-                                    <a href="${pageContext.request.contextPath}/student/deleteCourse?sCId=${studentCourse.sCId}">退课</a>
+                                    <a class="btn btn-success btn-sm waves-effect" href="${pageContext.request.contextPath}/student/deleteCourse?sCId=${studentCourse.sCId}">退课</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -116,7 +116,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Modal title</h4>
+                                <h4 class="modal-title">学生评教</h4>
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" name="sCId" id="scId" value="">

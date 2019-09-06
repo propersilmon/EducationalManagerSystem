@@ -33,7 +33,6 @@ public class SysEmployeeRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("进行了教师权限的验证");
         SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
         int username = Integer.parseInt((String)principals.getPrimaryPrincipal());
 
