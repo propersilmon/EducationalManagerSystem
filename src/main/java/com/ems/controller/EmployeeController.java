@@ -251,4 +251,53 @@ public class EmployeeController {
 
 
     }
+
+    /**
+     * 管理员更改员工信息
+     * @return
+     */
+    @RequestMapping("/updateInfo")
+    public String updateEmployeeInfo(@RequestParam("eId") int eid,@RequestParam("employeeName") String employeeName,@RequestParam("sex") String sex){
+        System.out.println("eid:"+eid);
+        System.out.println("employeeName:"+employeeName);
+        System.out.println("sex:"+sex);
+        SysEmployee sysEmployee=new SysEmployee();
+        sysEmployee.seteId(eid);
+        sysEmployee.seteName(employeeName);
+        sysEmployee.seteSex(sex);
+        int res= employeeService.updateEmployeeInfo(sysEmployee);
+
+        if(res>0)
+        {
+            return "redirect:/employee/queryEmployee/1";
+        }else{
+            System.err.println("删除员工操作失败");
+            //todo 操作失败页面
+            return "";
+        }
+
+    }
+
+
+    /**
+     * 根据员工id删除员工记录
+     * @param eidStr
+     * @return
+     */
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployeeByEid(@RequestParam("eid") String eidStr){
+        int eid=Integer.parseInt(eidStr);
+        int res=employeeService.deleteEmployeeByEid(eid);
+        if(res>0)
+        {
+            return "redirect:/employee/queryEmployee/1";
+        }else{
+            System.err.println("删除员工操作失败");
+            //todo 操作失败页面
+            return null;
+        }
+
+
+    }
+
 }

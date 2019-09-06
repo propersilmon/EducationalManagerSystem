@@ -30,7 +30,7 @@ public class RoleController {
     public String toIndex(@PathVariable("currentPage") String currentPage,  Model model){
         int currentPageIdx=Integer.parseInt(currentPage);
         int recordPerPage=8;//分页查询，每页查8个
-        //获得本次分页查询所获得的列表
+        // 获得本次分页查询所获得的列表
         List<SysRole> roles= roleService.queryRolesByPage(currentPageIdx,recordPerPage);
         //获得总记录数
         int totalRecordCount=roleService.getTotalCount();

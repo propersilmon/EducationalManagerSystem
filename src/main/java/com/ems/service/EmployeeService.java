@@ -21,4 +21,8 @@ public interface EmployeeService {
     void deleteRolesByeId(int eId);
 
     void addEmployeeRole(int eId, int rId);
+
+    int updateEmployeeInfo(SysEmployee sysEmployee);
+
+    int deleteEmployeeByEid(int eid);
 }

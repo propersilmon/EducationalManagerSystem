@@ -64,4 +64,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void addEmployeeRole(int eId, int rId) {
         sysEmployeeRoleMapper.addEmployeeRole(eId, rId);
     }
+
+    @Override
+    public int updateEmployeeInfo(SysEmployee sysEmployee) {
+        return sysEmployeeMapper.updateByPrimaryKeySelective(sysEmployee);
+    }
+
+    @Override
+    public int deleteEmployeeByEid(int eid) {
+        return sysEmployeeMapper.deleteByPrimaryKey(eid);
+    }
 }
