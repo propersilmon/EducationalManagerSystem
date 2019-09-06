@@ -6,7 +6,7 @@
   Time: 22:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -16,7 +16,7 @@
     <title>Material Admin</title>
 
     <!-- Vendor CSS -->
-    <link href="${pageContext.request.contextPath}/resources/vendors/bower_components/animate.css/animate.min.css"
+    <link href="${pageContext.request.contextPath}/vendors/bower_components/animate.css/animate.min.css"
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"
           rel="stylesheet">
@@ -32,7 +32,77 @@
     <link href="${pageContext.request.contextPath}/css/app.min.2.css" rel="stylesheet">
 </head>
 <body>
+<!-- 修改弹出层 -->
+<div class="modal fade" id="updateWin" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;position: absolute;top:8px;">修改对话框</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="updateForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/employee/updateInfo" method="post">
+<%--                    隐藏域用来表单提交时知道员工id的--%>
+                    <input type="hidden" name="eId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">名字</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="employeeName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="sex" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="executeUpdate()">修改</button>
+                <button class="btn btn-success btn-sm" onclick="canceled()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="updateRole" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;margin: auto; position: absolute;top:8px;">分配角色</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="updateRoleForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/employee/updateRole?currentPage=${pageBean.currentPageCode}" method="post">
+                    <%--                    隐藏域用来表单提交时知道员工id的--%>
+                    <input type="hidden" name="eId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色</label>
+                        <div class="col-sm-6">
+                            <c:forEach items="${roleList}" var="role">
+                                <div class="col-sm-4">
+                                    <label>${role.rDesc}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="checkbox" type="checkbox" name="alterRoles" value="${role.rId}">
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="alterRole()">分配</button>
+                <button class="btn btn-success btn-sm" onclick="canceledAlter()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="main">
 
@@ -70,10 +140,11 @@
                         <tr align="center">
                             <th class="select-cell" style="text-align: center;"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box" value="all" onchange="allSelect(this)"><i class="input-helper"></i></label></div></th>
                             <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%" style="text-align: center;">ID</th>
-                            <th data-column-id="sender" width="20%" style="text-align: center;">名字</th>
+                            <th data-column-id="sender" width="10%" style="text-align: center;">名字</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">性别</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">平均得分</th>
-                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">角色</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">操作</th>
                         </tr>
                         </thead>
                         <tbody align="center">
@@ -85,10 +156,13 @@
                                 <td>${temp.eSex}</td>
                                 <td>${temp.eAvgScore}</td>
                                 <td>
-
-                                    <button class="btn bgm-cyan waves-effect">修改信息</button>
-                                    <button class="btn bgm-orange waves-effect">分配权限</button>
-                                    <button class="btn bgm-lightgreen waves-effec">删除员工</button>
+                                    <c:forEach items="${temp.roleList}" var="role">
+                                        &nbsp&nbsp<label>${role.rDesc}</label>&nbsp&nbsp
+                                    </c:forEach>
+                                </td>
+                                <td><button class="btn bgm-cyan waves-effect" onclick="openUpdateLayer(this)">修改信息</button>
+                                    <button class="btn bgm-orange waves-effect" onclick="setRole(this)">分配角色</button>
+                                    <button class="btn bgm-lightgreen waves-effec" onclick="deleteEmployee(this)">删除员工</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -97,10 +171,9 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
     </section>
+
 </section>
 
 <footer id="footer" style="position: absolute; top: 555px">
@@ -148,6 +221,52 @@
                 options[temp].checked='';
             }
         }
+    }
+    //打开修改弹出层
+    function openUpdateLayer(obj) {
+        $("#updateWin").modal("show");//打开修改面板
+        //进行数据回显
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        var name=$(obj).parent().parent().find("td").eq(2).text();
+        var sex=$(obj).parent().parent().find("td").eq(3).text();
+        $("#updateWin").find("input").eq(0).val(id);
+        $("#updateWin").find("input").eq(1).val(name);
+        $("#updateWin").find("input").eq(2).val(sex);
+    }
+    //执行修改
+    function executeUpdate(){
+        $("#updateForm").submit();
+    }
+
+    function alterRole(){
+        $("#updateRoleForm").submit();
+    }
+
+    //分配角色
+    function setRole(obj) {
+       $("#updateRole").modal("show");
+       var id=$(obj).parent().parent().find("td").eq(1).text();
+       $("#updateRole").find("input").eq(0).val(id);
+
+    }
+
+    //删除记录
+    function deleteEmployee(obj) {
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        console.log("要删除的id"+id);
+        var sure= window.confirm("确定要删除");
+        if(sure){
+        window.location.href="${pageContext.request.contextPath}/employee/deleteEmployee?eid="+id;
+        }
+    }
+
+    //取消按钮
+    function canceled(){
+        $("#updateWin").modal("hide");
+    }
+
+    function canceledAlter(){
+        $("#updateRole").modal("hide");
     }
 </script>
 </body>

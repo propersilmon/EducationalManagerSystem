@@ -2,16 +2,21 @@ package com.ems.controller;
 
 
 import com.ems.entity.SysEmployee;
-import com.ems.entity.SysPermission;
+import com.ems.entity.SysRole;
 import com.ems.service.EmployeeService;
 import com.ems.service.PermissionService;
-import com.ems.vo.ActiveEmployee;
+import com.ems.service.RoleService;
+import com.ems.shiro.realm.SysEmployeeRealm;
 import com.ems.vo.PageBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -21,8 +26,16 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private SysEmployeeRealm sysEmployeeRealm;
+
 
     /**
      * 跳转教职工登录页面
@@ -40,32 +53,32 @@ public class EmployeeController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@RequestParam("employeeId") String employeeId, @RequestParam("password") String password, Model model)
-    {
-        System.out.println("教职员工登录：工号"+employeeId+"密码"+password);
-        SysEmployee employee=employeeService.queryEmployeeById(Integer.parseInt(employeeId));
-        System.out.println(employee);
-        if(employee.getePassword().equals(password)){
-            ActiveEmployee activeEmployee=new ActiveEmployee();
-            // 查其的权限和菜单,进行set注入
-            List<SysPermission>  menuList =permissionService.queryMenuByUserId(employee.geteId());
-            List<SysPermission>  permissionList =permissionService.queryPermissionByUserId(employee.geteId());
-            activeEmployee.setEmployeeId(employee.geteId());
-            activeEmployee.setE_avg_score(employee.geteAvgScore());
-            activeEmployee.setEmployee_name(employee.geteName());
-            activeEmployee.setEployee_sex(employee.geteSex());
-            activeEmployee.setPassword(employee.getePassword());
-            activeEmployee.setMenuList(menuList);
-            activeEmployee.setPermissionList(permissionList);
-            model.addAttribute("activeEmployee",activeEmployee);
-            return "redirect:/employee/toHome";
-        }else{
-            model.addAttribute("message","账户名或密码错误");
-            return "/employee/employeeLoginPage";
-
-        }
-    }
+//    @RequestMapping(value = "/login",method = RequestMethod.POST)
+//    public String login(@RequestParam("employeeId") String employeeId, @RequestParam("password") String password, Model model)
+//    {
+//        System.out.println("教职员工登录：工号"+employeeId+"密码"+password);
+//        SysEmployee employee=employeeService.queryEmployeeById(Integer.parseInt(employeeId));
+//        System.out.println(employee);
+//        if(employee.getePassword().equals(password)){
+//            ActiveEmployee activeEmployee=new ActiveEmployee();
+//            // 查其的权限和菜单,进行set注入
+//            List<SysPermission>  menuList =permissionService.queryMenuByUserId(employee.geteId());
+//            List<SysPermission>  permissionList =permissionService.queryPermissionByUserId(employee.geteId());
+//            activeEmployee.setEmployeeId(employee.geteId());
+//            activeEmployee.setE_avg_score(employee.geteAvgScore());
+//            activeEmployee.setEmployee_name(employee.geteName());
+//            activeEmployee.setEployee_sex(employee.geteSex());
+//            activeEmployee.setPassword(employee.getePassword());
+//            activeEmployee.setMenuList(menuList);
+//            activeEmployee.setPermissionList(permissionList);
+//            model.addAttribute("activeEmployee",activeEmployee);
+//            return "redirect:/employee/toHome";
+//        }else{
+//            model.addAttribute("message","账户名或密码错误");
+//            return "/employee/employeeLoginPage";
+//
+//        }
+//    }
 
     /**
      * 首次登入后台后展示的内容
@@ -123,8 +136,29 @@ public class EmployeeController {
     @RequestMapping("/logout")
     public String logout(HttpSession session){
         session.removeAttribute("activeEmployee");
+        Subject currentEmployee = SecurityUtils.getSubject();
+        currentEmployee.logout();
+        sysEmployeeRealm.clearCached();
         //重定向在主页
         return "redirect:/toIndex";
+    }
+
+
+    //分配角色
+    @RequestMapping("/updateRole")
+    public String updateRole(HttpServletRequest req, HttpServletResponse resp){
+        String currentPageCode = req.getParameter("currentPage");
+        int eId = Integer.parseInt(req.getParameter("eId"));
+        String[] roleArray = req.getParameterValues("alterRoles");
+        employeeService.deleteRolesByeId(eId);
+        if (roleArray == null){
+            return "redirect:/employee/queryEmployee/" + currentPageCode;
+        }
+        for (String str : roleArray){
+            int rId = Integer.parseInt(str);
+            employeeService.addEmployeeRole(eId, rId);
+        }
+        return "redirect:/employee/queryEmployee/" + currentPageCode;
     }
 
     /**
@@ -149,6 +183,10 @@ public class EmployeeController {
         pageBean.setTotalPageCode(totalPage);
         pageBean.setBeanList(employees);
         model.addAttribute("pageBean",pageBean);
+
+        //查询所有角色便于分配
+        List<SysRole> roleList = roleService.queryAll();
+        model.addAttribute("roleList", roleList);
 
         //forward跳转到员工列表页面
         return "view/employee/employeeList";

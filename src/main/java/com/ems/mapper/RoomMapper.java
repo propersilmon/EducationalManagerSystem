@@ -19,6 +19,8 @@ public interface RoomMapper {
 
     List<Room> queryRoomByPosition(String position);
 
+            /*查询room*/
+    List<Room> selectRoom();
     List<Room> queryAllRoom();
 
     List<Room> queryAllRoom1();

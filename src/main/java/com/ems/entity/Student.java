@@ -18,19 +18,7 @@ public class Student {
     //是否在校
     private String sState;
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "sId='" + sId + '\'' +
-                ", sName='" + sName + '\'' +
-                ", sPassword='" + sPassword + '\'' +
-                ", sSex='" + sSex + '\'' +
-                ", sStartYear='" + sStartYear + '\'' +
-                ", sEndYear='" + sEndYear + '\'' +
-                ", sClass='" + sClass + '\'' +
-                ", sState='" + sState + '\'' +
-                '}';
-    }
+
 
     public Student(String sId, String sName, String sPassword, String sSex, String sStartYear, String sEndYear, String sClass, String sState) {
         this.sId = sId;
@@ -110,4 +98,19 @@ public class Student {
     public void setsState(String sState) {
         this.sState = sState == null ? null : sState.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sId='" + sId + '\'' +
+                ", sName='" + sName + '\'' +
+                ", sPassword='" + sPassword + '\'' +
+                ", sSex='" + sSex + '\'' +
+                ", sStartYear='" + sStartYear + '\'' +
+                ", sEndYear='" + sEndYear + '\'' +
+                ", sClass='" + sClass + '\'' +
+                ", sState='" + sState + '\'' +
+                '}';
+    }
+
 }

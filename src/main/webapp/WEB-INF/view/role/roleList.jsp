@@ -34,10 +34,112 @@
 </head>
 <body>
 
+<div class="modal fade" id="addRole" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;position: absolute;top:8px;">添加角色</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="addRoleForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/managerRoles/addRole" method="post">
+                    <%--隐藏域用来表单提交时知道员工id的--%>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色名字</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="roleName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色描述</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="desc" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="addRole()">添加</button>
+                <button class="btn btn-success btn-sm" onclick="canceled()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alterRole" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;position: absolute;top:8px;">修改角色</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="alterRoleForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/managerRoles/alterRole?currentPage=${pageBean.currentPageCode}" method="post">
+                    <%--隐藏域用来表单提交时知道角色id的--%>
+                        <input type="hidden" name="rId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色名字</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="roleName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">角色描述</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="desc" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="alterRole()">修改</button>
+                <button class="btn btn-success btn-sm" onclick="alterCanceled()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dividePermission" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <p style="color: white;margin: auto; position: absolute;top:8px;">分配权限</p>
+            </div>
+            <!-- 身体 -->
+            <div class="modal-body">
+                <form id="dividePermissionForm" role="form" class="form-horizontal" action="${pageContext.request.contextPath}/managerRoles/dividePermission?currentPage=${pageBean.currentPageCode}" method="post">
+                    <%--                    隐藏域用来表单提交时知道角色id的--%>
+                    <input type="hidden" name="rId">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">权限</label>
+                        <div class="col-sm-6">
+                            <c:forEach items="${permissionList}" var="permission">
+                                <div class="col-sm-4">
+                                    <label>${permission.pName}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="checkbox" type="checkbox" name="dPermissions" value="${permission.pId}">
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 底部 -->
+            <div class="modal-footer">
+                <button class="btn btn-success btn-sm" onclick="divide()">分配</button>
+                <button class="btn btn-success btn-sm" onclick="canceledDivide()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="main">
-
-
     <section id="content">
         <div class="container">
             <div class="block-header">
@@ -52,15 +154,13 @@
                 <div class="card-header">
                     <h2>角色列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>
-
-                            <a href="${pageContext.request.contextPath}/role/add" class="btn bgm-blue waves-effect" ><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>角色添加</a>
+                            <a href="javascript: openAddRole()" class="btn bgm-blue waves-effect" ><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>角色添加</a>
                             <button class="btn bgm-green waves-effect" ><i class="tm-icon zmdi zmdi-search"></i>角色查询</button>
                             &nbsp;&nbsp;
                             <input type="text">
                             &nbsp;&nbsp;
                             <button class="btn bgm-red waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i>批量删除</button>
                         </span>
-
                     </h2>
                 </div>
 
@@ -70,9 +170,10 @@
                         <tr align="center">
                             <th class="select-cell" style="text-align: center;"><div class="checkbox"><label><input name="select"  type="checkbox" class="select-box" value="all" onchange="allSelect(this)"><i class="input-helper"></i></label></div></th>
                             <th data-column-id="id" data-type="numeric" data-identifier="true" width="10%" style="text-align: center;">ID</th>
-                            <th data-column-id="sender" width="20%" style="text-align: center;">名称</th>
+                            <th data-column-id="sender" width="10%" style="text-align: center;">名称</th>
                             <th data-column-id="received" data-order="desc" width="10%" style="text-align: center;">描述</th>
-                            <th data-column-id="received" data-order="desc" width="40%" style="text-align: center;">操作</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">权限</th>
+                            <th data-column-id="received" data-order="desc" width="30%" style="text-align: center;">操作</th>
                         </tr>
                         </thead>
                         <tbody align="center">
@@ -83,8 +184,14 @@
                                 <td>${temp.rName}</td>
                                 <td>${temp.rDesc}</td>
                                 <td>
-                                    <button class="btn bgm-cyan waves-effect">修改角色</button>
-                                    <button class="btn bgm-lightgreen waves-effec">删除角色</button>
+                                    <c:forEach items="${temp.permissionList}" var="permission">
+                                        &nbsp&nbsp<label>${permission.pName}</label>&nbsp&nbsp
+                                    </c:forEach>
+                                </td>
+                                <td>
+                                    <button class="btn bgm-blue waves-effect" onclick="dividePermission(this)">分配权限</button>
+                                    <button class="btn bgm-cyan waves-effect" onclick="openAlterRole(this)">修改角色</button>
+                                    <button class="btn bgm-lightgreen waves-effect" onclick="deleteRole(this)">删除角色</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -93,8 +200,6 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
     </section>
 </section>
@@ -145,6 +250,62 @@
             }
         }
     }
+
+    //添加角色
+    function openAddRole() {
+        $("#addRole").modal("show");
+    }
+
+    function addRole(){
+        $("#addRoleForm").submit();
+    }
+
+    function canceled(){
+        $("#addRole").modal("hide");
+    }
+
+    //修改角色
+    function openAlterRole(obj){
+        $("#alterRole").modal("show");
+
+        //进行数据回显
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        $("#alterRoleForm").find("input").eq(0).val(id);
+    }
+
+    function alterRole() {
+        $("#alterRoleForm").submit();
+    }
+
+    function alterCanceled(){
+        $("#alterRole").modal("hide");
+    }
+
+    function deleteRole(obj){
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        var sure= window.confirm("确定要删除");
+        if(sure){
+            window.location.href="${pageContext.request.contextPath}/managerRoles/deleteRole?rId="+id + "&currentPage=${pageBean.currentPageCode}";
+        }
+    }
+
+    //分配权限
+    function dividePermission(obj) {
+        $("#dividePermission").modal("show");
+
+        //进行数据回显
+        var id=$(obj).parent().parent().find("td").eq(1).text();
+        $("#dividePermission").find("input").eq(0).val(id);
+    }
+
+    function divide() {
+        $("#dividePermissionForm").submit();
+    }
+
+    function canceledDivide() {
+        $("#dividePermission").modal("hide");
+    }
+
 </script>
 </body>
 </html>

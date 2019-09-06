@@ -2,7 +2,10 @@ package com.ems.service.impl;
 
 
 import com.ems.entity.SysEmployee;
+import com.ems.entity.SysEmployeeRole;
 import com.ems.mapper.SysEmployeeMapper;
+import com.ems.mapper.SysEmployeeRoleMapper;
+import com.ems.mapper.SysRoleMapper;
 import com.ems.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,10 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private SysEmployeeMapper sysEmployeeMapper;
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+    @Autowired
+    private SysEmployeeRoleMapper sysEmployeeRoleMapper;
 
     @Override
     public SysEmployee queryEmployeeById(int employeeId) {
@@ -26,7 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<SysEmployee> queryEmployeeByPage(int currentPage, int recordPerPage) {
-        return sysEmployeeMapper.queryEmployeeByPage((currentPage-1)*recordPerPage,recordPerPage);
+        List<SysEmployee> sysEmployeeList = sysEmployeeMapper.queryEmployeeByPage((currentPage-1)*recordPerPage,recordPerPage);
+        for (SysEmployee employee : sysEmployeeList){
+            employee.setRoleList(sysRoleMapper.queryRoleByEId(employee.geteId()));
+        }
+        return sysEmployeeList;
     }
 
     @Override
@@ -42,5 +53,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<SysEmployee> queryAll() {
         return sysEmployeeMapper.queryAll();
+    }
+
+    @Override
+    public void deleteRolesByeId(int eId) {
+        sysEmployeeRoleMapper.deleteByeId(eId);
+    }
+
+    @Override
+    public void addEmployeeRole(int eId, int rId) {
+        sysEmployeeRoleMapper.addEmployeeRole(eId, rId);
     }
 }

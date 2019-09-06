@@ -16,7 +16,7 @@
 
     <!--加载db.properties-->
     <context:property-placeholder location="classpath:db.properties"/>
-
+    <import resource="spring-mvc.xml"/>
 
     <!--配置druid连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -90,6 +90,12 @@
         </property>
     </bean>
 
+    <!-- 缓存管理器 -->
+
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:spring/shiro-ehcache.xml"/>
+    </bean>
+
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="authenticator" ref="authenticator"/>
@@ -99,6 +105,7 @@
                 <ref bean="sysEmployeeRealm"/>
             </list>
         </property>
+        <property name="cacheManager" ref="cacheManager"/>
     </bean>
 
     <!-- Shiro过滤器 -->
@@ -112,11 +119,9 @@
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
-                /login/**=anon
                 /studentLogin=anon
                 /sysEmployeeLogin=anon
-                /student/index=roles[student]
-                /sysEmployee/index=roles[admin]
+                /employee/toHome=authc
             </value>
         </property>
     </bean>
@@ -146,6 +151,4 @@
     <aop:config>
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.ems.service.impl.*.*(..))"/>
     </aop:config>
-
-
 </beans>

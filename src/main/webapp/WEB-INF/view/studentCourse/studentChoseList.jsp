@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -35,8 +36,6 @@
 
 
 <section id="main">
-
-
     <section id="content">
         <div class="container">
             <div class="block-header">
@@ -134,7 +133,6 @@
             </div>
         </div>
     </section>
-
 </section>
 
 <footer id="footer" style="position: absolute; top: 555px">

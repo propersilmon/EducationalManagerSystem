@@ -3,6 +3,7 @@ package com.ems.shiro.realm;
 import com.ems.entity.Student;
 import com.ems.service.StudentSerivce;
 import com.ems.shiro.token.CustomizedToken;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -20,18 +21,7 @@ public class StudentRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        System.out.println("进行了学生的认证");
-        String userName = (String)principals.getPrimaryPrincipal();
-        //进行授权角色
-        Set<String> roleSet = new HashSet<>();
-        roleSet.add("student");
-        info.setRoles(roleSet);
-        Set<String> permissionSet = new HashSet<>();
-        //进行授权权限
-        permissionSet.add("user:delete");
-        info.setStringPermissions(permissionSet);
-        return info;
+        return null;
     }
 
     @Override
@@ -54,5 +44,11 @@ public class StudentRealm extends AuthorizingRealm {
 
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password, getName());
         return info;
+    }
+
+    public void clearCached() {
+        PrincipalCollection principals = SecurityUtils.getSubject()
+                .getPrincipals();
+        super.clearCache(principals);
     }
 }

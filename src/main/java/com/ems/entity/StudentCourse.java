@@ -74,4 +74,5 @@ public class StudentCourse {
                 ", tScore=" + tScore +
                 '}';
     }
+
 }

@@ -93,6 +93,15 @@
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
 
+  <!--######################################################################-->
+  <select id="selectEmployeeByENameAndEPassword" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where e_name = #{eName,jdbcType=VARCHAR}
+       and e_password = #{ePassword,jdbcType=VARCHAR}
+  </select>
+
   <!--追加-->
   <update id="updatePasswordByEmployeeId">
     UPDATE sys_employee SET e_password=#{newPassword} WHERE e_id=#{employeeId}

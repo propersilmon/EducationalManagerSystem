@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -115,28 +116,30 @@
 
         <ul class="main-menu">
 
-            <li class="sub-menu">
-                <a href=""><i class="zmdi zmdi-view-compact"></i> 系统管理</a>
-                <ul>
+            <shiro:hasRole name="admin">
+                <li class="sub-menu">
+                    <a href=""><i class="zmdi zmdi-view-compact"></i> 系统管理</a>
+                    <ul>
 
-                    <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
-                    <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
-                    <li><a href="javascript:changeFrame('managerPermissions')">权限管理</a></li>
-                    <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
-                    <li><a href="textual-menu.html">教室管理</a></li>
-                    <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
-                    <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
-                </ul>
-            </li>
+                        <li><a href="javascript:changeFrame('managerUser')">员工管理</a></li>
+                        <li><a href="javascript:changeFrame('managerRoles')">角色管理</a></li>
+                        <li><a href="javascript:changeFrame('managerStudent')">学籍管理</a></li>
+                        <li><a href="textual-menu.html">教室管理</a></li>
+                        <li><a href="javascript:changeFrame('managerCourse')">课程管理</a></li>
+                            <%--分配权限，修改信息，删除这些都在查询的表格中在查询--%>
+                    </ul>
+                </li>
+            </shiro:hasRole>
+
 
             <li class="sub-menu">
                 <a href=""><i class="zmdi zmdi-collection-item"></i>教师管理系统</a>
                 <ul>
 
-                    <li><a href="profile-about.html">查看课程安排</a></li>
-                    <li><a href="list-view.html">查看选课学生</a></li>
-                    <li><a href="messages.html">录入成绩</a></li>
-                    <li><a href="pricing-table.html">查看成绩</a></li>
+                    <li><a href="javascript:changeFrame('selectCourseManager')">查看课程安排</a></li>
+                    <li><a href="javascript:changeFrame('showStudents')">查看选课学生</a></li>
+                    <li><a href="javascript:changeFrame('entryScore')">录入成绩</a></li>
+                    <li><a href="javascript:changeFrame('lookScore')">查看成绩</a></li>
                 </ul>
             </li>
 
@@ -145,7 +148,7 @@
 
 
     <section id="content">
-        <div class="container"  >
+        <div class="container"  style="height: 1300px;">
         <%--使用内敛框架--%>
             <iframe id="myFrame" src="${pageContext.request.contextPath}/employee/toInnerIndex" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
         </div>
@@ -187,10 +190,17 @@
     <%--点击按钮（超链接）后--%>
     function changeFrame(arg) {
         if(arg==='updatePassword'){
+
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/updatePassword");
 
         }else if(arg==='managerUser'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/queryEmployee/1");
+        }else if(arg==='selectCourseManager'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/selectCourse");
+        }else if(arg==='entryScore'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/scoresList");
+        }else if(arg==='lookScore'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/selectAllScoresList");
         }else if(arg==='managerStudent')
         {
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerStudent/queryStudent/1");
@@ -198,6 +208,8 @@
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerRoles/queryRole/1")
         }else if (arg === 'managerCourse'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/courseController/toListCourse")
+        }else if (arg==='showStudents'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/updateUI")
         }
     }
 </script>

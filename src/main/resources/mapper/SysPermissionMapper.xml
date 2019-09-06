@@ -120,4 +120,21 @@ INNER JOIN sys_role_permission ON sys_employee_role.r_id = sys_role_permission.r
 INNER JOIN sys_permission ON sys_role_permission.p_id = sys_permission.p_id
 WHERE sys_employee_role.e_id=#{employeeId} AND sys_permission.type='permission'
     </select>
+  <select id="queryPermissionByrId" resultType="com.ems.entity.SysPermission">
+    SELECT
+    sys_permission.p_id,
+    sys_permission.parent_id,
+    sys_permission.type,
+    sys_permission.p_name,
+    sys_permission.p_desc,
+    sys_role_permission.r_id
+    FROM
+    sys_role_permission
+    INNER JOIN sys_permission ON sys_role_permission.P_id = sys_permission.p_id
+    WHERE
+    sys_role_permission.r_id = #{rId}
+  </select>
+    <select id="queryAll" resultType="com.ems.entity.SysPermission">
+      SELECT * FROM sys_permission
+    </select>
 </mapper>

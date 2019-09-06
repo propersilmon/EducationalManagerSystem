@@ -21,7 +21,8 @@
     delete from sys_role
     where r_id = #{rId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ems.entity.SysRole" >
+
+    <insert id="insert" parameterType="com.ems.entity.SysRole" >
     insert into sys_role (r_id, r_name, r_desc
       )
     values (#{rId,jdbcType=INTEGER}, #{rName,jdbcType=VARCHAR}, #{rDesc,jdbcType=VARCHAR}
@@ -52,6 +53,12 @@
       </if>
     </trim>
   </insert>
+  <insert id="addRole">
+    insert into sys_role (r_name, r_desc
+      )
+    values (#{0},#{1}
+      )
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysRole" >
     update sys_role
     <set >
@@ -71,8 +78,7 @@
     where r_id = #{rId,jdbcType=INTEGER}
   </update>
 
-
-  <!--  追加-->
+    <!--  追加-->
   <select id="queryAll" resultMap="BaseResultMap">
     SELECT * FROM sys_role
   </select>
@@ -92,4 +98,6 @@ WHERE sys_employee_role.e_id=#{eId}
     <select id="queryRolesByPage" resultType="com.ems.entity.SysRole">
       SELECT * FROM sys_role LIMIT #{0},#{1}
     </select>
+
+
 </mapper>

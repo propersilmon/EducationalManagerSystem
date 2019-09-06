@@ -46,6 +46,7 @@ public class CourseServiceImpl implements CourseService {
     public int deletCourseById(Course course) {
 
         return courseMapper.deleteByPrimaryKey(course);
+
     }
 
     @Override

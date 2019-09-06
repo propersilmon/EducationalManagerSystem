@@ -21,6 +21,10 @@
     delete from sys_employee_role
     where e_r_id = #{eRId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByeId">
+    delete from sys_employee_role
+    where e_id = #{eId}
+  </delete>
   <insert id="insert" parameterType="com.ems.entity.SysEmployeeRole" >
     insert into sys_employee_role (e_r_id, e_id, r_id
       )
@@ -51,6 +55,12 @@
         #{rId,jdbcType=INTEGER},
       </if>
     </trim>
+  </insert>
+  <insert id="addEmployeeRole">
+    insert into sys_employee_role (e_id, r_id
+      )
+    values (#{0}, #{1})
+
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ems.entity.SysEmployeeRole" >
     update sys_employee_role

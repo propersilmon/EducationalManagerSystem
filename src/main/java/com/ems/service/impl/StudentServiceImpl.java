@@ -15,6 +15,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentSerivce {
     @Autowired
     private StudentMapper studentMapper;
+
     @Autowired
     private StudentCourseMapper studentCourseMapper;
     @Autowired
@@ -54,6 +55,16 @@ public class StudentServiceImpl implements StudentSerivce {
     @Override
     public Student queryStudentById(String id) {
         return studentMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Student> selectStudent() {
+        return studentMapper.selectStudent();
+    }
+
+    @Override
+    public Student selectStudentById(int s_id) {
+        return studentMapper.selectStudentById(s_id);
     }
 
     @Override
