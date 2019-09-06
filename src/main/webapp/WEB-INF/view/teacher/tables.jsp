@@ -68,8 +68,13 @@
                                                     <tr>
                                                         <th>${course.cName}</th>
                                                         <th>${course.cCredit}</th>
-                                                        <th>${course.elective}</th>
-                                                        <th>${course.createDate}</th>
+
+                                                        <th><c:if test="${course.elective==0}">必修</c:if>
+                                                            <c:if test="${course.elective==1}">选修</c:if>
+                                                        </th>
+                                                        <th>
+                                                            <fmt:formatDate value="${course.createDate}"  pattern="yyyy-MM-dd"/>
+                                                        </th>
                                                         <th>${courseRoom.desc}</th>
                                                         <th>${courseRoom.interval}</th>
                                                         <th>${courseRoom.week}</th>
