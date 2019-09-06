@@ -21,4 +21,5 @@ public interface CourseRoomMapper {
 
     CourseRoom selectByCId(Integer cId);
 
+    List<CourseRoom> queryAllCR(String sId);
 }

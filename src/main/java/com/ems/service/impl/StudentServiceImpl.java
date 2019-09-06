@@ -1,11 +1,7 @@
 package com.ems.service.impl;
 
-import com.ems.entity.Course;
-import com.ems.entity.Student;
-import com.ems.entity.StudentCourse;
-import com.ems.mapper.CourseMapper;
-import com.ems.mapper.StudentCourseMapper;
-import com.ems.mapper.StudentMapper;
+import com.ems.entity.*;
+import com.ems.mapper.*;
 import com.ems.service.StudentSerivce;
 import com.ems.vo.StudentChoseCourse;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +20,12 @@ public class StudentServiceImpl implements StudentSerivce {
     private StudentCourseMapper studentCourseMapper;
     @Autowired
     private  CourseMapper courseMapper;
+    @Autowired
+    private ClassCourseMapper classCourseMapper;
+    @Autowired
+    private CourseRoomMapper courseRoomMapper;
+    @Autowired
+    private RoomMapper roomMapper;
     @Override
     public List<Student> queryStudentByPage(int currentPageIdx) {
         //每页查10个
@@ -98,6 +100,68 @@ public class StudentServiceImpl implements StudentSerivce {
         return studentMapper.updateT_scoreByS_c_id(tScore,sCId);
     }
 
+    @Override
+    public List<ClassCourse> queryAllBXCourse(String sClass) {
+       return classCourseMapper.queryAllBXCourse(sClass);
+    }
+
+    @Override
+    public List<ClassCourse> queryBXByID(int cId) {
+        return courseMapper.queryBXByID(cId);
+    }
+
+    @Override
+    public int delteXK(StudentCourse studentCourse) {
+        return studentCourseMapper.delteXK(studentCourse);
+
+    }
+
+    @Override
+    public int addAllBXCourse(StudentCourse studentCourse) {
+        return studentCourseMapper.insert(studentCourse);
+
+    }
+
+    @Override
+    public List<Course> queryAllXXCourse() {
+        return courseMapper.queryAllXXCourse();
+
+    }
+
+    @Override
+    public List<Course> queryAllCourse1(String sId) {
+        return courseMapper.queryAllCourse1(sId);
+    }
+
+    @Override
+    public int delteXX(StudentCourse studentCourse) {
+        return studentCourseMapper.delteXX(studentCourse);
+
+    }
+
+    @Override
+    public int addXXcourse(StudentCourse studentCourse) {
+        return studentCourseMapper.insert(studentCourse);
+
+    }
+
+    @Override
+    public List<Course> queryAllC() {
+        return courseMapper.queryAllC();
+
+    }
+
+    @Override
+    public List<CourseRoom> queryAllCR(String sId) {
+        return courseRoomMapper.queryAllCR(sId);
+
+    }
+
+    @Override
+    public List<Room> queryAllRoom1() {
+        return roomMapper.queryAllRoom1();
+
+    }
 
 
 }

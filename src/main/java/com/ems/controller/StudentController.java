@@ -1,7 +1,6 @@
 package com.ems.controller;
 
-import com.ems.entity.Student;
-import com.ems.entity.StudentCourse;
+import com.ems.entity.*;
 import com.ems.service.StudentSerivce;
 import com.ems.vo.ActiveStudent;
 import com.ems.vo.PageBean;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -98,6 +98,99 @@ public class StudentController {
 
 
     }
+    /**
+     * author:Chung-HB
+     */
+    //查询所有的必修课
+    @RequestMapping("/queryBXCourse")
+    public String queryBXCourse(HttpServletRequest req, HttpServletResponse resp, Model model,
+                                Student student) throws IOException {
+        ActiveStudent activeStudent = (ActiveStudent) req.getSession().getAttribute("activeStudent");
+        String  sClass=activeStudent.getsClass();
+        List<ClassCourse> BXCourse = studentSerivce.queryAllBXCourse(sClass);
+        List<ClassCourse> YXXXCourse = null;
+        for (ClassCourse classcourse : BXCourse) {
+            int cId = classcourse.getcId();
+            YXXXCourse = studentSerivce.queryBXByID(cId);
+        }
+        req.setAttribute("YXXXCourse", YXXXCourse);
+        // 2、跳转页面
+        return "view/student/studentBXList";
+    }
+
+    @RequestMapping("/updateBXCourse")
+    //添加必修课到选课表
+    public String updateBXCourse(HttpServletRequest req, HttpServletResponse resp, Model model,
+                                 Student student) throws IOException {
+        ActiveStudent activeStudent = (ActiveStudent) req.getSession().getAttribute("activeStudent");
+        String  sClass=activeStudent.getsClass();
+        List<ClassCourse> BXCourse = studentSerivce.queryAllBXCourse(sClass);
+        for (ClassCourse classcourse : BXCourse) {
+            classcourse.getcId();
+            StudentCourse studentCourse = new StudentCourse();
+            studentCourse.setcId(classcourse.getcId());
+            studentCourse.setsId(activeStudent.getsId());
+            int n=studentSerivce.delteXK(studentCourse);
+            int m=studentSerivce.addAllBXCourse(studentCourse);
+            System.out.println(n+"################"+m);
+        }
+
+        return "view/student/index";
+    }
+
+    //查询所有的选修课
+    @RequestMapping("/queryAllXXCourse")
+    public String queryAllXXCourse(HttpServletRequest request, HttpServletResponse resp, Model model,
+                                   Student student) throws IOException {
+        System.out.println("##############################");
+        List<Course> list=studentSerivce.queryAllXXCourse();
+        for (Course course : list) {
+            System.out.println(course.toString());
+        }
+        request.setAttribute("list", list);
+        return"view/student/studentXXList";
+    }
+
+    //查询所有的课程
+    @RequestMapping("/queryAllCourse")
+    public String queryAllCourse(HttpServletRequest request, HttpServletResponse resp, Model model,
+                                 Student student ,HttpSession session) throws IOException {
+        System.out.println("##############################");
+        ActiveStudent activeStudent = (ActiveStudent) request.getSession().getAttribute("activeStudent");
+        String sId=activeStudent.getsId();
+        //查询所有的课程
+        List<Course> allCourse=studentSerivce.queryAllCourse1(sId);
+        List<Course> all=studentSerivce.queryAllC();
+        //查询所有的教室
+        List<CourseRoom> list = studentSerivce.queryAllCR(sId);
+        //查询所有的Room
+        List<Room>list1=studentSerivce.queryAllRoom1();
+        model.addAttribute("list",list);
+        model.addAttribute("list1",list1);
+        model.addAttribute("all",all);
+        request.setAttribute("allCourse", allCourse);
+        return"view/student/studentAllCourseList";
+    }
+
+    //添加选修课
+    @RequestMapping("/addXXCourse")
+    public String addXXCourse(HttpServletRequest request, HttpServletResponse resp, Model model,
+                              Student student) throws IOException {
+
+        ActiveStudent activeStudent = (ActiveStudent) request.getSession().getAttribute("activeStudent");
+        String sId=activeStudent.getsId();
+        String []cId_st= request.getParameterValues("selectCourse");
+        for(String temp : cId_st) {
+            int cId = Integer.valueOf(temp);
+            StudentCourse studentCourse = new StudentCourse();
+            studentCourse.setsId(sId);
+            studentCourse.setcId(cId);
+            int n = studentSerivce.delteXX(studentCourse);
+            int m = studentSerivce.addXXcourse(studentCourse);
+        }
+        return "view/student/index";
+    }
+
     /*退课*/
     @RequestMapping(value = "/deleteCourse")
     public String deleteCourse(HttpServletRequest request, HttpServletResponse response, HttpSession session){

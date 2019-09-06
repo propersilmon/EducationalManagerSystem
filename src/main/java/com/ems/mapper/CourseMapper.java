@@ -1,5 +1,6 @@
 package com.ems.mapper;
 
+import com.ems.entity.ClassCourse;
 import com.ems.entity.Course;
 import org.apache.ibatis.annotations.Param;
 
@@ -35,4 +36,12 @@ public interface CourseMapper {
     int queryBycNameCount();
 
     Course queryByKey(int cId);
+
+    List<ClassCourse> queryBXByID(int cId);
+
+    List<Course> queryAllXXCourse();
+
+    List<Course> queryAllCourse1(String sId);
+
+    List<Course> queryAllC();
 }

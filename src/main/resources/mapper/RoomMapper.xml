@@ -85,4 +85,8 @@
   <select id="queryAllRoom" resultType="com.ems.entity.Room">
     select * from t_room order by position
   </select>
+
+  <select id="queryAllRoom1"  resultType="Room">
+    select * from t_room
+  </select>
 </mapper>
