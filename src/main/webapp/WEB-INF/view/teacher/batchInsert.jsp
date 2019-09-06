@@ -125,7 +125,9 @@
                     </tbody>
                 </table>
             </div>
+                <center>
                 <button class="btn btn-info waves-effect" ><trans oldtip="Submit" newtip="批量录入" style="">批量录入</trans></button>
+                </center>
             </form>
         </div>
     </div>

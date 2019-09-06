@@ -4,6 +4,7 @@ import com.ems.entity.Course;
 import com.ems.entity.Student;
 import com.ems.service.TeacherService;
 import com.ems.vo.ActiveEmployee;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ems.entity.*;
 import com.ems.service.StudentCourseService;
@@ -243,14 +244,16 @@ public class TeacherController {
         session.setAttribute("list2", list2);
         System.out.println(list2);
         String basePath = req.getContextPath();
-        return "window.location.href='" + basePath + "/teacherController/jump'";
+        System.out.println("*******"+basePath);
+        JSONObject json=new JSONObject();
+        json.put("targetUrl","/teacherController/jump");
+        return json.toString();
     }
     /**
      *查找学生信息显示在批量录入界面
      * */
     @RequestMapping("/jump")
     public String Jump(HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
-
         TeacherCourseAndRoom teacherCourseAndRoom = new TeacherCourseAndRoom();
         List<Course> courseList;
         List<Student> studentList;
@@ -259,7 +262,7 @@ public class TeacherController {
         int eId =activeEmployee.getEmployeeId();
         courseList = teacherService.selectCourseById(eId);
         teacherCourseAndRoom.setCourse(courseList);
-
+        System.out.println(courseList);
         /*查询student表中学生信息*/
         studentList = studentSerivce.selectStudent();
 
