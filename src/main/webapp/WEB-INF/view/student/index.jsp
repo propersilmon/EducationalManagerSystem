@@ -91,14 +91,10 @@
                 </div>
 
                 <div class="profile-info">
-                    ${sessionScope.activeEmployee["employee_name"]}
+                    ${activeStudent.sName}
                     <i class="zmdi zmdi-caret-down"></i>
                 </div>
             </a>
-
-            欢迎<font color="red">${activeStudent.sName}</font>光临
-
-
             <ul class="main-menu">
                 <li>
                     <a href="javascript:changeFrame('updatePassword')"><i class="zmdi zmdi-account"></i> 修改密码</a>
