@@ -72,17 +72,17 @@
                                   method="post">
                                     <div class="form-group">
                                         <label>教室编号</label>
-                                        <input type="text" name="rId" class="form-control" placeholder="教室编号一旦创建不能更改，请仔细核对！">
+                                        <input type="text" name="rId" class="form-control" placeholder="教室编号一旦创建不能更改，请仔细核对！" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')">
                                     </div>
                                 <br>
                                 <div class="form-group">
                                     <label>教室位置</label>
-                                    <input type="text" name="position" class="form-control" placeholder="填写新的教室位置">
+                                    <input type="text" name="position" class="form-control" placeholder="填写新的教室位置" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label>教室容量</label>
-                                    <input type="text" name="maxCount" class="form-control" placeholder="填写新的教室容量">
+                                    <input type="text" name="maxCount" class="form-control" placeholder="填写新的教室容量" onblur="if(this.value.replace(/^ +| +$/g,'')=='')alert('文本框内不能为空!')">
                                 </div>
                                 <button type="submit" class="btn btn-success waves-effect">添加教室信息
                                 </button>
@@ -130,26 +130,4 @@
 <script src="${pageContext.request.contextPath}/js/demo.js"></script>
 
 </body>
-<script type="text/javascript">
-    function addUser() {
-        if ($("input:eq(0)").val() !== '' && $("input:eq(2)").val() !== '') {
-            //$("form").submit();
-
-            $.ajax({
-                type: 'POST',
-                data: new FormData($("#addForm")[0]),
-                url: '${pageContext.request.contextPath}/employee/add',
-                processData: false,
-                contentType: false,
-                dataType: "html",
-                success: function (data) {
-                    // window.alert("请求已发送");
-                    $("#resultBox").html(data);
-                }
-            });
-        } else {
-            window.alert("数据不能为空");
-        }
-    }
-</script>
 </html>
