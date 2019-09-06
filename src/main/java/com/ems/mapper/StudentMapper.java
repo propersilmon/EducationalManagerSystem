@@ -1,5 +1,6 @@
 package com.ems.mapper;
 
+import com.ems.entity.Course;
 import com.ems.entity.Student;
 import com.ems.entity.StudentCourse;
 
@@ -21,6 +22,8 @@ public interface StudentMapper {
     List<Student> queryStudentByPage(int agr1, int agr2);
 
     int totalStudentCount();
+
+    List<Student> selectStudentsByCourse(Course course);
 
     int dropCourseCourseByS_c_id(int s_c_id);
 

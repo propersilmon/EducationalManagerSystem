@@ -130,12 +130,32 @@
 
 
   <!--追加-->
-  <select id="queryStudentByPage" resultMap="BaseResultMap">
+  <select id="queryStudentByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     SELECT * FROM t_student LIMIT #{0},#{1}
   </select>
   
   <select id="totalStudentCount" resultType="java.lang.Integer">
     SELECT COUNT(*) FROM t_student
+  </select>
+
+  <!--##############################################################################-->
+
+
+  <select id="selectStudentsByCourse" resultMap="BaseResultMap"  >
+   SELECT
+    t_student.s_id,
+    t_student.s_name,
+    t_student.s_password,
+    t_student.s_sex,
+    t_student.s_start_year,
+    t_student.s_end_year,
+    t_student.s_class,
+    t_student.s_state
+    FROM
+    t_student
+      INNER JOIN t_student_course ON t_student.s_id = t_student_course.s_id
+      INNER JOIN t_course ON t_student_course.c_id = t_course.c_id
+      WHERE t_course.c_id = #{cId,jdbcType=INTEGER}
   </select>
 
   <!--*********查询所有学生信息********************-->

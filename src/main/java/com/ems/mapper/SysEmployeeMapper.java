@@ -17,6 +17,8 @@ public interface SysEmployeeMapper {
     int updateByPrimaryKeySelective(SysEmployee record);
 
     int updateByPrimaryKey(SysEmployee record);
+
+    SysEmployee selectEmployeeByENameAndEPassword(@Param("eName") String eName,@Param("ePassword") String ePassword);
     int updatePasswordByEmployeeId(@Param("employeeId") int employeeId, @Param("newPassword") String newPassword);
 
     List<SysEmployee> queryEmployeeByPage(int i, int recordPerPage);

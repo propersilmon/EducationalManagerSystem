@@ -138,7 +138,7 @@
                 <ul>
 
                     <li><a href="javascript:changeFrame('selectCourseManager')">查看课程安排</a></li>
-                    <li><a href="javascript:changeFrame('selectCourseStudent')">查看选课学生</a></li>
+                    <li><a href="javascript:changeFrame('showStudents')">查看选课学生</a></li>
                     <li><a href="javascript:changeFrame('entryScore')">录入成绩</a></li>
                     <li><a href="javascript:changeFrame('lookScore')">查看成绩</a></li>
                 </ul>
@@ -191,6 +191,7 @@
     <%--点击按钮（超链接）后--%>
     function changeFrame(arg) {
         if(arg==='updatePassword'){
+
             $("#myFrame").attr("src","${pageContext.request.contextPath}/employee/updatePassword");
 
         }else if(arg==='managerUser'){
@@ -210,6 +211,8 @@
             $("#myFrame").attr("src","${pageContext.request.contextPath}/managerRoles/queryRole/1")
         }else if (arg === 'managerCourse'){
             $("#myFrame").attr("src","${pageContext.request.contextPath}/courseController/toListCourse")
+        }else if (arg==='showStudents'){
+            $("#myFrame").attr("src","${pageContext.request.contextPath}/teacherController/updateUI")
         }
     }
 </script>

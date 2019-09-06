@@ -1,13 +1,16 @@
 package com.ems.controller;
 
+import com.ems.entity.Course;
+import com.ems.entity.Student;
+import com.ems.service.TeacherService;
+import com.ems.vo.ActiveEmployee;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.ems.entity.*;
 import com.ems.service.StudentCourseService;
 import com.ems.service.StudentSerivce;
-import com.ems.service.TeacherService;
-import com.ems.vo.ActiveEmployee;
 import com.ems.vo.TeacherCourseAndRoom;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,13 +48,21 @@ public class TeacherController {
         /*查询courser_room表中信息*/
         courseRoomList = teacherService.selectCourseRoom();
         teacherCourseAndRoom.setCourseRoom(courseRoomList);
-
         /*查询room表中信息*/
         roomList = teacherService.selectRoom();
         teacherCourseAndRoom.setRoom(roomList);
         session.setAttribute("teacherCourseAndRoom", teacherCourseAndRoom);
         return "view/teacher/tables";
     }
+    @RequestMapping("/updateUI")
+    public  String seleteCourseToUodateUI(HttpServletRequest req, HttpServletResponse resp , HttpSession session , Model model){
+        ActiveEmployee activeEmployee = (ActiveEmployee) session.getAttribute("activeEmployee");
+        int eId = activeEmployee.getEmployeeId();
+        List<Course> courseList = teacherService.selectCNameByEId(eId);
+        model.addAttribute("courseList",courseList);
+        return "view/teacher/showStudents";
+    }
+
     /**
      *查找教师课程对应的学生选课信息
      * */
@@ -73,8 +84,18 @@ public class TeacherController {
         session.setAttribute("teacherCourseAndRoom", teacherCourseAndRoom);
         session.setAttribute("studentCoursesList", studentCoursesList);
         session.setAttribute("studentList", studentList);
-
         return "view/teacher/tables2";
+    }
+    @RequestMapping("/selectStudents")
+    public  String seleteStudentsByCId(HttpServletRequest req, HttpServletResponse resp , HttpSession session , Model model){
+        int cId = Integer.parseInt(req.getParameter("cId"));
+        ActiveEmployee activeEmployee = (ActiveEmployee) session.getAttribute("activeEmployee");
+        int eId = activeEmployee.getEmployeeId();
+        List<Course> courseList = teacherService.selectCNameByEId(eId);
+        List<Student> studentList = teacherService.seleteStudentsByCId(cId);
+        model.addAttribute("studentList",studentList);
+        model.addAttribute("courseList",courseList);
+        return "view/teacher/showStudents";
     }
 
     /**
@@ -272,4 +293,7 @@ public class TeacherController {
             }
         return "redirect:/teacherController/scoresList";
     }
+
+
+
 }

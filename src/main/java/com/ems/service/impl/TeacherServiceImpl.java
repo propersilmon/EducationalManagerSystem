@@ -1,34 +1,32 @@
 package com.ems.service.impl;
 
-import com.ems.entity.Course;
-import com.ems.entity.CourseRoom;
-import com.ems.entity.Room;
-import com.ems.mapper.CourseMapper;
-import com.ems.mapper.CourseRoomMapper;
-import com.ems.mapper.RoomMapper;
-import com.ems.entity.SysEmployee;
-import com.ems.mapper.SysEmployeeMapper;
+import com.ems.entity.*;
+import com.ems.mapper.*;
 import com.ems.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    SysEmployeeMapper sysEmployeeMapper;
+    private CourseMapper courseMapper;
+    @Autowired
+    private SysEmployeeMapper sysEmployeeMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private CourseRoomMapper courseRoomMapper;
+    @Autowired
+    private RoomMapper roomMapper;
 
     @Override
     public SysEmployee queryByUsername(int username) {
         return sysEmployeeMapper.selectByPrimaryKey(username);
     }
-    @Autowired
-    private CourseMapper courseMapper;
-    @Autowired
-    private CourseRoomMapper courseRoomMapper;
-    @Autowired
-    private RoomMapper roomMapper;
+
     @Override
     public List<Course> selectCourseById(int eId) {
         return courseMapper.selectCourseById(eId);
@@ -49,4 +47,22 @@ public class TeacherServiceImpl implements TeacherService {
         return courseMapper.selectCourseByIdAndCourseName(eId,cName);
     }
 
+    @Override
+
+    public List<Course> selectCNameByEId(int eId) {
+        return courseMapper.selectCNameByEId(eId);
+    }
+
+    @Override
+    public List<Student> seleteStudentsByCId(int cId) {
+        Course course = courseMapper.selectByPrimaryKey(cId);
+        System.out.println(course);
+        List<Student> studentList = studentMapper.selectStudentsByCourse(course);
+        return studentList;
+    }
+
+    @Override
+    public SysEmployee selectEmployeeByENameAndEPassword(String eName, String ePassword) {
+        return sysEmployeeMapper.selectEmployeeByENameAndEPassword(eName, ePassword);
+    }
 }

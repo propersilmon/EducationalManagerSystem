@@ -6,8 +6,7 @@
   Time: 22:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 
 <head>
@@ -131,6 +130,7 @@
                             &nbsp;&nbsp;
                             <button class="btn bgm-red waves-effect"><i class="zmdi zmdi-delete zmdi-hc-fw"></i>批量删除</button>
                         </span>
+
                     </h2>
                 </div>
 
